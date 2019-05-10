@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FireAuthService } from '../../providers/fire-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,14 @@ export class LoginComponent implements OnInit {
 
   faGoogle = faGoogle;
 
-  constructor() {
+  constructor(private auth: FireAuthService) {
   }
 
   ngOnInit() {
+  }
+
+  signWithGoogle = () => {
+    this.auth.googleLogin();
   }
 
 }
