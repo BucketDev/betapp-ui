@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User as FireBaseUser, auth } from 'firebase/app';
 import { User } from '../interfaces/user.interface';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class FireAuthService {
   user: User;
 
   constructor(private router: Router,
-              public afAuth:AngularFireAuth) {
+              public afAuth:AngularFireAuth,
+              private userService: UserService) {
     this.afAuth.authState.subscribe((user: FireBaseUser) => {
       if(user) {
-        this.session = user;
-        let route = this.router.url === '/login' ? '/' : this.router.url;
+        let route = this.router.url.startsWith('/login') ? '/' : this.router.url;
         this.router.navigate([route]);
       } else {
         let route = this.router.url.startsWith('/login') ? this.router.url : '/login';
@@ -26,10 +27,7 @@ export class FireAuthService {
   }
 
   set session(user: User) {
-    this.user = {
-      uid: user.uid,
-      email: user.email
-    }
+    this.user = user;
   }
 
   get authenticated(): boolean {
@@ -38,13 +36,8 @@ export class FireAuthService {
 
   emailSignIn = (user: User): Promise<void> =>
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
-      .then(data => {
-        if(data.additionalUserInfo.isNewUser) {
-          delete user.password;
-          user.uid = data.user.uid;
-          this.session = user;
-          //TODO: create user
-        }
+      .then((data: auth.UserCredential) => {
+        data.additionalUserInfo.isNewUser && this.createUser(data);
       });
 
   emailLogin = (user: User): Promise<void> =>
@@ -56,6 +49,22 @@ export class FireAuthService {
       .setCustomParameters({
         prompt: 'select_account'
       })
+    ).then((data: auth.UserCredential) => data.additionalUserInfo.isNewUser && this.createUser(data));
+  }
+
+  createUser = (data: auth.UserCredential) => {
+    console.log(data.user.uid);
+    let user: User = {
+      email: data.user.email
+    };
+    user.uid = data.user.uid;
+    user.photoUrl = data.user.photoURL;
+    user.displayName = data.user.displayName ? data.user.displayName : data.user.email;
+    user.email = data.user.email;
+    this.session = user;//saving values to display them in navbar
+    this.userService.save(user).subscribe(
+      (data: User) => console.log(data),
+      (error: any) => console.log(error)
     );
   }
 

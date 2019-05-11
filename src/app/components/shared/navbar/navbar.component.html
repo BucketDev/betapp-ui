@@ -1,5 +1,16 @@
-<div class="row">
-  <button class="btn btn-outline-danger" type="button" (click)="logout()">
-    <fa-icon [icon]="faSignOutAlt"></fa-icon> Log out
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="#">
+    <img src="https://png.icons8.com/cotton/football2/32" alt=""> Betapp
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
-</div>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+
+    </ul>
+    <button class="btn btn-danger" type="button" (click)="logout()">
+      <fa-icon [icon]="faSignOutAlt"></fa-icon> Log out
+    </button>
+  </div>
+</nav>
