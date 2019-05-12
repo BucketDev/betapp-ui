@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './components/shared/shared.module';
 import { LoginModule } from './components/login/login.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { TournamentModule } from './components/tournament/tournament.module';
 
 import { environment } from '../environments/environment';
 
@@ -28,7 +29,8 @@ import { environment } from '../environments/environment';
     AngularFireStorageModule,
     SharedModule,
     LoginModule,
-    DashboardModule
+    DashboardModule,
+    TournamentModule
   ],
   declarations: [
     AppComponent

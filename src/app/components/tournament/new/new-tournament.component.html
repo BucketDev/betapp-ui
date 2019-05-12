@@ -1,0 +1,80 @@
+<div class="row justify-content-center m-0 my-3">
+  <div class="col-md-12 col-lg-6 bg-light rounded-bottom">
+    <form (ngSubmit)="saveTournament()" #form="ngForm">
+      <div class="row m-0">
+        <div class="col-sm-6 border-right p-4">
+            <div class="form-group">
+              <label for="email">Title</label>
+              <input type="text" class="form-control" id="title" placeholder="Enter title" required
+                        name="title" #title="ngModel" [(ngModel)]="tournament.title">
+            </div>
+            <app-upload [label]="'Logo'" (photoUrl)="logoUploaded($event)"></app-upload>
+            <div class="row justify-content-center ">
+              <img src="{{tournament.photoUrl | photo: 'cotton': 'gallery': 128}}" alt=""
+                  class="img-fluid img-thumbnail img-tournament-logo">
+            </div>
+        </div>
+        <div class="col-sm-6 p-4 justify-content-between d-flex flex-column">
+          <div>
+            <div class="row m-0 justify-content-center">
+              <label class="mr-2" for="groups">Rounds</label>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="groups"
+                        name="groups" #groups="ngModel" [(ngModel)]="tournament.tournamentGroups">
+                <label class="custom-control-label" for="groups">Groups</label>
+              </div>
+            </div>
+            <div class="row m-0 justify-content-center">
+              <label class="mr-2" for="teams">People</label>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="teams"
+                        name="teams" #teams="ngModel" [(ngModel)]="tournament.tournamentTeams">
+                <label class="custom-control-label" for="teams">Teams</label>
+              </div>
+            </div>
+          </div>
+          <ul class="list-group text-secondary">
+            <li class="list-group-item list-group-item-action"
+                #public (click)="privacyChanged(public)" attr-privacy="0">
+              <div class="d-flex align-items-center">
+                <fa-icon [icon]="faGlobeAmericas"></fa-icon>
+                <div class="d-flex flex-column mx-3">
+                  <span>Public</span>
+                  <span class="small">Anyone can find the tournament, see the participants and activity</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action active"
+                #private (click)="privacyChanged(private)" attr-privacy="1">
+              <div class="d-flex align-items-center">
+                <fa-icon [icon]="faLockOpen"></fa-icon>
+                <div class="d-flex flex-column mx-3">
+                  <span>Private</span>
+                  <span class="small">Anyone can find the tournament, only the participants can see the activity</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action"
+                #secret (click)="privacyChanged(secret)" attr-privacy="2">
+              <div class="d-flex align-items-center">
+                <fa-icon [icon]="faLock"></fa-icon>
+                <div class="d-flex flex-column mx-3">
+                  <span>Secret</span>
+                  <span class="small">Only the participants can see the activity</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row justify-content-end bg-secondary p-3 rounded-bottom">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid" >
+          <fa-icon [icon]='faSave'></fa-icon> Save
+        </button>
+        <button type="button" class="btn btn-danger ml-3" [routerLink]="['/dashboard']">
+          <fa-icon [icon]='faTimesCircle'></fa-icon> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

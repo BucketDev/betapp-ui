@@ -19,6 +19,8 @@ export class FireAuthService {
       if(user) {
         let route = this.router.url.startsWith('/login') ? '/' : this.router.url;
         this.router.navigate([route]);
+        this.userService.findByUid(user.uid)
+          .subscribe((user: User) => this.user = user);
       } else {
         let route = this.router.url.startsWith('/login') ? this.router.url : '/login';
         this.router.navigate([route]);

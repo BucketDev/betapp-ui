@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FireAuthService } from '../../../providers/fire-auth.service';
 
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',

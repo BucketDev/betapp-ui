@@ -1,0 +1,11 @@
+.img-tournament-logo {
+  height: 128px;
+}
+
+.list-group-item-action {
+  color: inherit;
+}
+
+.list-group-item.active {
+  color: #fff;
+}

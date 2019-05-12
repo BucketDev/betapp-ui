@@ -6,9 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhotoPipe implements PipeTransform {
 
-  transform(value: string, size?: number): any {
-    size = size || 32;
-    return value ? value : `https://png.icons8.com/cotton/gender-neutral-user/${size}`
+  transform(value: string, type?: string, name?: string, size?: number): any {
+    size = size || 16;
+    type = type || 'cotton';
+    name = name || 'empty-box'
+    return value ? value : `https://png.icons8.com/${type}/${name}/${size}`
   }
 
 }

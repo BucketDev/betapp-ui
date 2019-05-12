@@ -1,9 +1,10 @@
-<div *ngIf="user">
+<div *ngIf="auth.user">
   <div class="row justify-content-center my-2">
-    <img src="{{user.photoUrl | photo: 128}}" class="img-fluid rounded-circle shadow img-dash-profile">
+    <img src="{{auth.user.photoUrl | photo: 'cotton': 'gender-neutral-user': 128}}"
+        class="img-fluid rounded-circle shadow img-dash-profile">
   </div>
   <div class="row justify-content-center">
-    <span class="h5">{{user.displayName}}</span>
+    <span class="h5">{{auth.user.displayName}}</span>
   </div>
   <div class="row">
     <div class="col-sm-12">
