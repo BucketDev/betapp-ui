@@ -1,7 +1,7 @@
 import { TournamentPrivacy } from './tournament-privacy.interface';
 
 export interface Tournament {
-  tournamentId?: number,
+  id?: number,
   uid?: string,
   title: string,
   photoUrl?: string,

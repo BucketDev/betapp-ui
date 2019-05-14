@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingComponent } from './loading/loading.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UploadComponent } from './upload/upload.component';
+import { SaveInputComponent } from './save-input/save-input.component';
 
 @NgModule({
   imports: [
@@ -19,12 +20,14 @@ import { UploadComponent } from './upload/upload.component';
   declarations: [
     LoadingComponent,
     NavbarComponent,
-    UploadComponent
+    UploadComponent,
+    SaveInputComponent
   ],
   exports: [
     LoadingComponent,
     NavbarComponent,
-    UploadComponent
+    UploadComponent,
+    SaveInputComponent
   ]
 })
 export class SharedModule { }

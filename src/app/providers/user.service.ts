@@ -11,7 +11,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  findByUid = (uid: string) => this.http.get(`${this.url}/${uid}`);
+  findByUid = (uid: string) => this.http.get(`${this.url}/uid/${uid}`);
+
+  findByDisplayName = (name: string) => this.http.get(`${this.url}/displayName/${name}`);
 
   save = (user: User) => this.http.post(this.url, user);
 

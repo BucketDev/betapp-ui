@@ -1,0 +1,29 @@
+<button type="button" class="btn btn-success rounded-pill my-2" *ngIf="!addingParticipant && isCreator()"
+        (click)="addParticipant()">
+  <fa-icon [icon]="faPlusCircle"></fa-icon> Participant
+</button>
+<div *ngIf="addingParticipant">
+  <button class="btn btn-danger rounded-pill my-2" type="button" (click)="cancelParticipant()">
+    <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
+  </button>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Participant name"
+    (keyup)="searchParticipant(participant)" #participant>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let participant of newParticipants"
+        (click)="saveParticipant(participant)">
+      <img src="{{participant.photoUrl | photo: 32: 'gender-neutral-user'}}" class="img-fluid rounded-circle img-participant">
+      <span class="mx-2">{{participant.displayName}}</span>
+    </li>
+  </ul>
+</div>
+<ul class="list-group mt-2">
+  <li class="list-group-item bg-dark text-light text-center">
+    <span class="h5">Participants</span>
+  </li>
+  <li class="list-group-item" *ngFor="let participant of participants">
+    <img src="{{participant.photoUrl | photo: 32: 'gender-neutral-user'}}" class="img-fluid rounded-circle img-participant">
+    <span class="mx-2">{{participant.displayName}}</span>
+  </li>
+</ul>

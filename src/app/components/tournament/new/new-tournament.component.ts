@@ -52,11 +52,10 @@ export class NewTournamentComponent implements OnInit {
   }
 
   saveTournament = () => {
-    this.tournament.userCreationId = this.auth.user.userId;
+    this.tournament.userCreationId = this.auth.user.id;
     this.tournamentService.save(this.tournament)
     .subscribe((data: Tournament) => {
       this.router.navigate(['tournament/', data.uid]);
-      console.log(data);
     });
   }
 

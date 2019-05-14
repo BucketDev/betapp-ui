@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhotoPipe implements PipeTransform {
 
-  transform(value: string, type?: string, name?: string, size?: number): any {
+  transform(value: string, size?: number, name?: string, type?: string): any {
     size = size || 16;
     type = type || 'cotton';
     name = name || 'empty-box'

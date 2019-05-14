@@ -10,6 +10,8 @@ import { SharedPipeModule } from '../../pipes/shared-pipe.module';
 
 import { NewTournamentComponent } from './new/new-tournament.component';
 import { TournamentComponent } from './tournament.component';
+import { TournamentParticipantsComponent } from './tournament-participants/tournament-participants.component';
+import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { TournamentComponent } from './tournament.component';
   ],
   declarations: [
     NewTournamentComponent,
-    TournamentComponent
+    TournamentComponent,
+    TournamentParticipantsComponent,
+    PoolSettingsComponent
   ],
 })
 export class TournamentModule { }

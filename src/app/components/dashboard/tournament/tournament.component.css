@@ -1,0 +1,11 @@
+.img-tournament-logo {
+  height: 64px;
+}
+
+.card-text {
+  font-size: .7em;
+}
+
+.card {
+  cursor: pointer;
+}

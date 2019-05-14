@@ -5,6 +5,6 @@ import { TournamentComponent } from './tournament.component';
 
 export const TOURNAMENT_ROUTES: Routes = [
   { path: '', component: NewTournamentComponent },
-  { path: ':id', component: TournamentComponent },
+  { path: ':uid', component: TournamentComponent },
   { path: '**', pathMatch: 'full', redirectTo: '/' }
 ];

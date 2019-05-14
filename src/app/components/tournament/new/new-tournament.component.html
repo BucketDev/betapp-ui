@@ -10,7 +10,7 @@
             </div>
             <app-upload [label]="'Logo'" (photoUrl)="logoUploaded($event)"></app-upload>
             <div class="row justify-content-center ">
-              <img src="{{tournament.photoUrl | photo: 'cotton': 'gallery': 128}}" alt=""
+              <img src="{{tournament.photoUrl | photo: 128: 'gallery'}}" alt=""
                   class="img-fluid img-thumbnail img-tournament-logo">
             </div>
         </div>

@@ -1,0 +1,18 @@
+<div class="form-group my-2">
+  <form (ngSubmit)="saveValue()" #form="ngForm">
+    <textarea rows="3" class="form-control" *ngIf="inputType === 'TEXT-AREA'"
+              required [(ngModel)]="value" name="value"></textarea>
+    <input type="number" class="form-control" *ngIf="inputType === 'NUMBER'"
+            required [(ngModel)]="value" name="value">
+    <input type="date" class="form-control" *ngIf="inputType === 'DATE'"
+            required [(ngModel)]="value" name="value">
+    <div class="d-flex justify-content-end mt-2">
+      <button type="submit" class="btn btn-outline-primary btn-sm rounded-pill">
+        <fa-icon [icon]="faSave"></fa-icon> Save
+      </button>
+      <button type="button" class="btn btn-danger btn-sm ml-2 rounded-pill" (click)="cancelValue()">
+        <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
+      </button>
+    </div>
+  </form>
+</div>
