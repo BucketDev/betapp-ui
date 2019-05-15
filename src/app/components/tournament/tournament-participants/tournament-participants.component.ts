@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FireAuthService } from '../../../providers/fire-auth.service';
 import { UserService } from '../../../providers/user.service';
 import { TournamentService } from '../../../providers/tournament.service';
+import { TournamentDetailsService } from '../../../providers/tournament-details.service';
 
 import { faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,12 +20,15 @@ export class TournamentParticipantsComponent implements OnInit {
   faTimesCircle = faTimesCircle;
   addingParticipant: boolean = false;
   newParticipants: User[];
-  @Input() tournament: TournamentDetails;
+  tournament: TournamentDetails;
   participants: User[];
 
   constructor(private auth: FireAuthService,
               private userService: UserService,
-              private tournamentService: TournamentService) { }
+              private tournamentDetailsService: TournamentDetailsService,
+              private tournamentService: TournamentService) {
+    this.tournament = this.tournamentDetailsService.tournament;
+  }
 
   ngOnInit() {
     this.participants = this.tournament.participants;

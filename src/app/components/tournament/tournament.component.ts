@@ -25,7 +25,8 @@ export class TournamentComponent implements OnInit {
     this.activatedRoute.params.subscribe((params => {
       this.tournamentDetailsService.findByUid(params['uid'])
         .subscribe((data: TournamentDetails) => {
-          this.tournament = data;
+          this.tournamentDetailsService.tournament = data;
+          this.tournament = this.tournamentDetailsService.tournament;
           this.loading = false;
         });
     }));

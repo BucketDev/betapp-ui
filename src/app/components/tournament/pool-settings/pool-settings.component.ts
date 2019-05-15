@@ -4,6 +4,7 @@ import { faPenAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { PoolSettingsService } from '../../../providers/pool-settings.service';
 import { FireAuthService } from '../../../providers/fire-auth.service';
+import { TournamentDetailsService } from '../../../providers/tournament-details.service';
 
 import { PoolSettings } from '../../../interfaces/pool-settings.interface';
 import { TournamentDetails } from '../../../interfaces/tournament-details.interface';
@@ -15,7 +16,7 @@ import { TournamentDetails } from '../../../interfaces/tournament-details.interf
 })
 export class PoolSettingsComponent implements OnInit {
 
-  @Input() tournament: TournamentDetails;
+  tournament: TournamentDetails;
   poolSettings: PoolSettings;
   faPenAlt = faPenAlt;
   editingDescription: boolean = false;
@@ -24,7 +25,10 @@ export class PoolSettingsComponent implements OnInit {
   editingLimit: boolean = false;
 
   constructor(private auth: FireAuthService,
-              private poolSettingsService: PoolSettingsService) { }
+              private tournamentDetailsService: TournamentDetailsService,
+              private poolSettingsService: PoolSettingsService) {
+    this.tournament = this.tournamentDetailsService.tournament;
+  }
 
   ngOnInit() {
     if(this.tournament.poolSettings === null)

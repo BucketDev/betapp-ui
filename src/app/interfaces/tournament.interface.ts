@@ -1,4 +1,4 @@
-import { TournamentPrivacy } from './tournament-privacy.interface';
+import { TournamentPrivacy } from './tournament-privacy.enum';
 
 export interface Tournament {
   id?: number,

@@ -1,5 +1,7 @@
-.img-tournament-logo {
-  height: 64px;
+.card-title-logo {
+  background-position: center;
+  height: 128px;
+  background-size: cover;
 }
 
 .card-text {

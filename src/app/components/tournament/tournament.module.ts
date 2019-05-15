@@ -7,11 +7,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '../shared/shared.module';
 import { SharedPipeModule } from '../../pipes/shared-pipe.module';
+import { TournamentDetailsModule } from './tournament-details/tournament-details.module';
 
 import { NewTournamentComponent } from './new/new-tournament.component';
 import { TournamentComponent } from './tournament.component';
 import { TournamentParticipantsComponent } from './tournament-participants/tournament-participants.component';
 import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
+import { TournamentDetailsComponent } from './tournament-details/tournament-details.component';
 
 @NgModule({
   imports: [
@@ -20,13 +22,15 @@ import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
     RouterModule,
     FontAwesomeModule,
     SharedModule,
-    SharedPipeModule
+    SharedPipeModule,
+    TournamentDetailsModule
   ],
   declarations: [
     NewTournamentComponent,
     TournamentComponent,
     TournamentParticipantsComponent,
-    PoolSettingsComponent
+    PoolSettingsComponent,
+    TournamentDetailsComponent,
   ],
 })
 export class TournamentModule { }

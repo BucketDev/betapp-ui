@@ -1,4 +1,4 @@
-<div class="row justify-content-center m-0 my-3">
+<div class="row justify-content-center m-0 my-3 animated fadeIn">
   <div class="col-md-12 col-lg-6 bg-light rounded-bottom">
     <form (ngSubmit)="saveTournament()" #form="ngForm">
       <div class="row m-0">
@@ -17,7 +17,7 @@
         <div class="col-sm-6 p-4 justify-content-between d-flex flex-column">
           <div>
             <div class="row m-0 justify-content-center">
-              <label class="mr-2" for="groups">Rounds</label>
+              <label class="mr-2" for="groups">Playoffs</label>
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="groups"
                         name="groups" #groups="ngModel" [(ngModel)]="tournament.tournamentGroups">
@@ -68,10 +68,10 @@
         </div>
       </div>
       <div class="row justify-content-end bg-secondary p-3 rounded-bottom">
-        <button type="submit" class="btn btn-primary" [disabled]="form.invalid" >
+        <button type="submit" class="btn btn-primary rounded-pill" [disabled]="form.invalid" >
           <fa-icon [icon]='faSave'></fa-icon> Save
         </button>
-        <button type="button" class="btn btn-danger ml-3" [routerLink]="['/dashboard']">
+        <button type="button" class="btn btn-danger rounded-pill ml-3" [routerLink]="['/dashboard']">
           <fa-icon [icon]='faTimesCircle'></fa-icon> Cancel
         </button>
       </div>

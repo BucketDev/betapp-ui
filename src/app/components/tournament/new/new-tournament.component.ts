@@ -6,7 +6,7 @@ import { TournamentService } from '../../../providers/tournament.service';
 import { FireAuthService } from '../../../providers/fire-auth.service';
 
 import { Tournament } from '../../../interfaces/tournament.interface';
-import { TournamentPrivacy } from '../../../interfaces/tournament-privacy.interface';
+import { TournamentPrivacy } from '../../../interfaces/tournament-privacy.enum';
 import { Router } from '@angular/router';
 
 @Component({
