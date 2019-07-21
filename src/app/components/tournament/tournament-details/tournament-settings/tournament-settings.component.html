@@ -1,4 +1,4 @@
-<div class="row m-0 animated fadeIn">
+<div class="row m-0 animated fadeIn" *ngIf="tournamentSettings">
   <div class="col-12 p-0">
     <div *ngIf="tournament.tournamentGroups" class="card">
       <form (ngSubmit)="saveSettings()">
@@ -32,7 +32,8 @@
           <div class="form-group">
             <label for="playoffStage">Playoffs Stage</label>
             <select name="playoffStage" id="playoffStage" class="form-control"
-                    (change)=stageSelected($event.target.value)>
+                    (change)=stageSelected($event.target.value)
+                    #playoffStage="ngModel" [(ngModel)]="tournamentSettings.playoffStage">
               <option value="{{stage}}" *ngFor="let stage of keys(playoffStages)">{{playoffStages[stage]}}</option>
             </select>
             <small class="form-text text-muted">From which stage do the playoffs will start</small>
@@ -75,9 +76,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-end mt-2 card-footer">
-          <button type="submit" class="btn btn-outline-primary rounded-pill">
-            <fa-icon [icon]="faSave"></fa-icon> Save
-          </button>
+          <app-saving-button (clicked)="saveSettings()"></app-saving-button>
         </div>
       </form>
     </div>

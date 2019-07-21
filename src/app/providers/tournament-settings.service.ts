@@ -11,6 +11,8 @@ export class TournamentSettingsService {
 
   constructor(private http: HttpClient) { }
 
+  findByTournamentUid = (uid: string) => this.http.get(`${this.url}/tournamentUid/${uid}`);
+
   upsert = (tournamentSettings: TournamentSettings) => this.http.post(this.url, tournamentSettings);
 
 }

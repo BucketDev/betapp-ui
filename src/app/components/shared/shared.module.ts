@@ -9,6 +9,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UploadComponent } from './upload/upload.component';
 import { SaveInputComponent } from './save-input/save-input.component';
+import { SavingButtonComponent } from './saving-button/saving-button.component';
 
 @NgModule({
   imports: [
@@ -21,13 +22,15 @@ import { SaveInputComponent } from './save-input/save-input.component';
     LoadingComponent,
     NavbarComponent,
     UploadComponent,
-    SaveInputComponent
+    SaveInputComponent,
+    SavingButtonComponent
   ],
   exports: [
     LoadingComponent,
     NavbarComponent,
     UploadComponent,
-    SaveInputComponent
+    SaveInputComponent,
+    SavingButtonComponent
   ]
 })
 export class SharedModule { }

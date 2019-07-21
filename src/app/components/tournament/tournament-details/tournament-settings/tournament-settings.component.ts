@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
 import { TournamentSettingsService } from '../../../../providers/tournament-settings.service';
@@ -8,16 +7,18 @@ import { TournamentDetails } from '../../../../interfaces/tournament-details.int
 import { TournamentSettings } from '../../../../interfaces/tournament-settings.interface';
 import { PlayoffStage } from '../../../../interfaces/playoff-stage.enum';
 
+import { SavingButtonComponent } from '../../../../components/shared/saving-button/saving-button.component';
+
 @Component({
   selector: 'app-tournament-settings',
   templateUrl: './tournament-settings.component.html',
   styleUrls: ['./tournament-settings.component.css']
 })
-export class TournamentSettingsComponent implements OnInit {
+export class TournamentSettingsComponent {
 
-  faSave = faSave;
   tournament: TournamentDetails;
   tournamentSettings: TournamentSettings;
+  @ViewChild(SavingButtonComponent) savingButton: SavingButtonComponent;
 
   playoffStages = PlayoffStage;
   keys = Object.keys;
@@ -28,23 +29,13 @@ export class TournamentSettingsComponent implements OnInit {
   constructor(private tournamentDetailsService: TournamentDetailsService,
               private tournamentSettingsService: TournamentSettingsService) {
     this.tournament = this.tournamentDetailsService.tournament;
+    this.tournamentSettings = this.tournament.tournamentSettings;
+    this.showStages(PlayoffStage[this.tournamentSettings.playoffStage])
   }
 
-  ngOnInit() {
-    if(this.tournament.tournamentSettings === null)
-      this.tournamentSettings = {
-        tournamentId: this.tournament.id,
-        groupRoundTrip: false,
-        groupNumber: 1,
-        first: 1
-      }
-    else
-      this.tournamentSettings = this.tournament.tournamentSettings;
-  }
+  stageSelected = (value: string) => this.showStages(PlayoffStage[value]);
 
-  stageSelected = (value: string) => {
-    let stage = PlayoffStage[value];
-    this.tournamentSettings.playoffStage = stage;
+  showStages = (stage: string) => {
     switch(stage) {
       case PlayoffStage.EIGHTH_FINALS:
         this.showEighthFinals = true;
@@ -69,9 +60,12 @@ export class TournamentSettingsComponent implements OnInit {
     }
   }
 
-  saveSettings = () => this.tournamentSettingsService.upsert(this.tournamentSettings)
+  saveSettings = () => {
+    this.tournamentSettingsService.upsert(this.tournamentSettings)
     .subscribe((data: TournamentSettings) => {
-      this.tournamentSettings = data
+      this.tournamentSettings = data;
+      this.savingButton.setSaved();
     });
+  }
 
 }
