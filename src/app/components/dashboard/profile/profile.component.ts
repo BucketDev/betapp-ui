@@ -9,7 +9,7 @@ import { FireAuthService } from '../../../providers/fire-auth.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private auth: FireAuthService) {
+  constructor(public auth: FireAuthService) {
   }
 
   ngOnInit() { }

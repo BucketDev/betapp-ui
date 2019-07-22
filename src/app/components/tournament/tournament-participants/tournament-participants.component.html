@@ -1,14 +1,15 @@
-<button type="button" class="btn btn-success rounded-pill my-2" *ngIf="!addingParticipant && isCreator()"
+<button type="button" class="btn btn-success rounded-pill mt-2 btn-sm animated fadeIn fast"
+        *ngIf="!addingParticipant && isCreator()"
         (click)="addParticipant()">
-  <fa-icon [icon]="faPlusCircle"></fa-icon> Participant
+  <fa-icon [icon]="faPlusCircle"></fa-icon> Add participant
 </button>
 <div *ngIf="addingParticipant">
-  <button class="btn btn-danger rounded-pill my-2" type="button" (click)="cancelParticipant()">
-    <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
-  </button>
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Participant name"
+  <div class="d-flex mt-2 animated fadeIn fast">
+    <input type="text" class="flex-grow-1 form-control input-participant" placeholder="Participant name"
     (keyup)="searchParticipant(participant)" #participant>
+    <button class="btn btn-danger btn-sm" type="button" (click)="cancelParticipant()">
+      <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
+    </button>
   </div>
   <ul class="list-group">
     <li class="list-group-item list-group-item-action" *ngFor="let participant of newParticipants"

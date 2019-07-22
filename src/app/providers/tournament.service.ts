@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Tournament } from '../interfaces/tournament.interface';
 import { User } from '../interfaces/user.interface';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class TournamentService {
 
-  private url: string = 'http://localhost:8080/tournaments'
+  private url: string = `${environment.endpointURL}/tournaments`
 
   constructor(private http: HttpClient) { }
 

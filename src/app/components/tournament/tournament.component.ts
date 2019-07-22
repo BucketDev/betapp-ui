@@ -20,7 +20,7 @@ export class TournamentComponent implements OnInit {
   tournament: TournamentDetails;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private auth: FireAuthService,
+              public auth: FireAuthService,
               private tournamentDetailsService: TournamentDetailsService) {
     this.activatedRoute.params.subscribe((params => {
       this.tournamentDetailsService.findByUid(params['uid'])

@@ -6,13 +6,12 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+export class GroupService {
 
-export class TournamentParticipantsService {
-
-  private url: string = `${environment.endpointURL}/tournamentParticipants`
+  private url: string = `${environment.endpointURL}/groups`;
 
   constructor(private http: HttpClient) { }
 
-  findByParticipantUid = (uid: string) => this.http.get(`${this.url}/participant/${uid}`);
+  findByTournamentUid = (uid: string) => this.http.get(`${this.url}/tournament/${uid}`);
 
 }

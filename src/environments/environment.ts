@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  endpointURL: "https://dev-betapp.herokuapp.com",
   firebase: {
     apiKey: "AIzaSyAwzi5820duCdri3jfUV63V-qTepHoIVqs",
     authDomain: "betapp-c377b.firebaseapp.com",
