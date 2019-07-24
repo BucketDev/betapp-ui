@@ -18,7 +18,7 @@ export class TournamentSettingsComponent {
 
   tournament: TournamentDetails;
   tournamentSettings: TournamentSettings;
-  @ViewChild(SavingButtonComponent) savingButton: SavingButtonComponent;
+  @ViewChild(SavingButtonComponent, { static: false }) savingButton: SavingButtonComponent;
 
   playoffStages = PlayoffStage;
   keys = Object.keys;

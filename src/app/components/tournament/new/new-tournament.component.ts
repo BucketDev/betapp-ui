@@ -24,7 +24,7 @@ export class NewTournamentComponent implements OnInit {
   faGlobeAmericas = faGlobeAmericas;
   tournament: Tournament;
   photoUrl: string;
-  @ViewChild(SavingButtonComponent) savingButton: SavingButtonComponent;
+  @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(private tournamentService: TournamentService,
               private auth: FireAuthService,
