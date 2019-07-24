@@ -68,9 +68,7 @@
         </div>
       </div>
       <div class="row justify-content-end bg-secondary p-3 rounded-bottom">
-        <button type="submit" class="btn btn-primary rounded-pill" [disabled]="form.invalid" >
-          <fa-icon [icon]='faSave'></fa-icon> Save
-        </button>
+        <app-saving-button (clicked)="saveTournament()" [disabled]="form.invalid"></app-saving-button>
         <button type="button" class="btn btn-danger rounded-pill ml-3" [routerLink]="['/dashboard']">
           <fa-icon [icon]='faTimesCircle'></fa-icon> Cancel
         </button>

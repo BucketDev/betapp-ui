@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 import { faSave, faCheck } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +14,7 @@ export class SavingButtonComponent implements OnInit {
   saving: boolean = false;
   saved: boolean = false;
   @Output() clicked = new EventEmitter<void>();
+  @Input() disabled: boolean;
 
   constructor() { }
 

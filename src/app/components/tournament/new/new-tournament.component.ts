@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { faSave, faTimesCircle, faLock, faLockOpen, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,6 +8,7 @@ import { FireAuthService } from '../../../providers/fire-auth.service';
 import { Tournament } from '../../../interfaces/tournament.interface';
 import { TournamentPrivacy } from '../../../interfaces/tournament-privacy.enum';
 import { Router } from '@angular/router';
+import { SavingButtonComponent } from '../../shared/saving-button/saving-button.component';
 
 @Component({
   selector: 'app-new-tournament',
@@ -23,6 +24,7 @@ export class NewTournamentComponent implements OnInit {
   faGlobeAmericas = faGlobeAmericas;
   tournament: Tournament;
   photoUrl: string;
+  @ViewChild(SavingButtonComponent) savingButton: SavingButtonComponent;
 
   constructor(private tournamentService: TournamentService,
               private auth: FireAuthService,
@@ -55,7 +57,8 @@ export class NewTournamentComponent implements OnInit {
     this.tournament.userCreationId = this.auth.user.id;
     this.tournamentService.save(this.tournament)
     .subscribe((data: Tournament) => {
-      this.router.navigate(['tournament/', data.uid]);
+      this.savingButton.setSaved();
+      setTimeout(() => this.router.navigate(['tournament/', data.uid]), 500)
     });
   }
 

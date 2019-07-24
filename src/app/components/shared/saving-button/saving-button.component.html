@@ -1,6 +1,6 @@
 <button class="btn rounded-pill"
         [ngClass]="{'btn-outline-primary': !saved, 'btn-success': saved}"
-        (click)="onClick()">
+        (click)="onClick()" [disabled]="disabled">
   <span *ngIf="!saving">
     <fa-icon [icon]="faSave"></fa-icon> Save
   </span>
