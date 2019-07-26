@@ -24,9 +24,11 @@
       </table>
     </div>
     <div class="card-footer">
-      <button type="button" class="btn rounded-pill btn-info btn-sm">
+      <button type="button" class="btn rounded-pill btn-info btn-sm"
+              (click)="showPendingGroupParticipants(group.tournamentId)">
         <fa-icon [icon]="faPlusCircle"></fa-icon> Assign participant
       </button>
     </div>
   </div>
 </div>
+<app-participant-modal></app-participant-modal>

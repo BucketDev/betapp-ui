@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Group } from '../../../../../interfaces/group.interface';
 import { GroupService } from '../../../../../providers/group.service';
 import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
+import { ParticipantModalComponent } from './participant-modal/participant-modal.component';
 
 @Component({
   selector: 'app-tournament-groups',
@@ -15,6 +16,7 @@ export class TournamentGroupsComponent implements OnInit {
 
   groups: Group[];
   faPlusCircle = faPlusCircle;
+  @ViewChild(ParticipantModalComponent, { static: false }) participantModal: ParticipantModalComponent;
 
   constructor(private groupService: GroupService,
               public tournamentDetailsService: TournamentDetailsService) {
@@ -27,5 +29,7 @@ export class TournamentGroupsComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  showPendingGroupParticipants = (tournamentId: number) => this.participantModal.open(tournamentId);
 
 }

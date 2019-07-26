@@ -9,6 +9,10 @@ html, body {
   background: #dfe4ea !important;
 }
 
+li > .img-participant {
+  height: 32px;
+}
+
 /* Animations */
 .animated {
   -webkit-animation-duration: 1s;

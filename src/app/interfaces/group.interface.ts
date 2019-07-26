@@ -1,8 +1,8 @@
-import { GroupParticipants } from './group-participants.interface';
+import { GroupParticipant } from './group-participant.interface';
 
 export interface Group {
     id: number;
     name: string;
     tournamentId: number;
-    groupParticipants: GroupParticipants[];
+    groupParticipants: GroupParticipant[];
 }
