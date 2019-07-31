@@ -44,12 +44,7 @@ export class TournamentGroupsComponent implements OnInit {
     let groupParticipant: GroupParticipant = {
       groupId: this.group.id,
       tournamentId: this.group.tournamentId,
-      user: user,
-      gamesPlayed: 0,
-      gamesWon: 0,
-      gamesTied: 0,
-      gamesLost: 0,
-      points: 0
+      user: user
     };
     this.groupParticipantService.saveParticipant(groupParticipant)
       .subscribe((groupParticipant: GroupParticipant) => {
