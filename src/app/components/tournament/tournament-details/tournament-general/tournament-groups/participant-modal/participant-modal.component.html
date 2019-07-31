@@ -7,7 +7,7 @@
         <div class="card-body">
           <app-loading *ngIf="!participants"></app-loading>
           <li class="list-group-item list-group-item-action" *ngFor="let participant of participants"
-              (click)="saveParticipant(participant)">
+              (click)="selectParticipant(participant)">
             <img src="{{participant.user.photoUrl | photo: 32: 'gender-neutral-user'}}"
             class="img-fluid rounded-circle img-participant shadow-sm">
             <span class="mx-2">{{participant.user.displayName}}</span>

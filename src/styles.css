@@ -13,6 +13,10 @@ li > .img-participant {
   height: 32px;
 }
 
+td > .img-participant {
+  height: 32px;
+}
+
 /* Animations */
 .animated {
   -webkit-animation-duration: 1s;

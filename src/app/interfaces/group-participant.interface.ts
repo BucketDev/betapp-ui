@@ -1,8 +1,14 @@
-import { Group } from './group.interface';
 import { User } from './user.interface';
 
 export interface GroupParticipant {
   id?: number,
-  group: Group,
-  user: User
+  groupId: number,
+  groupName?: string,
+  tournamentId: number,
+  user: User,
+  gamesPlayed?: number,
+  gamesWon?: number,
+  gamesTied?: number,
+  gamesLost?: number,
+  points?: number
 }
