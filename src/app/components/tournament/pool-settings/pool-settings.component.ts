@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { faPenAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { PoolSettingsService } from '../../../providers/pool-settings.service';
-import { FireAuthService } from '../../../providers/fire-auth.service';
 import { TournamentDetailsService } from '../../../providers/tournament-details.service';
 
 import { PoolSettings } from '../../../interfaces/pool-settings.interface';

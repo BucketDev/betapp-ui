@@ -18,6 +18,12 @@ button > .img-participant {
   height: 36px;
 }
 
+.img-profile-logo {
+  background-position: center;
+  height: 192px;
+  background-size: cover;
+}
+
 /* Animations */
 .animated {
   -webkit-animation-duration: 1s;
