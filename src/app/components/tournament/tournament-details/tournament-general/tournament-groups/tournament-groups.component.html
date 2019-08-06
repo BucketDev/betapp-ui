@@ -33,7 +33,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" *ngIf="tournamentDetailsService.isCreator()">
       <button type="button" class="btn rounded-pill btn-info btn-sm"
               (click)="showPendingGroupParticipants(group)">
         <fa-icon [icon]="faPlusCircle"></fa-icon> Assign participant

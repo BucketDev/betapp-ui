@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   faSignOutAlt = faSignOutAlt;
 
-  constructor(private auth: FireAuthService) { }
+  constructor(public auth: FireAuthService) { }
 
   ngOnInit() {
   }

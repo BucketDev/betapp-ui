@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-success rounded-pill mt-2 btn-sm animated fadeIn fast"
-        *ngIf="!addingParticipant && isCreator()"
+        *ngIf="!addingParticipant && tournamentDetailsService.isCreator()"
         (click)="addParticipant()">
   <fa-icon [icon]="faPlusCircle"></fa-icon> Add participant
 </button>

@@ -4,5 +4,6 @@ export interface User {
   email: string,
   displayName?: string,
   password?: string,
-  photoUrl?:string
+  photoUrl?:string,
+  provider?: string
 }

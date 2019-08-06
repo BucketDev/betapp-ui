@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Group } from '../../../../interfaces/group.interface';
+import { FireAuthService } from '../../../../providers/fire-auth.service';
 import { GroupService } from '../../../../providers/group.service';
 import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
 
@@ -18,6 +19,7 @@ export class TournamentGeneralComponent implements OnInit {
   faPlusCircle = faPlusCircle;
 
   constructor(private groupService: GroupService,
+              public auth: FireAuthService,
               public tournamentDetailsService: TournamentDetailsService) {
     if(this.tournamentDetailsService.tournament.tournamentGroups)
       this.groupService.findByTournamentUid(this.tournamentDetailsService.tournament.uid)

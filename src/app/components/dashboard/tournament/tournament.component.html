@@ -1,16 +1,19 @@
 <div class="row m-2">
-  <button type="button" class="btn btn-success rounded-pill" [routerLink]="['/tournament']">
+  <button type="button" class="btn btn-sm btn-success rounded-pill" [routerLink]="['/tournament']">
     <fa-icon [icon]="faPlusCircle"></fa-icon> Tournament
   </button>
 </div>
-<div class="row m-0">
+<div class="row position-relative p-3" *ngIf="!tournaments">
+  <app-loading></app-loading>
+</div>
+<div class="row m-0" *ngIf="tournaments">
   <div class="col-xs col-md-6 col-xl-4 d-flex align-items-stretch p-1" (click)="viewTournament(tournament)"
         *ngFor="let tournament of tournaments">
     <div class="card text-center flex-fill">
       <div class="card-body p-0 flex-column d-flex justify-content-between">
         <div>
           <div class="mb-1 text-light align-items-end d-flex card-title-logo text-center"
-                [style.background-image]="tournament.photoUrl | photo: 128 | uriStyleSanitizer">
+                [style.background-image]="tournament.photoUrl | photo: 128: 'trophy--v2' | uriStyleSanitizer">
             <span class="card-title text-truncate m-0 flex-fill">
               {{tournament.title}}
             </span>

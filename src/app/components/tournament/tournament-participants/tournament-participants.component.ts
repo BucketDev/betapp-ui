@@ -25,7 +25,7 @@ export class TournamentParticipantsComponent implements OnInit {
 
   constructor(private auth: FireAuthService,
               private userService: UserService,
-              private tournamentDetailsService: TournamentDetailsService,
+              public tournamentDetailsService: TournamentDetailsService,
               private tournamentService: TournamentService) {
     this.tournament = this.tournamentDetailsService.tournament;
   }
@@ -33,8 +33,6 @@ export class TournamentParticipantsComponent implements OnInit {
   ngOnInit() {
     this.participants = this.tournament.participants;
   }
-
-  isCreator = () => this.auth.user.id === this.tournament.userCreationId;
 
   addParticipant = () => this.addingParticipant = true;
 

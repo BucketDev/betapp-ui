@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { TournamentDetails } from '../../../interfaces/tournament-details.interface';
+import { TournamentDetailsService } from '../../../providers/tournament-details.service';
 
 @Component({
   selector: 'app-tournament-details',
@@ -9,11 +9,8 @@ import { TournamentDetails } from '../../../interfaces/tournament-details.interf
 })
 export class TournamentDetailsComponent implements OnInit {
 
-  @Input() tournament: TournamentDetails;
+  constructor(public tournamentDetailsService: TournamentDetailsService) { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

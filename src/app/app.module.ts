@@ -15,6 +15,7 @@ import { SharedModule } from './components/shared/shared.module';
 import { LoginModule } from './components/login/login.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { TournamentModule } from './components/tournament/tournament.module';
+import { ProfileModule } from './components/profile/profile.module';
 
 import { environment } from '../environments/environment';
 
@@ -30,7 +31,8 @@ import { environment } from '../environments/environment';
     SharedModule,
     LoginModule,
     DashboardModule,
-    TournamentModule
+    TournamentModule,
+    ProfileModule
   ],
   declarations: [
     AppComponent

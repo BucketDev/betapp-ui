@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedPipeModule } from '../../pipes/shared-pipe.module';
 
 import { LoadingComponent } from './loading/loading.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -16,6 +17,7 @@ import { SavingButtonComponent } from './saving-button/saving-button.component';
     CommonModule,
     RouterModule,
     FontAwesomeModule,
+    SharedPipeModule,
     FormsModule
   ],
   declarations: [

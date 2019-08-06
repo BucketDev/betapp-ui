@@ -1,0 +1,31 @@
+<div class="row my-2">
+  <div class="col-lg-3">
+    <div class="list-group">
+      <div class="list-group-item bg-dark text-light">Profile Settings</div>
+      <a class="list-group-item list-group-item-action"
+          routerLinkActive="active"
+          [routerLink]="['general']">
+        <img src="https://png.icons8.com/cotton/name/24" alt=""> Profile
+      </a>
+      <a class="list-group-item list-group-item-action"
+          routerLinkActive="active"
+          [routerLink]="['wallet']">
+        <img src="https://png.icons8.com/cotton/card-wallet/24" alt=""> Wallet
+      </a>
+      <a class="list-group-item list-group-item-action"
+          routerLinkActive="active"
+          [routerLink]="['privacy']">
+        <img src="https://png.icons8.com/cotton/fingerprint/24" alt=""> Privacy
+      </a>
+      <a class="list-group-item list-group-item-action"
+          routerLinkActive="active"
+          [routerLink]="['notifications']">
+        <img src="https://png.icons8.com/cotton/topic-push-notification/24" alt=""> Notifications
+      </a>
+    </div>
+  </div>
+  <app-loading *ngIf="!auth.user"></app-loading>
+  <div class="col-lg-9" *ngIf="auth.user">
+    <router-outlet></router-outlet>
+  </div>
+</div>

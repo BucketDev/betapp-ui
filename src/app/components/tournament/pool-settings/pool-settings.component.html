@@ -10,7 +10,7 @@
           <div class="d-flex w-100 justify-content-between">
             <h5 class="m-0">Description</h5>
             <button type="button" class="btn btn-sm btn-outline-warning"
-                    (click)="editDescription()" *ngIf="isCreator()">
+                    (click)="editDescription()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>
           </div>
@@ -28,7 +28,7 @@
           <div class="d-flex w-100 justify-content-between">
             <h5 class="m-0">Amount per participant</h5>
             <button type="button" class="btn btn-sm btn-outline-warning"
-                    (click)="editAmount()" *ngIf="isCreator()">
+                    (click)="editAmount()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>
           </div>
@@ -46,7 +46,7 @@
           <div class="d-flex w-100 justify-content-between">
             <h5 class="m-0">Goal</h5>
             <button type="button" class="btn btn-sm btn-outline-warning"
-                    (click)="editGoal()" *ngIf="isCreator()">
+                    (click)="editGoal()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>
           </div>
@@ -64,7 +64,7 @@
           <div class="d-flex w-100 justify-content-between">
             <h5 class="m-0">Limit date</h5>
             <button type="button" class="btn btn-sm btn-outline-warning"
-                    (click)="editLimit()" *ngIf="isCreator()">
+                    (click)="editLimit()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>
           </div>

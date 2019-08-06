@@ -21,7 +21,7 @@ export class TournamentComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               public auth: FireAuthService,
-              private tournamentDetailsService: TournamentDetailsService) {
+              public tournamentDetailsService: TournamentDetailsService) {
     this.activatedRoute.params.subscribe((params => {
       this.tournamentDetailsService.findByUid(params['uid'])
         .subscribe((data: TournamentDetails) => {
@@ -32,9 +32,6 @@ export class TournamentComponent implements OnInit {
     }));
   }
 
-  ngOnInit() {
-  }
-
-  isCreator = () => this.auth.user.id === this.tournament.userCreationId;
+  ngOnInit() { }
 
 }

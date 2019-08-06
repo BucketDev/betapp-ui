@@ -19,7 +19,7 @@ export class FireAuthService {
       if(user) {
         let route = this.router.url.startsWith('/login') ? '/' : this.router.url;
         this.router.navigate([route]);
-        this.userService.findByUid(user.uid)
+        !this.user && this.userService.findByUid(user.uid)
           .subscribe((user: User) => this.user = user);
       } else {
         let route = this.router.url.startsWith('/login') ? this.router.url : '/login';
@@ -55,14 +55,13 @@ export class FireAuthService {
   }
 
   createUser = (data: auth.UserCredential) => {
-    console.log(data.user.uid);
     let user: User = {
-      email: data.user.email
+      email: data.user.email,
+      uid: data.user.uid,
+      photoUrl: data.user.photoURL,
+      displayName: data.user.displayName ? data.user.displayName : data.user.email,
+      provider: data.additionalUserInfo.providerId
     };
-    user.uid = data.user.uid;
-    user.photoUrl = data.user.photoURL;
-    user.displayName = data.user.displayName ? data.user.displayName : data.user.email;
-    user.email = data.user.email;
     this.session = user;//saving values to display them in navbar
     this.userService.save(user).subscribe(
       (data: User) => console.log(data),
@@ -75,5 +74,7 @@ export class FireAuthService {
     this.user = null;
     this.router.navigate(['/login'])
   }
+
+  updatePassword = (newPassword: string) => this.afAuth.auth.currentUser.updatePassword(newPassword);
 
 }

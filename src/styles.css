@@ -9,12 +9,13 @@ html, body {
   background: #dfe4ea !important;
 }
 
-li > .img-participant {
+li > .img-participant,
+td > .img-participant {
   height: 32px;
 }
 
-td > .img-participant {
-  height: 32px;
+button > .img-participant {
+  height: 36px;
 }
 
 /* Animations */

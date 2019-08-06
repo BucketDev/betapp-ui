@@ -24,8 +24,7 @@ export class PoolSettingsComponent implements OnInit {
   editingGoal: boolean = false;
   editingLimit: boolean = false;
 
-  constructor(private auth: FireAuthService,
-              private tournamentDetailsService: TournamentDetailsService,
+  constructor(private tournamentDetailsService: TournamentDetailsService,
               private poolSettingsService: PoolSettingsService) {
     this.tournament = this.tournamentDetailsService.tournament;
   }
@@ -43,8 +42,6 @@ export class PoolSettingsComponent implements OnInit {
     else
       this.poolSettings = this.tournament.poolSettings;
   }
-
-  isCreator = () => this.auth.user.id === this.tournament.userCreationId;
 
   editDescription = () => this.editingDescription = true;
   cancelDescription = () => this.editingDescription = false;
