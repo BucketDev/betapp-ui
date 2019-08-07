@@ -1,6 +1,6 @@
 <div class="card animated fadeIn">
   <div class="card-body pb-0">
-    <div class="img-profile-squared d-flex align-items-end rounded-top border"
+    <div class="img-profile-squared d-flex align-items-end rounded-top border mb-3"
         [style.background-image]="auth.user.photoUrl | photo: 192: 'gender-neutral-user' | uriStyleSanitizer: true">
       <div class="col p-0 d-flex flex-row-reverse m-2">
         <button type="button" class="btn btn-sm btn-outline-light" (click)="showUploadPhoto()">
@@ -8,8 +8,8 @@
         </button>
       </div>
     </div>
-    <div class="col-lg-3 p-0" *ngIf="uploadingPhoto">
-      <app-upload [path]="uploadPath" (photoUrl)="updatePhotoURL($event)"></app-upload>
+    <div class="col-lg-7 p-0" *ngIf="uploadingPhoto">
+      <app-upload [path]="uploadPath" [label]="'Select profile photo:'" (photoUrl)="updatePhotoURL($event)"></app-upload>
     </div>
     <form class="mt-3" #formProfile="ngForm">
       <div class="form-group">
