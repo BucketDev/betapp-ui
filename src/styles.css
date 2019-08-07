@@ -9,18 +9,25 @@ html, body {
   background: #dfe4ea !important;
 }
 
-li > .img-participant,
-td > .img-participant {
+li > .img-participant-squared,
+td > .img-participant-squared {
   height: 32px;
-}
-
-button > .img-participant {
-  height: 36px;
-}
-
-.img-profile-logo {
+  width: 32px;
   background-position: center;
+  background-size: cover;
+}
+
+button > .img-profile-squared {
+  height: 36px;
+  width: 36px;
+  background-position: center;
+  background-size: cover;
+}
+
+.img-profile-squared {
   height: 192px;
+  width: 192px;
+  background-position: center;
   background-size: cover;
 }
 

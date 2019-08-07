@@ -23,7 +23,7 @@ export class PoolSettingsComponent implements OnInit {
   editingGoal: boolean = false;
   editingLimit: boolean = false;
 
-  constructor(private tournamentDetailsService: TournamentDetailsService,
+  constructor(public tournamentDetailsService: TournamentDetailsService,
               private poolSettingsService: PoolSettingsService) {
     this.tournament = this.tournamentDetailsService.tournament;
   }

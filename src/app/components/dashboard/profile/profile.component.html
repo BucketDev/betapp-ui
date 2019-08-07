@@ -3,19 +3,13 @@
   <div class="row">
     <div class="col-sm-12 my-3">
       <ul class="list-group" style="cursor: pointer">
-        <li class="list-group-item list-group-item-action"
+        <li class="list-group-item list-group-item-action d-flex justify-content-center"
             [routerLink]="['/profile', auth.user.uid]">
-          <div class="card text-center flex-fill">
-            <div class="card-body p-0 flex-column d-flex justify-content-between">
-              <div>
-                <div class="mb-1 text-light align-items-end d-flex img-profile-logo text-center"
-                      [style.background-image]="auth.user.photoUrl | photo: 194: 'gender-neutral-user' | uriStyleSanitizer">
-                  <span class="h4 text-truncate mb-2 flex-fill">
-                    {{auth.user.displayName}}
-                  </span>
-                </div>
-              </div>
-            </div>
+          <div class="text-light align-items-end d-flex img-profile-squared text-center border rounded-top"
+                [style.background-image]="auth.user.photoUrl | photo: 194: 'gender-neutral-user' | uriStyleSanitizer: true">
+            <span class="h4 text-truncate mb-2 flex-fill">
+              {{auth.user.displayName}}
+            </span>
           </div>
         </li>
         <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">

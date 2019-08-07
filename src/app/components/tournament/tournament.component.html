@@ -1,13 +1,13 @@
 <app-loading *ngIf="loading || !auth.user"></app-loading>
 <div class="row animated fadeIn" *ngIf="!loading && auth.user">
   <div class="col-lg-3">
-    <div class="col mt-2 img-tournament-logo d-flex align-items-end rounded-top"
-        [style.background-image]="tournament.photoUrl | photo: 256: 'trophy--v2' | uriStyleSanitizer">
-      <div class="col p-0 d-flex flex-row justify-content-between align-items-center">
-        <h3 class="text-light">{{tournament.title}}</h3>
-        <div *ngIf="tournamentDetailsService.isCreator()">
-          <button type="button" class="btn btn-sm btn-outline-light"><fa-icon [icon]="faCameraRetro"></fa-icon></button>
-        </div>
+    <div class="mt-2 img-tournament-logo d-flex align-items-end rounded-top border"
+        [style.background-image]="tournament.photoUrl | photo: 256: 'trophy--v2' | uriStyleSanitizer: true">
+      <div class="col p-0 m-2 d-flex flex-row justify-content-between align-items-center text-light">
+        <span class="h3 m-0 text-truncate">{{tournament.title}}</span>
+        <button type="button" class="btn btn-sm btn-outline-light" *ngIf="tournamentDetailsService.isCreator()">
+          <fa-icon [icon]="faCameraRetro"></fa-icon>
+        </button>
       </div>
     </div>
     <app-tournament-participants></app-tournament-participants>

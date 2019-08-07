@@ -12,9 +12,11 @@
     </button>
   </div>
   <ul class="list-group">
-    <li class="list-group-item list-group-item-action" *ngFor="let participant of newParticipants"
+    <li class="list-group-item list-group-item-action d-flex" *ngFor="let participant of newParticipants"
         (click)="saveParticipant(participant)">
-      <img src="{{participant.photoUrl | photo: 32: 'gender-neutral-user'}}" class="img-fluid rounded-circle img-participant">
+      <div class="img-fluid rounded-circle img-participant-squared"
+            [style.background-image]="participant.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
+      </div>
       <span class="mx-2">{{participant.displayName}}</span>
     </li>
   </ul>
@@ -23,8 +25,10 @@
   <li class="list-group-item bg-dark text-light text-center">
     <span class="h5">Participants</span>
   </li>
-  <li class="list-group-item" *ngFor="let participant of participants">
-    <img src="{{participant.photoUrl | photo: 32: 'gender-neutral-user'}}" class="img-fluid rounded-circle img-participant">
+  <li class="list-group-item d-flex" *ngFor="let participant of participants">
+    <div class="img-fluid rounded-circle img-participant-squared"
+          [style.background-image]="participant.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
+    </div>
     <span class="mx-2">{{participant.displayName}}</span>
   </li>
 </ul>

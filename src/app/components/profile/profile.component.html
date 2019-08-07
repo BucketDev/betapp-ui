@@ -1,5 +1,5 @@
-<div class="row my-2">
-  <div class="col-lg-3">
+<div class="row">
+  <div class="col-lg-3 mt-2">
     <div class="list-group">
       <div class="list-group-item bg-dark text-light">Profile Settings</div>
       <a class="list-group-item list-group-item-action"
@@ -25,7 +25,7 @@
     </div>
   </div>
   <app-loading *ngIf="!auth.user"></app-loading>
-  <div class="col-lg-9" *ngIf="auth.user">
+  <div class="col-lg-6 my-2" *ngIf="auth.user">
     <router-outlet></router-outlet>
   </div>
 </div>
