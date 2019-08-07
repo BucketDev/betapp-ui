@@ -6,12 +6,10 @@
         </div>
         <div class="card-body">
           <app-loading *ngIf="!participants"></app-loading>
-          <li class="list-group-item list-group-item-action" *ngFor="let participant of participants"
-              (click)="selectParticipant(participant)">
-            <img src="{{participant.user.photoUrl | photo: 32: 'gender-neutral-user'}}"
-            class="img-fluid rounded-circle img-participant shadow-sm">
-            <span class="mx-2">{{participant.user.displayName}}</span>
-          </li>
+          <app-participants-list [participants]="participants"
+                                (participantEvent)="selectParticipant($event)"
+                                [emptyLabel]="'There are no more participants left'">
+          </app-participants-list>
         </div>
       </div>
     </div>

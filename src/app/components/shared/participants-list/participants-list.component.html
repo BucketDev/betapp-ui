@@ -1,0 +1,15 @@
+<ul class="list-group animated fadeIn" *ngIf="participants">
+  <li *ngIf="participants.length === 0"
+      class="list-group-item text-muted text-center">
+    <span>{{ emptyLabel }}</span>
+  </li>
+	<li class="list-group-item list-group-item-action d-flex align-items-center"
+      *ngFor="let participant of participants"
+	    (click)="participantSelected(participant)"
+      style="cursor: pointer">
+	  <div class="img-fluid rounded-circle img-participant-squared"
+	        [style.background-image]="participant.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
+	  </div>
+	  <span class="mx-2">{{participant.displayName}}</span>
+	</li>
+</ul>

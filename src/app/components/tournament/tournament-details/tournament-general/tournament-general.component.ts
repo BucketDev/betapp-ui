@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faRocket } from '@fortawesome/free-solid-svg-icons';
 
 import { Group } from '../../../../interfaces/group.interface';
 import { FireAuthService } from '../../../../providers/fire-auth.service';
@@ -17,6 +17,7 @@ export class TournamentGeneralComponent implements OnInit {
 
   groups: Group[];
   faPlusCircle = faPlusCircle;
+  faRocket = faRocket;
 
   constructor(private groupService: GroupService,
               public auth: FireAuthService,

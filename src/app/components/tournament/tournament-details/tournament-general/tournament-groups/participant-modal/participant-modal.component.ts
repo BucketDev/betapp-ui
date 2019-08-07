@@ -6,6 +6,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { ParticipantService } from '../../../../../../providers/participant.service';
 import { Participant } from '../../../../../../interfaces/participant.interface';
 import { User } from '../../../../../../interfaces/user.interface';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-participant-modal',
@@ -15,7 +16,7 @@ import { User } from '../../../../../../interfaces/user.interface';
 export class ParticipantModalComponent implements OnInit {
 
   faTimesCircle = faTimesCircle;
-  participants: Participant[];
+  participants: User[];
   @ViewChild('content', {static: false}) private content: TemplateRef<any>;
   @Output() saveParticipant = new EventEmitter<User>();
 
@@ -26,15 +27,17 @@ export class ParticipantModalComponent implements OnInit {
   }
 
   open = (tournamentId: number) => {
-    this.participants = [];
     this.modal.open(this.content, {backdrop: 'static', keyboard: false});
     this.participantService.pendingGroupByTournamentId(tournamentId)
-      .subscribe((participants: Participant[]) => this.participants = participants);
+      .subscribe((participants: Participant[]) => {
+        this.participants = [];
+          this.participants = participants.map(pipe((participant: Participant) => participant.user))
+      });
   }
 
-  selectParticipant = (participant :Participant) => {
+  selectParticipant = (participant :User) => {
     this.modal.dismissAll();
-    this.saveParticipant.emit(participant.user);
+    this.saveParticipant.emit(participant);
   }
 
 }

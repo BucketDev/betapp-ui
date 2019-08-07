@@ -11,24 +11,10 @@
       <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
     </button>
   </div>
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-action d-flex" *ngFor="let participant of newParticipants"
-        (click)="saveParticipant(participant)">
-      <div class="img-fluid rounded-circle img-participant-squared"
-            [style.background-image]="participant.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-      </div>
-      <span class="mx-2">{{participant.displayName}}</span>
-    </li>
-  </ul>
+  <app-participants-list [participants]="newParticipants"
+                        [emptyLabel]="'There are no matching participants'"
+                        (participantEvent)="saveParticipant($event)">
+  </app-participants-list>
 </div>
-<ul class="list-group mt-2">
-  <li class="list-group-item bg-dark text-light text-center">
-    <span class="h5">Participants</span>
-  </li>
-  <li class="list-group-item d-flex" *ngFor="let participant of participants">
-    <div class="img-fluid rounded-circle img-participant-squared"
-          [style.background-image]="participant.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-    </div>
-    <span class="mx-2">{{participant.displayName}}</span>
-  </li>
-</ul>
+<h5 class="bg-dark text-light text-center py-3 mb-0 mt-2 rounded-top">Participants</h5>
+<app-participants-list [participants]="participants"></app-participants-list>

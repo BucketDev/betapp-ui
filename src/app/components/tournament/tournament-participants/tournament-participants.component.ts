@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FireAuthService } from '../../../providers/fire-auth.service';
 import { UserService } from '../../../providers/user.service';
 import { TournamentService } from '../../../providers/tournament.service';
@@ -19,12 +19,11 @@ export class TournamentParticipantsComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faTimesCircle = faTimesCircle;
   addingParticipant: boolean = false;
+  participants: User[];
   newParticipants: User[];
   tournament: TournamentDetails;
-  participants: User[];
 
-  constructor(private auth: FireAuthService,
-              private userService: UserService,
+  constructor(private userService: UserService,
               public tournamentDetailsService: TournamentDetailsService,
               private tournamentService: TournamentService) {
     this.tournament = this.tournamentDetailsService.tournament;

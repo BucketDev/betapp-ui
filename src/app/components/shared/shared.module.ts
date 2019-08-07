@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UploadComponent } from './upload/upload.component';
 import { SaveInputComponent } from './save-input/save-input.component';
 import { SavingButtonComponent } from './saving-button/saving-button.component';
+import { ParticipantsListComponent } from './participants-list/participants-list.component';
 
 @NgModule({
   imports: [
@@ -25,14 +26,16 @@ import { SavingButtonComponent } from './saving-button/saving-button.component';
     NavbarComponent,
     UploadComponent,
     SaveInputComponent,
-    SavingButtonComponent
+    SavingButtonComponent,
+    ParticipantsListComponent
   ],
   exports: [
     LoadingComponent,
     NavbarComponent,
     UploadComponent,
     SaveInputComponent,
-    SavingButtonComponent
+    SavingButtonComponent,
+    ParticipantsListComponent
   ]
 })
 export class SharedModule { }
