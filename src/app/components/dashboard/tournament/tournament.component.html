@@ -1,7 +1,9 @@
-<div class="row m-2">
-  <button type="button" class="btn btn-sm btn-success rounded-pill" [routerLink]="['/tournament']">
-    <fa-icon [icon]="faPlusCircle"></fa-icon> Tournament
-  </button>
+<div class="row my-2">
+  <div class="col">
+    <button type="button" class="btn btn-sm btn-success rounded-pill" [routerLink]="['/tournament']">
+      <fa-icon [icon]="faPlusCircle"></fa-icon> Tournament
+    </button>
+  </div>
 </div>
 <div class="row position-relative p-3" *ngIf="!tournaments">
   <app-loading></app-loading>

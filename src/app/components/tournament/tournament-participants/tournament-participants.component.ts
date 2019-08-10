@@ -53,6 +53,7 @@ export class TournamentParticipantsComponent implements OnInit {
     this.tournamentService.addParticipant(this.tournament.id, participant)
       .subscribe((data: User) => this.participants.push(data));
     this.addingParticipant = false;
+    this.newParticipants = null;
   }
 
 }

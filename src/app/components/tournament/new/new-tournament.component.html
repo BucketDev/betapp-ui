@@ -34,31 +34,31 @@
             </div>
           </div>
           <ul class="list-group text-secondary">
-            <li class="list-group-item list-group-item-action"
+            <li class="list-group-item list-group-item-action px-2"
                 #public (click)="privacyChanged(public)" attr-privacy="0">
               <div class="d-flex align-items-center">
                 <fa-icon [icon]="faGlobeAmericas"></fa-icon>
-                <div class="d-flex flex-column mx-3">
+                <div class="d-flex flex-column ml-2">
                   <span>Public</span>
                   <span class="small">Anyone can find the tournament, see the participants and activity</span>
                 </div>
               </div>
             </li>
-            <li class="list-group-item list-group-item-action active"
+            <li class="list-group-item list-group-item-action px-2 active"
                 #private (click)="privacyChanged(private)" attr-privacy="1">
               <div class="d-flex align-items-center">
                 <fa-icon [icon]="faLockOpen"></fa-icon>
-                <div class="d-flex flex-column mx-3">
+                <div class="d-flex flex-column ml-2">
                   <span>Private</span>
                   <span class="small">Anyone can find the tournament, only the participants can see the activity</span>
                 </div>
               </div>
             </li>
-            <li class="list-group-item list-group-item-action"
+            <li class="list-group-item list-group-item-action px-2"
                 #secret (click)="privacyChanged(secret)" attr-privacy="2">
               <div class="d-flex align-items-center">
                 <fa-icon [icon]="faLock"></fa-icon>
-                <div class="d-flex flex-column mx-3">
+                <div class="d-flex flex-column ml-2">
                   <span>Secret</span>
                   <span class="small">Only the participants can see the activity</span>
                 </div>

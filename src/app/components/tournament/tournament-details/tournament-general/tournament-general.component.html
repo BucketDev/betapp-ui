@@ -1,18 +1,18 @@
 <div class="card">
   <div class="card-header border-dark d-flex align-items-center justify-content-between">
     <span class="h5">Group Stage</span>
-    <button type="button"class="btn btn-sm btn-warning">
+    <button type="button"class="btn btn-sm btn-warning" *ngIf="tournamentDetailsService.isCreator()">
       <fa-icon [icon]="faRocket"></fa-icon> Start stage</button>
   </div>
   <div class="card-body p-2">
     <app-tournament-groups></app-tournament-groups>
   </div>
   <div class="card-header border-dark d-flex align-items-center justify-content-between">
-    <span class="h5">Finals Stage</span>
-    <button type="button"class="btn btn-sm btn-warning">
+    <span class="h5">Playoffs Stage</span>
+    <button type="button"class="btn btn-sm btn-warning" *ngIf="tournamentDetailsService.isCreator()">
       <fa-icon [icon]="faRocket"></fa-icon> Start stage</button>
   </div>
   <div class="card-body p-2">
-    <app-tournament-finals></app-tournament-finals>
+    <app-tournament-playoffs></app-tournament-playoffs>
   </div>
 </div>

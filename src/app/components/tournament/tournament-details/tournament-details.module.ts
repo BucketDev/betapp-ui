@@ -6,8 +6,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '../../shared/shared.module';
 import { TournamentGeneralModule } from './tournament-general/tournament-general.module';
+import { TournamentMatchesModule } from './tournament-matches/tournament-matches.module';
 
-import { TournamentMatchesComponent } from './tournament-matches/tournament-matches.component';
 import { TournamentSettingsComponent } from './tournament-settings/tournament-settings.component';
 
 @NgModule({
@@ -17,14 +17,13 @@ import { TournamentSettingsComponent } from './tournament-settings/tournament-se
     RouterModule,
     FontAwesomeModule,
     SharedModule,
-    TournamentGeneralModule
+    TournamentGeneralModule,
+    TournamentMatchesModule
   ],
   declarations: [
-    TournamentMatchesComponent,
     TournamentSettingsComponent
   ],
   exports: [
-    TournamentMatchesComponent,
     TournamentSettingsComponent
   ]
 })

@@ -1,13 +1,16 @@
 <button class="btn rounded-pill"
-        [ngClass]="{'btn-outline-primary': !saved, 'btn-success': saved}"
+        [ngClass]="{'btn-outline-primary': !saved, 'btn-success': saved, 'btn-sm': small}"
         (click)="onClick()" [disabled]="disabled">
   <span *ngIf="!saving">
-    <fa-icon [icon]="faSave"></fa-icon> Save
+    <fa-icon [icon]="faSave"></fa-icon>
+    <span [ngClass]="{'d-none': small}"> Save</span>
   </span>
   <span *ngIf="saving && !saved">
-    <span class="spinner-border spinner-border-sm"></span> Saving
+    <span class="spinner-border spinner-border-sm"></span>
+    <span [ngClass]="{'d-none': small}"> Saving</span>
   </span>
   <span *ngIf="saved">
-    <fa-icon [icon]="faCheck"></fa-icon> Saved!
+    <fa-icon [icon]="faCheck"></fa-icon>
+    <span [ngClass]="{'d-none': small}"> Saved!</span>
   </span>
 </button>

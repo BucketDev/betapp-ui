@@ -15,10 +15,13 @@ export class SavingButtonComponent implements OnInit {
   saved: boolean = false;
   @Output() clicked = new EventEmitter<void>();
   @Input() disabled: boolean;
+  @Input() small: boolean;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.small);
+  }
 
   onClick = () => {
     this.saving = true;

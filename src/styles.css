@@ -9,15 +9,16 @@ html, body {
   background: #dfe4ea !important;
 }
 
-li > .img-participant-squared,
-td > .img-participant-squared {
+li .img-participant-squared,
+td .img-participant-squared {
   height: 32px;
-  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
   background-position: center;
   background-size: cover;
 }
 
-button > .img-profile-squared {
+button .img-profile-squared {
   height: 36px;
   width: 36px;
   background-position: center;

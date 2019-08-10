@@ -1,4 +1,5 @@
 import { TournamentPrivacy } from './tournament-privacy.enum';
+import { TournamentStage } from './tournament-stage.enum';
 
 export interface Tournament {
   id?: number,
@@ -9,5 +10,6 @@ export interface Tournament {
   tournamentGroups: boolean,
   tournamentTeams: boolean,
   creationDate?: Date,
-  userCreationId?: number
+  userCreationId?: number,
+  tournamentStage?: TournamentStage
 }
