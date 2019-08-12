@@ -23,4 +23,6 @@ export class TournamentService {
 
   addParticipant = (id: number, user: User) => this.http.post(`${this.url}/${id}/participants`, user);
 
+  stage = (tournament: {id: number, uid: string, tournamentStage: string}) => this.http.put(`${this.url}/stage`, tournament);
+
 }

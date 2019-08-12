@@ -4,14 +4,15 @@
       class="list-group-item text-muted text-center">
     <span>Group stage has not yet started</span>
   </li>
-  <li class="list-group-item d-flex justify-content-between row m-0" *ngFor="let match of matches">
+  <li class="list-group-item d-flex justify-content-between m-0"
+      *ngFor="let match of matches" matRipple (click)="showUpdateMatch(match)">
     <div class="d-flex align-items-center col-5 p-0">
       <div class="img-fluid rounded-circle img-participant-squared"
           [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
       </div>
       <span class="mx-2 text-truncate">{{match.groupParticipantAway.user.displayName}}</span>
     </div>
-    <div class="col-2 text-center">
+    <div class="col-2 text-center p-0">
       <div class="d-flex align-items-center justify-content-center">
         <div class="h5 m-0 mx-1">
           <span class="badge badge-dark">{{ match.scoreAway }}</span>

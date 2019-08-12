@@ -2,7 +2,7 @@
 <div *ngIf="auth.user">
   <div class="row">
     <div class="col-sm-12 my-3">
-      <ul class="list-group" style="cursor: pointer">
+      <ul class="list-group">
         <li class="list-group-item list-group-item-action d-flex justify-content-center"
             [routerLink]="['/profile', auth.user.uid]">
           <div class="text-light align-items-end d-flex img-profile-squared text-center border rounded-top shadow"

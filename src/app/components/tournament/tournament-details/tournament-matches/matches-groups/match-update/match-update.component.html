@@ -1,0 +1,49 @@
+<div class="list-group bg-light border rounded">
+  <form #formMatch="ngForm">
+    <div class="d-flex align-items-end">
+      <div class="col-4 d-flex justify-content-center">
+        <div class="img-fluid img-participant-capture my-2 rounded-lg shadow"
+            [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 64: 'gender-neutral-user' | uriStyleSanitizer">
+        </div>
+      </div>
+      <div class="col-4 d-flex justify-content-between">
+        <div class="d-flex justify-content-around align-items-center">
+          <div class="form-group m-0 p-2">
+            <input type="number" class="form-control no-arrows text-center" required
+            name="scoreAway" #scoreHome="ngModel"
+            [(ngModel)]="match.scoreAway">
+          </div>
+          <span class="badge badge-danger">-</span>
+          <div class="form-group m-0 p-2">
+            <input type="number" class="form-control no-arrows text-center" required
+            name="scoreHome" #scoreHome="ngModel"
+            [(ngModel)]="match.scoreHome">
+          </div>
+        </div>
+      </div>
+      <div class="col-4 d-flex justify-content-center">
+        <div class="img-fluid img-participant-capture my-2 rounded-lg shadow"
+            [style.background-image]="match.groupParticipantHome.user.photoUrl | photo: 64: 'gender-neutral-user' | uriStyleSanitizer">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex align-items-top mb-2">
+      <div class="d-flex col-4 justify-content-center">
+        <span class="text-truncate h6">{{match.groupParticipantAway.user.displayName}}</span>
+      </div>
+      <div class="d-flex justify-content-center col-4">
+        <div class="d-flex flex-column align-items-center">
+          <div class="form-group m-0 p-2">
+            <input type="date" class="form-control text-center no-arrows" required
+                  name="scheduledTime" #scheduledTime="ngModel"
+                  [(ngModel)]="match.scheduledTime">
+          </div>
+          <app-saving-button (clicked)="saveMatch(formMatch)"></app-saving-button>
+        </div>
+      </div>
+      <div class="d-flex col-4 justify-content-center">
+        <span class="text-truncate h6">{{match.groupParticipantHome.user.displayName}}</span>
+      </div>
+    </div>
+  </form>
+</div>
