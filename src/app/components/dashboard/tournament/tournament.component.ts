@@ -18,17 +18,36 @@ export class TournamentComponent implements OnInit {
 
   faPlusCircle = faPlusCircle;
   tournaments: TournamentParticipants[];
+  first: boolean = true;
+  last: boolean = true;
+  pages: number[];
+  pageNumber: number;
+  user: FireBaseUser;
 
   constructor(public afAuth:AngularFireAuth,
               private router: Router,
               private tournamentParticipants: TournamentParticipantsService) {
     this.afAuth.authState.subscribe((user: FireBaseUser) => {
       if(user) {
-        this.tournamentParticipants.findByParticipantUid(user.uid)
-          .subscribe((data: TournamentParticipants[]) => this.tournaments = data);
+        this.user = user;
+        this.findTournaments(0);
       }
     });
   }
+  findPrevTournaments = () => this.findTournaments(this.pageNumber - 1);
+
+  findNextTournaments = () => this.findTournaments(this.pageNumber + 1);
+
+  findTournaments = (page: number) => {
+    this.tournaments = null;
+    this.tournamentParticipants.findByParticipantUid(this.user.uid, page).subscribe((data: any) => {
+      this.tournaments = data['content'];
+      this.first = data['first'];
+      this.last = data['last'];
+      this.pageNumber = data['number'];
+      this.pages = Array.from(Array(data['totalPages'])).map((x, i) => i )
+    })
+  };
 
   ngOnInit() {
   }

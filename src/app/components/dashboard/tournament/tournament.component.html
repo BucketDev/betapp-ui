@@ -5,11 +5,24 @@
     </button>
   </div>
 </div>
+<nav class="col">
+  <ul class="pagination pagination-sm justify-content-center mb-1">
+    <li class="page-item" [ngClass]="{'disabled': first}">
+      <button type="button" class="page-link" (click)="findPrevTournaments()">Previous</button>
+    </li>
+    <li *ngFor="let page of pages" class="page-item" [ngClass]="{'active': page === pageNumber}">
+      <button type="button" class="page-link" (click)="findTournaments(page)">{{ page + 1 }}</button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': last}">
+      <button type="button" class="page-link" (click)="findNextTournaments()">Next</button>
+    </li>
+  </ul>
+</nav>
 <div class="row position-relative p-3" *ngIf="!tournaments">
   <app-loading></app-loading>
 </div>
 <div class="row m-0" *ngIf="tournaments">
-  <div class="col-xs col-xl-6 d-flex align-items-stretch p-1" (click)="viewTournament(tournament)"
+  <div class="col-xs col-xl-6 d-flex align-items-stretch p-1 animated fadeIn" (click)="viewTournament(tournament)"
         *ngFor="let tournament of tournaments">
     <div class="card text-center flex-fill">
       <div class="card-body p-0 flex-column d-flex justify-content-between">

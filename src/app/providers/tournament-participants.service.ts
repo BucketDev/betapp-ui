@@ -13,6 +13,6 @@ export class TournamentParticipantsService {
 
   constructor(private http: HttpClient) { }
 
-  findByParticipantUid = (uid: string) => this.http.get(`${this.url}/participant/${uid}`);
+  findByParticipantUid = (uid: string, page: number = 0) => this.http.get(`${this.url}/participant/${uid}?page=${page}`);
 
 }
