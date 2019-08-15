@@ -1,4 +1,5 @@
 import { GroupParticipant } from './group-participant.interface';
+import { PlayoffStage } from './playoff-stage.enum';
 
 export interface MatchParticipants {
     id: number,
@@ -8,5 +9,6 @@ export interface MatchParticipants {
     groupParticipantHome: GroupParticipant,
     scoreHome: number,
     scheduledTime?: Date,
-    registeredTime?: Date
+    registeredTime?: Date,
+    playoffStage?: PlayoffStage
   }

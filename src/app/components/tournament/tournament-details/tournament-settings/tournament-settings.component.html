@@ -43,8 +43,10 @@
               <span>{{playoffStages['EIGHTH_FINALS']}}</span>
             </div>
             <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="eightFinals" data-stage="EIGHTH_FINALS">
-              <label class="custom-control-label" for="eightFinals">Round Trip</label>
+              <input type="checkbox" class="custom-control-input" id="eightFinalsRoundTrip"
+                      name="eightFinalsRoundTrip" #eightFinalsRoundTrip="ngModel"
+                      [(ngModel)]="tournamentSettings.eightFinalsRoundTrip">
+              <label class="custom-control-label" for="eightFinalsRoundTrip">Round Trip</label>
             </div>
           </div>
           <div class="form-group row" *ngIf="showQuarterFinals">
@@ -52,8 +54,10 @@
               <span>{{playoffStages['QUARTER_FINALS']}}</span>
             </div>
             <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="quarterFinals" data-stage="QUARTER_FINALS">
-              <label class="custom-control-label" for="quarterFinals">Round Trip</label>
+              <input type="checkbox" class="custom-control-input" id="quarterFinalsRoundTrip"
+                      name="quarterFinalsRoundTrip" #quarterFinalsRoundTrip="ngModel"
+                      [(ngModel)]="tournamentSettings.quarterFinalsRoundTrip">
+              <label class="custom-control-label" for="quarterFinalsRoundTrip">Round Trip</label>
             </div>
           </div>
           <div class="form-group row" *ngIf="showSemifinals">
@@ -61,8 +65,10 @@
               <span>{{playoffStages['SEMIFINALS']}}</span>
             </div>
             <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="semifinals" data-stage="SEMIFINALS">
-              <label class="custom-control-label" for="semifinals">Round Trip</label>
+              <input type="checkbox" class="custom-control-input" id="semiFinalsRoundTrip"
+                      name="semiFinalsRoundTrip" #semiFinalsRoundTrip="ngModel"
+                      [(ngModel)]="tournamentSettings.semiFinalsRoundTrip">
+              <label class="custom-control-label" for="semiFinalsRoundTrip">Round Trip</label>
             </div>
           </div>
           <div class="form-group row">
@@ -70,8 +76,10 @@
               <span>{{playoffStages['FINALS']}}</span>
             </div>
             <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="finals" data-stage="FINALS">
-              <label class="custom-control-label" for="finals">Round Trip</label>
+              <input type="checkbox" class="custom-control-input" id="finalRoundTrip"
+                      name="finalRoundTrip" #finalRoundTrip="ngModel"
+                      [(ngModel)]="tournamentSettings.finalRoundTrip">
+              <label class="custom-control-label" for="finalRoundTrip">Round Trip</label>
             </div>
           </div>
         </div>

@@ -22,8 +22,10 @@ export class SavingButtonComponent implements OnInit {
   ngOnInit() { }
 
   onClick = () => {
-    this.saving = true;
-    this.clicked.emit();
+    if (!this.saving && !this.saved) {
+      this.saving = true;
+      this.clicked.emit();
+    }
   }
 
   setSaved = () => {

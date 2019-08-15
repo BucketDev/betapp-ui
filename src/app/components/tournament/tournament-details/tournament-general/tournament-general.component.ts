@@ -52,4 +52,15 @@ export class TournamentGeneralComponent implements OnInit {
       horizontalPosition: 'end'
     }));
 
+    startFinalsStage = () => this.tournamentService
+      .stage({
+        id: this.tournament.id,
+        uid: this.tournament.uid,
+        tournamentStage: "FINALS_STAGE"
+      })
+      .subscribe(() => this.snackBar.open(`${TournamentStage.FINALS_STAGE} has been initialized`, "Okay!", {
+        duration: 2000,
+        horizontalPosition: 'end'
+      }));
+
 }

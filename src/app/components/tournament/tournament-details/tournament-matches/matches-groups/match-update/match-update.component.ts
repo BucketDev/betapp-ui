@@ -18,6 +18,8 @@ export class MatchUpdateComponent implements OnInit {
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: {match: MatchParticipants},
               private matchParticipantsService: MatchParticipantsService) {
     this.match = Object.assign({}, data.match);
+    this.match.scoreAway = null;
+    this.match.scoreHome = null;
   }
 
   ngOnInit() {

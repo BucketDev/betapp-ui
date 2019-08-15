@@ -1,4 +1,4 @@
-<button class="btn rounded-pill"
+<button class="btn rounded-pill" type="button"
         [ngClass]="{'btn-outline-primary': !saved, 'btn-success': saved, 'btn-sm': small}"
         (click)="onClick()" [disabled]="disabled">
   <span *ngIf="!saving">

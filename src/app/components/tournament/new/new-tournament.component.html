@@ -1,6 +1,6 @@
 <div class="row justify-content-center m-0 my-3 animated fadeIn">
-  <div class="col-md-12 col-lg-6 bg-light rounded-bottom">
-    <form (ngSubmit)="saveTournament()" #form="ngForm">
+  <div class="col-md-12 col-lg-6 bg-white rounded-bottom">
+    <form #form="ngForm">
       <div class="row m-0">
         <div class="col-sm-6 border-right p-4">
             <div class="form-group">
@@ -67,7 +67,7 @@
           </ul>
         </div>
       </div>
-      <div class="row justify-content-end bg-secondary p-3 rounded-bottom">
+      <div class="row justify-content-end bg-light p-3 rounded-bottom">
         <app-saving-button (clicked)="saveTournament()" [disabled]="form.invalid"></app-saving-button>
         <button type="button" class="btn btn-danger rounded-pill ml-3" [routerLink]="['/dashboard']">
           <fa-icon [icon]='faTimesCircle'></fa-icon> Cancel

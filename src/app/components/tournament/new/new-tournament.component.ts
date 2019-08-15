@@ -58,7 +58,7 @@ export class NewTournamentComponent implements OnInit {
     this.tournamentService.save(this.tournament)
     .subscribe((data: Tournament) => {
       this.savingButton.setSaved();
-      setTimeout(() => this.router.navigate(['tournament/', data.uid]), 500)
+      this.router.navigate(['tournament/', data.uid]);
     });
   }
 

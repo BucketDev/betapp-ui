@@ -15,6 +15,8 @@ export class MatchParticipantsService {
 
   findAllByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}`);
 
+  findAllPlayoffsByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}/playoffs`);
+
   update = (matchParticipants: MatchParticipants) => this.http.put(`${this.url}/`, matchParticipants);
 
 }

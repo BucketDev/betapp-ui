@@ -2,10 +2,11 @@
 <ul class="animated fadeIn list-group" *ngIf="!loading">
   <li *ngIf="matches.length === 0"
       class="list-group-item text-muted text-center">
-    <span>Group stage has not yet started</span>
+    <span>This stage has not yet started</span>
   </li>
-  <li class="list-group-item d-flex justify-content-between m-0"
-      *ngFor="let match of matches" matRipple (click)="showUpdateMatch(match)">
+  <li class="list-group-item d-flex justify-content-between m-0 p-1"
+      *ngFor="let match of matches" matRipple (click)="showUpdateMatch(match)"
+      [ngClass]="{'list-group-item-secondary': match.registeredTime}">
     <div class="d-flex align-items-center col-5 p-0">
       <div class="img-fluid rounded-circle img-participant-squared"
           [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
@@ -15,10 +16,10 @@
     <div class="col-2 text-center p-0">
       <div class="d-flex align-items-center justify-content-center">
         <div class="h5 m-0 mx-1">
-          <span class="badge badge-dark">{{ match.scoreAway }}</span>
+          <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
         </div>
         <div class="h5 m-0 mx-1">
-          <span class="badge badge-dark">{{ match.scoreHome }}</span>
+          <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>
         </div>
       </div>
       <small class="text-muted" *ngIf="!match.scheduledTime">TBD</small>

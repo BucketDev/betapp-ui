@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatchesGroupsModule } from './matches-groups/matches-groups.module';
 
 import { TournamentMatchesComponent } from './tournament-matches.component';
-import { MatchesPlayoffsComponent } from './matches-playoffs/matches-playoffs.component';
 
 @NgModule({
   imports: [
@@ -11,8 +10,7 @@ import { MatchesPlayoffsComponent } from './matches-playoffs/matches-playoffs.co
     MatchesGroupsModule
   ],
   declarations: [
-    TournamentMatchesComponent,
-    MatchesPlayoffsComponent
+    TournamentMatchesComponent
   ],
   exports: []
 })

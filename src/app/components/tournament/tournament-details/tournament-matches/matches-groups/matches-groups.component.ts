@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -20,6 +20,7 @@ export class MatchesGroupsComponent implements OnInit {
   tournament: TournamentDetails;
   matches: MatchParticipants[];
   loading: boolean = true;
+  @Input() playoffStage: boolean = false;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
@@ -27,14 +28,22 @@ export class MatchesGroupsComponent implements OnInit {
               private snackBar: MatSnackBar,
               private bottomSheet: MatBottomSheet) {
       this.tournament = this.tournamentDetailsService.tournament;
+  }
+
+  ngOnInit() {
+    if (!this.playoffStage)
       this.matchParticipantsService.findAllByTournamentId(this.tournament.id)
         .subscribe((data: MatchParticipants[]) => {
           this.matches = data;
           this.loading = false;
       });
+    else
+      this.matchParticipantsService.findAllPlayoffsByTournamentId(this.tournament.id)
+        .subscribe((data: MatchParticipants[]) => {
+          this.matches = data;
+          this.loading = false;
+      });
   }
-
-  ngOnInit() { }
 
   showUpdateMatch = (match: MatchParticipants) => {
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
