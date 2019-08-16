@@ -3,12 +3,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Group } from '../../../../../interfaces/group.interface';
-import { User } from '../../../../../interfaces/user.interface';
 import { GroupParticipant } from '../../../../../interfaces/group-participant.interface';
 import { GroupService } from '../../../../../providers/group.service';
-import { GroupParticipantService } from '../../../../../providers/group-participant.service';
 import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
 import { ParticipantModalComponent } from './participant-modal/participant-modal.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tournament-groups',
@@ -23,10 +23,11 @@ export class TournamentGroupsComponent implements OnInit {
   @ViewChild(ParticipantModalComponent, { static: false }) participantModal: ParticipantModalComponent;
 
   constructor(private groupService: GroupService,
-              private groupParticipantService: GroupParticipantService,
-              public tournamentDetailsService: TournamentDetailsService) {
+              public tournamentDetailsService: TournamentDetailsService,
+              private snackBar: MatSnackBar,
+              private bottomSheet: MatBottomSheet) {
     if(this.tournamentDetailsService.tournament.tournamentGroups)
-      this.groupService.findByTournamentUid(this.tournamentDetailsService.tournament.uid)
+      this.groupService.findAllByTournamentUid(this.tournamentDetailsService.tournament.uid)
         .subscribe((groups: Group[]) => {
           this.groups = groups;
         });
@@ -36,20 +37,21 @@ export class TournamentGroupsComponent implements OnInit {
   }
 
   showPendingGroupParticipants = (group: Group) => {
-    this.group = group;
-    this.participantModal.open(group.tournamentId);
-  }
-
-  saveParticipant = (user: User) => {
-    let groupParticipant: GroupParticipant = {
-      groupId: this.group.id,
-      tournamentId: this.group.tournamentId,
-      user: user
-    };
-    this.groupParticipantService.saveParticipant(groupParticipant)
-      .subscribe((groupParticipant: GroupParticipant) => {
-        this.group.groupParticipants.push(groupParticipant);
-      });
+    let ref = this.bottomSheet.open(ParticipantModalComponent, {
+      data: {group}
+    });
+    ref.afterDismissed().subscribe((data: GroupParticipant) => {
+      if(data !== undefined) {
+        this.groups.forEach((group: Group) => {
+          if (group.id === data.groupId)
+          group.groupParticipants.push(data);
+        });
+        this.snackBar.open(`${data.user.displayName} has been added!`, 'Okay!', {
+          horizontalPosition: 'right',
+          duration: 2000
+        });
+      }
+    });
   }
 
 }

@@ -1,21 +1,9 @@
-<ng-template #content let-modal>
-    <div class="modal-body p-0">
-      <div class="card border-0">
-        <div class="card-header text-center">
-          <h4>Pick a participant</h4>
-        </div>
-        <div class="card-body">
-          <app-loading *ngIf="!participants"></app-loading>
-          <app-participants-list [participants]="participants"
-                                (participantEvent)="selectParticipant($event)"
-                                [emptyLabel]="'There are no more participants left'">
-          </app-participants-list>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-sm btn-danger" (click)="modal.close()">
-        <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
-      </button>
-    </div>
-</ng-template>
+<div class="p-2">
+  <app-loading *ngIf="!participants || loading"></app-loading>
+  <div *ngIf="participants">
+    <app-participants-list [participants]="participants"
+                            (participantEvent)="selectParticipant($event)"
+                            [emptyLabel]="'There are no more participants left'">
+    </app-participants-list>
+  </div>
+</div>

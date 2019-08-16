@@ -19,6 +19,7 @@ export class TournamentParticipantsComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faTimesCircle = faTimesCircle;
   addingParticipant: boolean = false;
+  loading: boolean = false;
   participants: User[];
   newParticipants: User[];
   tournament: TournamentDetails;
@@ -50,8 +51,12 @@ export class TournamentParticipantsComponent implements OnInit {
   }
 
   saveParticipant = (participant: User) => {
+    this.loading = true;
     this.tournamentService.addParticipant(this.tournament.id, participant)
-      .subscribe((data: User) => this.participants.push(data));
+      .subscribe((data: User) => {
+        this.participants.push(data);
+        this.loading = false;
+      });
     this.addingParticipant = false;
     this.newParticipants = null;
   }

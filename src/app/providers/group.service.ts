@@ -12,6 +12,8 @@ export class GroupService {
 
   constructor(private http: HttpClient) { }
 
-  findByTournamentUid = (uid: string) => this.http.get(`${this.url}/tournament/${uid}`);
+  findAllByTournamentUid = (uid: string) => this.http.get(`${this.url}/tournament/${uid}`);
+
+  findAllPlayoffsByTournamentUid = (uid: string) => this.http.get(`${this.url}/tournament/${uid}/playoffs`);
 
 }

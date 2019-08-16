@@ -5,11 +5,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '../../../../components/shared/shared.module';
 import { SharedPipeModule } from '../../../../pipes/shared-pipe.module';
+import { TournamentGroupsModule } from './tournament-groups/tournament-groups.module';
 import { TournamentPlayoffsModule } from './tournament-playoffs/tournament-playoffs.module';
 
 import { TournamentGeneralComponent } from './tournament-general.component';
-import { TournamentGroupsComponent } from './tournament-groups/tournament-groups.component';
-import { ParticipantModalComponent } from './tournament-groups/participant-modal/participant-modal.component';
 
 @NgModule({
   imports: [
@@ -18,14 +17,10 @@ import { ParticipantModalComponent } from './tournament-groups/participant-modal
     SharedModule,
     SharedPipeModule,
     NgbModule,
+    TournamentGroupsModule,
     TournamentPlayoffsModule
   ],
-  declarations: [
-    TournamentGeneralComponent,
-    TournamentGroupsComponent,
-    ParticipantModalComponent
-  ],
-  exports: [
-  ]
+  declarations: [TournamentGeneralComponent],
+  exports: []
 })
 export class TournamentGeneralModule { }

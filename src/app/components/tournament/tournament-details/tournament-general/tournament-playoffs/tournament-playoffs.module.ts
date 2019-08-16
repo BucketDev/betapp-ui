@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedPipeModule } from '../../../../../pipes/shared-pipe.module';
+
 import { TournamentPlayoffsComponent } from './tournament-playoffs.component';
 import { BracketsPlayoffsComponent } from './brackets-playoffs/brackets-playoffs.component';
 
@@ -8,7 +10,8 @@ import { BracketsPlayoffsComponent } from './brackets-playoffs/brackets-playoffs
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    SharedPipeModule,
   ],
   declarations: [
     TournamentPlayoffsComponent,

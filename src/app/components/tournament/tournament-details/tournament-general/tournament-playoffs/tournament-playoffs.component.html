@@ -1,17 +1,22 @@
-<div class="col d-flex">
-  <div class="d-flex align-items-center justify-content-start col"
-      *ngIf="showEightFinals()">
-    a
+<div class="row m-0 d-flex overflow-hidden justify-content-around">
+  <div class="d-flex col-4 flex-column justify-content-center p-0" *ngIf="showEightFinals()">
+    <app-brackets-playoffs [groupParticipants]="group.groupParticipants"
+                            *ngFor="let group of groups['EIGHTH_FINALS']">
+    </app-brackets-playoffs>
   </div>
-  <div class="d-flex align-items-center justify-content-start col"
-      *ngIf="showQuarterFinals()">
-    a
+  <div class="d-flex col-4 flex-column justify-content-center p-0" *ngIf="showQuarterFinals()">
+    <app-brackets-playoffs [groupParticipants]="group.groupParticipants"
+                            *ngFor="let group of groups['QUARTER_FINALS']">
+    </app-brackets-playoffs>
   </div>
-  <div class="d-flex align-items-center justify-content-start col"
-      *ngIf="showSemiFinals()">
-    a
+  <div class="d-flex col-4 flex-column justify-content-center p-0" *ngIf="showSemiFinals()">
+    <app-brackets-playoffs [groupParticipants]="group.groupParticipants"
+                            *ngFor="let group of groups['SEMIFINALS']">
+    </app-brackets-playoffs>
   </div>
-  <div class="d-flex align-items-center justify-content-start col">
-    a
+  <div class="d-flex col-4 flex-column justify-content-center p-0">
+    <app-brackets-playoffs [groupParticipants]="group.groupParticipants"
+                            *ngFor="let group of groups['FINALS']">
+    </app-brackets-playoffs>
   </div>
 </div>

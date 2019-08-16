@@ -51,9 +51,14 @@ export class MatchesGroupsComponent implements OnInit {
         data: {match}
       });
       ref.afterDismissed().subscribe((data: MatchParticipants) => {
-        this.matches = this.matches
-          .map((_match: MatchParticipants) => (_match.id === data.id) ? data : _match);
-        this.snackBar.open('The match has been saved correctly', 'Okay!');
+        if (data !== undefined) {
+          this.matches = this.matches
+            .map((_match: MatchParticipants) => (_match.id === data.id) ? data : _match);
+          this.snackBar.open('The match has been saved correctly', 'Okay!', {
+              duration: 2000,
+              horizontalPosition: 'right'
+            });
+        }
       });
     }
   }

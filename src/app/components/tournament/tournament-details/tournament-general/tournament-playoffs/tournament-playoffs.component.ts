@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
+import { GroupService } from '../../../../../providers/group.service';
+import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
 import { TournamentDetails } from '../../../../../interfaces/tournament-details.interface';
 import { TournamentSettings } from '../../../../../interfaces/tournament-settings.interface';
-import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
-import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
+import { Group } from '../../../../../interfaces/group.interface';
 
 @Component({
   selector: 'app-tournament-playoffs',
@@ -12,14 +14,23 @@ import { TournamentDetailsService } from '../../../../../providers/tournament-de
 })
 export class TournamentPlayoffsComponent implements OnInit {
 
+  playoffStages = PlayoffStage;
   tournament: TournamentDetails;
   tournamentSettings: TournamentSettings;
   playoffStage: PlayoffStage;
+  groups = {};
 
-  constructor(private tournamentDetailsService: TournamentDetailsService) {
+  constructor(private tournamentDetailsService: TournamentDetailsService,
+              private groupService: GroupService) {
     this.tournament = this.tournamentDetailsService.tournament;
     this.tournamentSettings = this.tournament.tournamentSettings;
     this.playoffStage = PlayoffStage[this.tournamentSettings.playoffStage];
+    this.groupService.findAllPlayoffsByTournamentUid(this.tournamentDetailsService.tournament.uid)
+      .subscribe((groups: Group[]) => groups.forEach((group: Group) => {
+          if(!this.groups[group.playoffStage])
+            this.groups[group.playoffStage] = [];
+          this.groups[group.playoffStage].push(group);
+        }));
   }
 
   ngOnInit() { }

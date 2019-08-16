@@ -3,7 +3,7 @@
         (click)="addParticipant()">
   <fa-icon [icon]="faPlusCircle"></fa-icon> Add participant
 </button>
-<div *ngIf="addingParticipant">
+<div *ngIf="addingParticipant" class="position-relative">
   <div class="d-flex mt-2 animated fadeIn fast">
     <input type="text" class="flex-grow-1 form-control input-participant" placeholder="Participant name"
     (keyup)="searchParticipant(participant)" #participant>
@@ -11,10 +11,15 @@
       <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
     </button>
   </div>
-  <app-participants-list [participants]="newParticipants"
-                        [emptyLabel]="'There are no matching participants'"
-                        (participantEvent)="saveParticipant($event)">
-  </app-participants-list>
+  <div class="position-absolute w-100 shadow-sm" style="z-index: 1000">
+    <app-participants-list [participants]="newParticipants"
+                          [emptyLabel]="'There are no matching participants'"
+                          (participantEvent)="saveParticipant($event)">
+    </app-participants-list>
+  </div>
 </div>
-<h5 class="bg-dark text-light text-center py-3 mb-0 mt-2 rounded-top">Participants</h5>
-<app-participants-list [participants]="participants"></app-participants-list>
+<div class="position-relative">
+  <app-loading *ngIf="loading"></app-loading>
+  <h5 class="bg-dark text-light text-center py-3 mb-0 mt-2 rounded-top">Participants</h5>
+  <app-participants-list [participants]="participants"></app-participants-list>
+</div>

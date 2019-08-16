@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { faPlusCircle, faRocket } from '@fortawesome/free-solid-svg-icons';
 
-import { Group } from '../../../../interfaces/group.interface';
 import { FireAuthService } from '../../../../providers/fire-auth.service';
-import { GroupService } from '../../../../providers/group.service';
 import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
 import { TournamentService } from '../../../../providers/tournament.service';
 import { TournamentStage } from '../../../../interfaces/tournament-stage.enum';
@@ -19,22 +17,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TournamentGeneralComponent implements OnInit {
 
-  groups: Group[];
   faPlusCircle = faPlusCircle;
   faRocket = faRocket;
   tournament: TournamentDetails;
 
-  constructor(private groupService: GroupService,
-              private tournamentService: TournamentService,
+  constructor(private tournamentService: TournamentService,
               private snackBar: MatSnackBar,
               public auth: FireAuthService,
               public tournamentDetailsService: TournamentDetailsService) {
     this.tournament = this.tournamentDetailsService.tournament;
-    if(this.tournament.tournamentGroups)
-      this.groupService.findByTournamentUid(this.tournamentDetailsService.tournament.uid)
-        .subscribe((groups: Group[]) => {
-          this.groups = groups;
-        });
   }
 
   ngOnInit() {

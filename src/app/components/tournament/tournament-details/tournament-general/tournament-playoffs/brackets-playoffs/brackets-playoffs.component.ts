@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { GroupParticipant } from '../../../../../../interfaces/group-participant.interface';
 
 @Component({
   selector: 'app-brackets-playoffs',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BracketsPlayoffsComponent implements OnInit {
 
+  @Input() groupParticipants: GroupParticipant[];
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
+  showAwayParticipant = () => this.groupParticipants[0];
+
+  showHomeParticipant = () => this.groupParticipants[1];
 
 }
