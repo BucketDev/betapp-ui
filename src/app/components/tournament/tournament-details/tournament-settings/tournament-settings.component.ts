@@ -1,7 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
 import { TournamentSettingsService } from '../../../../providers/tournament-settings.service';
+import { TournamentService } from '../../../../providers/tournament.service';
 
 import { TournamentDetails } from '../../../../interfaces/tournament-details.interface';
 import { TournamentSettings } from '../../../../interfaces/tournament-settings.interface';
@@ -25,9 +29,13 @@ export class TournamentSettingsComponent {
   showSemifinals: boolean = true;
   showQuarterFinals: boolean = true;
   showEighthFinals: boolean = true;
+  faTrashAlt = faTrashAlt;
+  deleteClicked: boolean = false;
 
   constructor(private tournamentDetailsService: TournamentDetailsService,
-              private tournamentSettingsService: TournamentSettingsService) {
+              private tournamentSettingsService: TournamentSettingsService,
+              private router: Router,
+              private tournamentService: TournamentService) {
     this.tournament = this.tournamentDetailsService.tournament;
     this.tournamentSettings = this.tournament.tournamentSettings;
     this.showStages(PlayoffStage[this.tournamentSettings.playoffStage])
@@ -66,6 +74,16 @@ export class TournamentSettingsComponent {
       this.tournamentSettings = data;
       this.savingButton.setSaved();
     });
+  }
+
+  deleteTournament = () => {
+    if(this.deleteClicked)
+      this.tournamentService.delete(this.tournament.uid).
+        subscribe(() => this.router.navigate(["/dashboard"]));
+    else {
+      this.deleteClicked = true;
+      setTimeout(() => this.deleteClicked = false, 2000);
+    }
   }
 
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '../shared/shared.module';
+import { AngularMaterialModule } from '../../angular-material.module';
 import { SharedPipeModule } from '../../pipes/shared-pipe.module';
 
 import { DashboardComponent } from './dashboard.component';
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     SharedModule,
     SharedPipeModule,
+    AngularMaterialModule,
     FontAwesomeModule,
     RouterModule
   ],

@@ -1,11 +1,18 @@
 <div class="row m-0 mt-2">
   <div class="col-12 p-0">
     <div class="card">
-      <div class="card-body text-center">
-        <span class="d-block">Balance</span>
-        <span class="display-4 text-info font-weight-bold">{{poolSettings.balance | currency}}</span>
-      </div>
       <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-center" *ngIf="tournament.userWinner">
+          <div class="img-winner-squared rounded-top border d-flex flex-column justify-content-between p-1"
+              [style.background-image]="tournament.userWinner.photoUrl | photo: 192: 'gender-neutral-user' | uriStyleSanitizer: true">
+              <span><img src="https://png.icons8.com/cotton/medal--v1/32" alt=""></span>
+              <span class="text-center text-light text-truncate d-block">{{ tournament.userWinner.displayName }}</span>
+          </div>
+        </li>
+        <li class="list-group-item d-flex flex-column align-items-center">
+          <span class="d-block">Balance</span>
+          <span class="display-4 text-info font-weight-bold">{{poolSettings.balance | currency}}</span>
+        </li>
         <li class="list-group-item">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="m-0">Description</h5>

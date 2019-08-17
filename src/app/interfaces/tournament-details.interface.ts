@@ -12,5 +12,6 @@ export interface TournamentDetails {
     userCreationId: number,
     participants: User[],
     poolSettings?: PoolSettings,
-    tournamentSettings?: TournamentSettings
+    tournamentSettings?: TournamentSettings,
+    userWinner?: User
 }

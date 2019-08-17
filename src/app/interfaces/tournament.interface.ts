@@ -1,5 +1,6 @@
 import { TournamentPrivacy } from './tournament-privacy.enum';
 import { TournamentStage } from './tournament-stage.enum';
+import { User } from './user.interface';
 
 export interface Tournament {
   id?: number,
@@ -11,5 +12,6 @@ export interface Tournament {
   tournamentTeams: boolean,
   creationDate?: Date,
   userCreationId?: number,
-  tournamentStage?: TournamentStage
+  tournamentStage?: TournamentStage,
+  userWinner?: User
 }

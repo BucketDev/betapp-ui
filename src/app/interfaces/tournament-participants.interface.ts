@@ -1,5 +1,3 @@
-import { User } from './user.interface';
-
 export interface TournamentParticipants {
     id: number,
     uid: string,
@@ -7,5 +5,6 @@ export interface TournamentParticipants {
     photoUrl?: string,
     creationDate: Date,
     userCreationId: number,
-    participants: User[]
+    userWinner: boolean,
+    participantsNumber: number
 }

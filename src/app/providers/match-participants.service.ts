@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { MatchParticipants } from '../interfaces/match-participants.interface';
+import { PlayoffStage } from '../interfaces/playoff-stage.enum';
 
 @Injectable({
   providedIn: 'root'

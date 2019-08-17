@@ -19,6 +19,8 @@ export class TournamentService {
 
   update = (tournament: Tournament) => this.http.put(this.url, tournament);
 
+  delete = (uid: string) => this.http.delete(`${this.url}/${uid}`);
+
   updatePhoto = (tournament: {id: number, photoUrl: string}) => this.http.put(`${this.url}/${tournament.id}/photo`, tournament);
 
   addParticipant = (id: number, user: User) => this.http.post(`${this.url}/${id}/participants`, user);

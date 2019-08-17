@@ -7,6 +7,7 @@ import { TournamentDetailsService } from '../../../../../providers/tournament-de
 import { MatchParticipantsService } from '../../../../../providers/match-participants.service';
 import { MatchParticipants } from '../../../../../interfaces/match-participants.interface';
 import { TournamentDetails } from '../../../../../interfaces/tournament-details.interface';
+import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
 import { MatchUpdateComponent } from './match-update/match-update.component';
 import { SavingButtonComponent } from '../../../../../components/shared/saving-button/saving-button.component';
 
@@ -20,7 +21,7 @@ export class MatchesGroupsComponent implements OnInit {
   tournament: TournamentDetails;
   matches: MatchParticipants[];
   loading: boolean = true;
-  @Input() playoffStage: boolean = false;
+  @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
@@ -38,11 +39,12 @@ export class MatchesGroupsComponent implements OnInit {
           this.loading = false;
       });
     else
-      this.matchParticipantsService.findAllPlayoffsByTournamentId(this.tournament.id)
-        .subscribe((data: MatchParticipants[]) => {
-          this.matches = data;
-          this.loading = false;
-      });
+      this.matchParticipantsService
+        .findAllPlayoffsByTournamentId(this.tournament.id)
+          .subscribe((data: MatchParticipants[]) => {
+            this.matches = data;
+            this.loading = false;
+          });
   }
 
   showUpdateMatch = (match: MatchParticipants) => {

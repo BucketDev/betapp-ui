@@ -8,6 +8,7 @@ import { TournamentService } from '../../../../providers/tournament.service';
 import { TournamentStage } from '../../../../interfaces/tournament-stage.enum';
 import { TournamentDetails } from '../../../../interfaces/tournament-details.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './tournament-general.component.html',
   styleUrls: ['./tournament-general.component.css']
 })
-export class TournamentGeneralComponent implements OnInit {
+export class TournamentGeneralComponent {
 
   faPlusCircle = faPlusCircle;
   faRocket = faRocket;
@@ -24,12 +25,9 @@ export class TournamentGeneralComponent implements OnInit {
   constructor(private tournamentService: TournamentService,
               private snackBar: MatSnackBar,
               public auth: FireAuthService,
+              private router: Router,
               public tournamentDetailsService: TournamentDetailsService) {
     this.tournament = this.tournamentDetailsService.tournament;
-  }
-
-  ngOnInit() {
-
   }
 
   startGroupStage = () => this.tournamentService
@@ -38,7 +36,13 @@ export class TournamentGeneralComponent implements OnInit {
       uid: this.tournament.uid,
       tournamentStage: "GROUP_STAGE"
     })
-    .subscribe(() => this.snackBar.open(`${TournamentStage.GROUP_STAGE} has been initialized`, "Okay!", {
+    .subscribe(() => {
+      this.snackBar.open(`${TournamentStage.GROUP_STAGE} has been initialized`, "Okay!", {
+        duration: 2000,
+        horizontalPosition: 'end'
+      });
+      this.router.navigate([`/tournament/${this.tournament.uid}/matches`]);
+    }, () => this.snackBar.open(`There was soemthing wrong!`, "", {
       duration: 2000,
       horizontalPosition: 'end'
     }));
@@ -49,9 +53,15 @@ export class TournamentGeneralComponent implements OnInit {
         uid: this.tournament.uid,
         tournamentStage: "FINALS_STAGE"
       })
-      .subscribe(() => this.snackBar.open(`${TournamentStage.FINALS_STAGE} has been initialized`, "Okay!", {
-        duration: 2000,
-        horizontalPosition: 'end'
-      }));
+      .subscribe(() => {
+        this.snackBar.open(`${TournamentStage.FINALS_STAGE} has been initialized`, "Okay!", {
+          duration: 2000,
+          horizontalPosition: 'end'
+        });
+        this.router.navigate([`/tournament/${this.tournament.uid}/matches`]);
+    }, () => this.snackBar.open(`There was soemthing wrong!`, "", {
+      duration: 2000,
+      horizontalPosition: 'end'
+    }));
 
 }
