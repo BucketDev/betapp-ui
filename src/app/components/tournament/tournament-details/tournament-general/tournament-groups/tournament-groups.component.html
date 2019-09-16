@@ -1,6 +1,6 @@
 <app-loading *ngIf="tournamentDetailsService.tournament.tournamentGroups && !groups"></app-loading>
 <div class="card-decks animated fadeIn" *ngIf="tournamentDetailsService.tournament.tournamentGroups && groups">
-  <div class="card" *ngFor="let group of groups">
+  <div class="card mb-1" *ngFor="let group of groups">
     <div class="card-body p-0">
       <table class="table table-sm m-0 table-responsive">
         <thead class="thead-dark">
