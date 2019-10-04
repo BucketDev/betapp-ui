@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User as FireBaseUser, auth } from 'firebase/app';
 import { User } from '../interfaces/user.interface';
 import { UserService } from './user.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,20 @@ import { UserService } from './user.service';
 export class FireAuthService {
 
   user: User;
+  idToken: string;
 
   constructor(private router: Router,
               public afAuth:AngularFireAuth,
               private userService: UserService) {
     this.afAuth.authState.subscribe((user: FireBaseUser) => {
       if(user) {
-        let route = this.router.url.startsWith('/login') ? '/' : this.router.url;
-        this.router.navigate([route]);
-        !this.user && this.userService.findByUid(user.uid)
-          .subscribe((user: User) => this.user = user);
+        user.getIdToken().then(idtoken => {
+          this.idToken = idtoken
+            let route = this.router.url.startsWith('/login') ? '/' : this.router.url;
+            this.router.navigate([route]);
+            !this.user && this.userService.findByUid(user.uid)
+              .subscribe((user: User) => this.user = user);
+            });
       } else {
         let route = this.router.url.startsWith('/login') ? this.router.url : '/login';
         this.router.navigate([route]);
@@ -63,10 +68,13 @@ export class FireAuthService {
       provider: data.additionalUserInfo.providerId
     };
     this.session = user;//saving values to display them in navbar
-    this.userService.save(user).subscribe(
-      (data: User) => console.log(data),
-      (error: any) => console.log(error)
-    );
+    data.user.getIdToken().then(idToken => {
+      this.idToken = idToken;
+      this.userService.save(user).subscribe(
+        (data: User) => console.log(data),
+        (error: any) => console.log(error)
+      );
+    })
   }
 
   logout = () => {

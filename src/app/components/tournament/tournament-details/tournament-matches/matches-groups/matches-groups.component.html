@@ -1,35 +1,49 @@
-<app-loading *ngIf="loading"></app-loading>
-<ul class="animated fadeIn list-group" *ngIf="!loading">
-  <li *ngIf="matches.length === 0"
-      class="list-group-item text-muted text-center">
-    <span>This stage has not yet started</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between m-0 p-1"
-      *ngFor="let match of matches" matRipple (click)="showUpdateMatch(match)"
-      [ngClass]="{'list-group-item-secondary': match.registeredTime}">
-    <div class="d-flex align-items-center col-5 p-0">
-      <div class="img-fluid rounded-circle img-participant-squared"
-          [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-      </div>
-      <span class="mx-2 text-truncate">{{match.groupParticipantAway.user.displayName}}</span>
-    </div>
-    <div class="col-2 text-center p-0">
-      <div class="d-flex align-items-center justify-content-center">
-        <div class="h5 m-0 mx-1">
-          <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
+<app-loading *ngIf="loading; else notLoading"></app-loading>
+<ng-template #notLoading>
+  <nav class="col" *ngIf="rounds && rounds.length > 0">
+    <ul class="pagination pagination-sm justify-content-center mb-1">
+      <li class="page-item" [ngClass]="{'disabled': roundNumber === 0}">
+        <button type="button" class="page-link" (click)="showRound(roundNumber - 1)">Previous</button>
+      </li>
+      <li *ngFor="let round of rounds; let idx = index" class="page-item" [ngClass]="{'active': idx === roundNumber}">
+        <button type="button" class="page-link" (click)="showRound(idx)">{{ idx + 1 }}</button>
+      </li>
+      <li class="page-item" [ngClass]="{'disabled': roundNumber === rounds.length - 1}">
+        <button type="button" class="page-link" (click)="showRound(roundNumber + 1)">Next</button>
+      </li>
+    </ul>
+  </nav>
+  <ul class="list-group">
+    <li *ngIf="!matches || matches.length === 0" class="list-group-item text-muted text-center">
+      <span>This stage has not yet started</span>
+    </li>
+    <li class="animated fadeIn list-group-item d-flex justify-content-between m-0 p-1"
+        *ngFor="let match of matches" matRipple (click)="showUpdateMatch(match)"
+        [ngClass]="{'list-group-item-secondary': match.registeredTime}">
+      <div class="d-flex align-items-center col-5 p-0">
+        <div class="img-fluid rounded-circle img-participant-squared"
+            [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
         </div>
-        <div class="h5 m-0 mx-1">
-          <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>
+        <span class="mx-2 text-truncate">{{match.groupParticipantAway.user.displayName}}</span>
+      </div>
+      <div class="col-2 text-center p-0">
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="h5 m-0 mx-1">
+            <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
+          </div>
+          <div class="h5 m-0 mx-1">
+            <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>
+          </div>
+        </div>
+        <small class="text-muted" *ngIf="!match.scheduledTime">TBD</small>
+        <small class="text-muted" *ngIf="match.scheduledTime">{{ match.scheduledTime | date }}</small>
+      </div>
+      <div class="d-flex align-items-center justify-content-end col-5 p-0">
+        <span class="mx-2 text-truncate">{{match.groupParticipantHome.user.displayName}}</span>
+        <div class="img-fluid rounded-circle img-participant-squared"
+              [style.background-image]="match.groupParticipantHome.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
         </div>
       </div>
-      <small class="text-muted" *ngIf="!match.scheduledTime">TBD</small>
-      <small class="text-muted" *ngIf="match.scheduledTime">{{ match.scheduledTime | date }}</small>
-    </div>
-    <div class="d-flex align-items-center justify-content-end col-5 p-0">
-      <span class="mx-2 text-truncate">{{match.groupParticipantHome.user.displayName}}</span>
-      <div class="img-fluid rounded-circle img-participant-squared"
-            [style.background-image]="match.groupParticipantHome.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-      </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>  
+</ng-template>

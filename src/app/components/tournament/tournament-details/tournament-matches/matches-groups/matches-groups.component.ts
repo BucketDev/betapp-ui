@@ -19,8 +19,10 @@ import { SavingButtonComponent } from '../../../../../components/shared/saving-b
 export class MatchesGroupsComponent implements OnInit {
 
   tournament: TournamentDetails;
+  rounds = [];
   matches: MatchParticipants[];
   loading: boolean = true;
+  roundNumber: number = 0;
   @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
@@ -34,17 +36,27 @@ export class MatchesGroupsComponent implements OnInit {
   ngOnInit() {
     if (!this.playoffStage)
       this.matchParticipantsService.findAllByTournamentId(this.tournament.id)
-        .subscribe((data: MatchParticipants[]) => {
-          this.matches = data;
-          this.loading = false;
-      });
+        .subscribe((data: any) => this.initializeRounds(data));
     else
-      this.matchParticipantsService
-        .findAllPlayoffsByTournamentId(this.tournament.id)
-          .subscribe((data: MatchParticipants[]) => {
-            this.matches = data;
-            this.loading = false;
-          });
+      this.matchParticipantsService.findAllPlayoffsByTournamentId(this.tournament.id)
+          .subscribe((data: any) => this.initializeRounds(data));
+  }
+
+  initializeRounds = (rounds: any) => {
+    if (this.playoffStage) {
+      for (let i = 0; i < Object.keys(rounds).length; i++)
+        this.rounds.push(rounds[Object.keys(rounds)[i]]);
+    } else {
+      for (let i = 1; i <= Object.keys(rounds).length; i++)
+        this.rounds.push(rounds[i]);
+    }
+    this.matches = this.rounds[this.roundNumber];
+    this.loading = false;
+}
+
+  showRound = (roundNumber: number) => {
+    this.roundNumber = roundNumber;
+    this.matches = this.rounds[roundNumber];
   }
 
   showUpdateMatch = (match: MatchParticipants) => {
@@ -54,8 +66,7 @@ export class MatchesGroupsComponent implements OnInit {
       });
       ref.afterDismissed().subscribe((data: MatchParticipants) => {
         if (data !== undefined) {
-          this.matches = this.matches
-            .map((_match: MatchParticipants) => (_match.id === data.id) ? data : _match);
+          this.matches = this.matches.map((_match: MatchParticipants) => (_match.id === data.id) ? data : _match);
           this.snackBar.open('The match has been saved correctly', 'Okay!', {
               duration: 2000,
               horizontalPosition: 'right'

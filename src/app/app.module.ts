@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -19,6 +19,7 @@ import { TournamentModule } from './components/tournament/tournament.module';
 import { ProfileModule } from './components/profile/profile.module';
 
 import { environment } from '../environments/environment';
+import { FireAuthInterceptor } from './providers/fire-auth.interceptor';
 
 @NgModule({
   imports: [
@@ -38,6 +39,9 @@ import { environment } from '../environments/environment';
   ],
   declarations: [
     AppComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: FireAuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
