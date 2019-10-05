@@ -9,6 +9,7 @@ import { SharedPipeModule } from '../../../../../pipes/shared-pipe.module';
 
 import { MatchesGroupsComponent } from './matches-groups.component';
 import { MatchUpdateComponent } from './match-update/match-update.component';
+import { MatchDateComponent } from './match-date/match-date.component';
 
 @NgModule({
   imports: [
@@ -21,11 +22,15 @@ import { MatchUpdateComponent } from './match-update/match-update.component';
   ],
   declarations: [
     MatchesGroupsComponent,
-    MatchUpdateComponent
+    MatchUpdateComponent,
+    MatchDateComponent
   ],
   exports: [
     MatchesGroupsComponent
   ],
-  entryComponents: [MatchUpdateComponent]
+  entryComponents: [
+    MatchUpdateComponent,
+    MatchDateComponent
+  ]
 })
 export class MatchesGroupsModule { }

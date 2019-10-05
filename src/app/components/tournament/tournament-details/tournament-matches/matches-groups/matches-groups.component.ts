@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
+import { faEllipsisV, faClock, faPenAlt, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
@@ -10,6 +12,8 @@ import { TournamentDetails } from '../../../../../interfaces/tournament-details.
 import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
 import { MatchUpdateComponent } from './match-update/match-update.component';
 import { SavingButtonComponent } from '../../../../../components/shared/saving-button/saving-button.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatchDateComponent } from './match-date/match-date.component';
 
 @Component({
   selector: 'app-matches-groups',
@@ -17,7 +21,11 @@ import { SavingButtonComponent } from '../../../../../components/shared/saving-b
   styleUrls: ['./matches-groups.component.css']
 })
 export class MatchesGroupsComponent implements OnInit {
-
+  
+  faEllipsisV = faEllipsisV;
+  faClock = faClock;
+  faPenAlt = faPenAlt;
+  faMoneyBillAlt = faMoneyBillAlt;
   tournament: TournamentDetails;
   rounds = [];
   matches: MatchParticipants[];
@@ -29,7 +37,8 @@ export class MatchesGroupsComponent implements OnInit {
   constructor(public tournamentDetailsService: TournamentDetailsService,
               private matchParticipantsService: MatchParticipantsService,
               private snackBar: MatSnackBar,
-              private bottomSheet: MatBottomSheet) {
+              private bottomSheet: MatBottomSheet,
+              public dialog: MatDialog) {
       this.tournament = this.tournamentDetailsService.tournament;
   }
 
@@ -61,18 +70,29 @@ export class MatchesGroupsComponent implements OnInit {
 
   showUpdateMatch = (match: MatchParticipants) => {
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
-      let ref = this.bottomSheet.open(MatchUpdateComponent, {
-        data: {match}
-      });
-      ref.afterDismissed().subscribe((data: MatchParticipants) => {
-        if (data !== undefined) {
-          this.matches = this.matches.map((_match: MatchParticipants) => (_match.id === data.id) ? data : _match);
-          this.snackBar.open('The match has been saved correctly', 'Okay!', {
-              duration: 2000,
-              horizontalPosition: 'right'
-            });
-        }
-      });
+      let ref = this.bottomSheet.open(MatchUpdateComponent, { data: { match } });
+      ref.afterDismissed().subscribe(this.updatedMatch);
+    }
+  }
+
+  showUpdateDate = (match: MatchParticipants) => {
+    console.log(match);
+    
+    if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
+      let ref = this.dialog.open(MatchDateComponent, { data: { match } });
+      ref.afterClosed().subscribe(this.updatedMatch);
+    }
+  }
+
+  updatedMatch  = (match: MatchParticipants) => {
+    console.log(match);
+    
+    if (match !== undefined) {
+      this.matches = this.matches.map((_match: MatchParticipants) => (_match.id === match.id) ? match : _match);
+      this.snackBar.open('The match has been saved correctly', 'Okay!', {
+          duration: 2000,
+          horizontalPosition: 'right'
+        });
     }
   }
 
