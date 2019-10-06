@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatchesGroupsModule } from './matches-groups/matches-groups.module';
+import { MatchesGroupsModule } from './group-matches/matches-groups.module';
 
 import { TournamentMatchesComponent } from './tournament-matches.component';
 

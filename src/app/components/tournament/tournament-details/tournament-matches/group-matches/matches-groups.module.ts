@@ -7,9 +7,10 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { AngularMaterialModule } from '../../../../../angular-material.module';
 import { SharedPipeModule } from '../../../../../pipes/shared-pipe.module';
 
-import { MatchesGroupsComponent } from './matches-groups.component';
-import { MatchUpdateComponent } from './match-update/match-update.component';
-import { MatchDateComponent } from './match-date/match-date.component';
+import { MatchParticipantsComponent } from './match-participants/match-participants.component';
+import { MatchUpdateComponent } from './match-participants/match-update/match-update.component';
+import { MatchDateComponent } from './match-participants/match-date/match-date.component';
+import { MatchTeamsComponent } from './match-teams/match-teams.component';
 
 @NgModule({
   imports: [
@@ -21,12 +22,14 @@ import { MatchDateComponent } from './match-date/match-date.component';
     AngularMaterialModule
   ],
   declarations: [
-    MatchesGroupsComponent,
+    MatchParticipantsComponent,
     MatchUpdateComponent,
-    MatchDateComponent
+    MatchDateComponent,
+    MatchTeamsComponent
   ],
   exports: [
-    MatchesGroupsComponent
+    MatchParticipantsComponent,
+    MatchTeamsComponent
   ],
   entryComponents: [
     MatchUpdateComponent,

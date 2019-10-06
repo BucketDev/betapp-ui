@@ -3,12 +3,22 @@
     <span class="h5">Group Stage</span>
   </div>
   <div class="card-body p-2">
-    <app-matches-groups></app-matches-groups>
+    <div *ngIf="tournament.tournamentTeams; else groupParticipants">
+        <app-match-teams></app-match-teams>
+    </div>
+    <ng-template #groupParticipants>
+        <app-match-participants></app-match-participants>
+    </ng-template>
   </div>
   <div class="card-header border-dark">
     <span class="h5">Playoffs Stage</span>
   </div>
   <div class="card-body p-2">
-    <app-matches-groups [playoffStage]="playoffStage"></app-matches-groups>
+    <div *ngIf="tournament.tournamentTeams; else playoffParticipants">
+        <app-match-teams></app-match-teams>
+    </div>
+    <ng-template #playoffParticipants>
+        <app-match-participants></app-match-participants>
+    </ng-template>
   </div>
 </div>

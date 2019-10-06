@@ -5,22 +5,22 @@ import { faEllipsisV, faClock, faPenAlt, faMoneyBillAlt } from '@fortawesome/fre
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
-import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
-import { MatchParticipantsService } from '../../../../../providers/match-participants.service';
-import { MatchParticipants } from '../../../../../interfaces/match-participants.interface';
-import { TournamentDetails } from '../../../../../interfaces/tournament-details.interface';
-import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
+import { TournamentDetailsService } from '../../../../../../providers/tournament-details.service';
+import { MatchParticipantsService } from '../../../../../../providers/match-participants.service';
+import { MatchParticipants } from '../../../../../../interfaces/match-participants.interface';
+import { TournamentDetails } from '../../../../../../interfaces/tournament-details.interface';
+import { PlayoffStage } from '../../../../../../interfaces/playoff-stage.enum';
 import { MatchUpdateComponent } from './match-update/match-update.component';
-import { SavingButtonComponent } from '../../../../../components/shared/saving-button/saving-button.component';
+import { SavingButtonComponent } from '../../../../../shared/saving-button/saving-button.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatchDateComponent } from './match-date/match-date.component';
 
 @Component({
-  selector: 'app-matches-groups',
-  templateUrl: './matches-groups.component.html',
-  styleUrls: ['./matches-groups.component.css']
+  selector: 'app-match-participants',
+  templateUrl: './match-participants.component.html',
+  styleUrls: ['./match-participants.component.css']
 })
-export class MatchesGroupsComponent implements OnInit {
+export class MatchParticipantsComponent implements OnInit {
   
   faEllipsisV = faEllipsisV;
   faClock = faClock;

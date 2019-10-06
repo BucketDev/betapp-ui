@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
-import { MatchParticipants } from '../../../../../../interfaces/match-participants.interface';
-import { MatchParticipantsService } from '../../../../../../providers/match-participants.service';
+import { MatchParticipants } from '../../../../../../../interfaces/match-participants.interface';
+import { MatchParticipantsService } from '../../../../../../../providers/match-participants.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
