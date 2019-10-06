@@ -20,6 +20,7 @@ import { ProfileModule } from './components/profile/profile.module';
 
 import { environment } from '../environments/environment';
 import { FireAuthInterceptor } from './providers/fire-auth.interceptor';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { FireAuthInterceptor } from './providers/fire-auth.interceptor';
     FontAwesomeModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
     SharedModule,

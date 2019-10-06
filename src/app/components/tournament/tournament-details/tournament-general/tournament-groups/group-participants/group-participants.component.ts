@@ -1,21 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-
-import { Group } from '../../../../../interfaces/group.interface';
-import { GroupParticipant } from '../../../../../interfaces/group-participant.interface';
-import { GroupService } from '../../../../../providers/group.service';
-import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
-import { ParticipantModalComponent } from './participant-modal/participant-modal.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
+import { Group } from '../../../../../../interfaces/group.interface';
+import { GroupParticipant } from '../../../../../../interfaces/group-participant.interface';
+import { GroupService } from '../../../../../../providers/group.service';
+import { TournamentDetailsService } from '../../../../../../providers/tournament-details.service';
+import { ParticipantModalComponent } from './participant-modal/participant-modal.component';
 
 @Component({
-  selector: 'app-tournament-groups',
-  templateUrl: './tournament-groups.component.html',
-  styleUrls: ['./tournament-groups.component.css']
+  selector: 'app-group-participants',
+  templateUrl: './group-participants.component.html',
+  styleUrls: ['./group-participants.component.css']
 })
-export class TournamentGroupsComponent implements OnInit {
+export class GroupParticipantsComponent implements OnInit {
 
   groups: Group[];
   group: Group;

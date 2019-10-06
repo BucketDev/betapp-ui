@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col p-2">
+        <div class="row m-0 justify-content-center">
+            <label class="mr-2" for="groups">Custom</label>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="existingTeam"
+                    [(ngModel)]="existingTeam">
+                <label class="custom-control-label" for="existingTeam">Existing</label>
+            </div>
+        </div>
+        <form *ngIf="existingTeam; else notExistingTeam" #temExistingForm="ngForm"
+                class="animated fadeIn col">
+            <div class="row">
+                <div class="form-group col-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>Confederation</mat-label>
+                        <mat-select (selectionChange)="selectConfederation($event)" [(ngModel)]="confederationId"
+                            required [disabled]="!confederations || confederations.length === 0" name="confederation">
+                            <mat-option *ngFor="let confederation of confederations" [value]="confederation.id">
+                                {{confederation.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="form-group col-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>Country</mat-label>
+                        <mat-select (selectionChange)="selectCountry($event)" [(ngModel)]="countryId"
+                            required [disabled]="!countries || countries.length === 0" name="country">
+                            <mat-option *ngFor="let country of countries" [value]="country.id">
+                                {{country.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>League</mat-label>
+                        <mat-select (selectionChange)="selectLeague($event)" [(ngModel)]="leagueId"
+                            required [disabled]="!leagues || leagues.length === 0" name="league">
+                            <mat-option *ngFor="let league of leagues" [value]="league.id">
+                                {{league.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="form-group col-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>Team</mat-label>
+                        <mat-select (selectionChange)="selectTeam($event)" [(ngModel)]="teamId"
+                            required [disabled]="!teams || teams.length === 0" name="team">
+                            <mat-option *ngFor="let team of teams" [value]="team.id">
+                                {{team.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <app-saving-button (clicked)="addTeam()"></app-saving-button>
+            </div>
+        </form>
+        <ng-template #notExistingTeam>
+            <form #teamNotexistingForm="ngForm" class="animated fadeIn">
+                    <p>Not Existing Team</p>
+            </form>
+        </ng-template>
+    </div>
+</div>

@@ -1,27 +1,39 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '../../../../../components/shared/shared.module';
 import { SharedPipeModule } from '../../../../../pipes/shared-pipe.module';
 import { AngularMaterialModule } from '../../../../../angular-material.module';
 
-import { TournamentGroupsComponent } from './tournament-groups.component';
-import { ParticipantModalComponent } from './participant-modal/participant-modal.component';
+import { GroupParticipantsComponent } from './group-participants/group-participants.component';
+import { ParticipantModalComponent } from './group-participants/participant-modal/participant-modal.component';
+import { GroupTeamsComponent } from './group-teams/group-teams.component';
+import { TeamModalComponent } from './group-teams/team-modal/team-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     SharedModule,
     SharedPipeModule,
     FontAwesomeModule,
     AngularMaterialModule
   ],
   declarations: [
-    TournamentGroupsComponent,
-    ParticipantModalComponent
+    GroupParticipantsComponent,
+    ParticipantModalComponent,
+    GroupTeamsComponent,
+    TeamModalComponent
   ],
-  exports: [TournamentGroupsComponent],
-  entryComponents: [ParticipantModalComponent]
+  exports: [
+    GroupParticipantsComponent,
+    GroupTeamsComponent
+  ],
+  entryComponents: [
+    ParticipantModalComponent,
+    TeamModalComponent
+  ]
 })
 export class TournamentGroupsModule { }

@@ -8,6 +8,7 @@ export interface TournamentDetails {
     title: string,
     photoUrl: string,
     tournamentGroups: boolean,
+    tournamentTeams: boolean,
     creationDate: Date,
     userCreationId: number,
     participants: User[],

@@ -6,7 +6,12 @@
       <fa-icon [icon]="faRocket"></fa-icon> Start stage</button>
   </div>
   <div class="card-body p-2">
-    <app-tournament-groups></app-tournament-groups>
+    <div *ngIf="tournament.tournamentTeams; else groupPaerticipants">
+        <app-group-teams></app-group-teams>
+    </div>
+    <ng-template #groupPaerticipants>
+        <app-group-participants></app-group-participants>
+    </ng-template>
   </div>
   <div class="card-header border-dark d-flex align-items-center justify-content-between">
     <span class="h5">Playoffs Stage</span>
@@ -15,6 +20,11 @@
       <fa-icon [icon]="faRocket"></fa-icon> Start stage</button>
   </div>
   <div class="card-body p-2">
-    <app-tournament-playoffs></app-tournament-playoffs>
+    <div *ngIf="tournament.tournamentTeams; else playoffParticipants">
+        <app-playoff-teams></app-playoff-teams>
+    </div>
+    <ng-template>
+        <app-playoff-participants></app-playoff-participants>
+    </ng-template>
   </div>
 </div>

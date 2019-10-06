@@ -4,12 +4,12 @@ import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bott
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { pipe } from 'rxjs';
 
-import { ParticipantService } from '../../../../../../providers/participant.service';
-import { GroupParticipantService } from '../../../../../../providers/group-participant.service';
-import { Participant } from '../../../../../../interfaces/participant.interface';
-import { User } from '../../../../../../interfaces/user.interface';
-import { Group } from '../../../../../../interfaces/group.interface';
-import { GroupParticipant } from '../../../../../../interfaces/group-participant.interface';
+import { ParticipantService } from '../../../../../../../providers/participant.service';
+import { GroupParticipantService } from '../../../../../../../providers/group-participant.service';
+import { Participant } from '../../../../../../../interfaces/participant.interface';
+import { User } from '../../../../../../../interfaces/user.interface';
+import { Group } from '../../../../../../../interfaces/group.interface';
+import { GroupParticipant } from '../../../../../../../interfaces/group-participant.interface';
 
 @Component({
   selector: 'app-participant-modal',

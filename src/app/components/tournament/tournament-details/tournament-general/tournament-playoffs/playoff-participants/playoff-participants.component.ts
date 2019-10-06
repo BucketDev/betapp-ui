@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
-import { GroupService } from '../../../../../providers/group.service';
-import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
-import { TournamentDetails } from '../../../../../interfaces/tournament-details.interface';
-import { TournamentSettings } from '../../../../../interfaces/tournament-settings.interface';
-import { Group } from '../../../../../interfaces/group.interface';
+import { TournamentDetailsService } from '../../../../../../providers/tournament-details.service';
+import { GroupService } from '../../../../../../providers/group.service';
+import { PlayoffStage } from '../../../../../../interfaces/playoff-stage.enum';
+import { TournamentDetails } from '../../../../../../interfaces/tournament-details.interface';
+import { TournamentSettings } from '../../../../../../interfaces/tournament-settings.interface';
+import { Group } from '../../../../../../interfaces/group.interface';
 
 @Component({
-  selector: 'app-tournament-playoffs',
-  templateUrl: './tournament-playoffs.component.html',
-  styleUrls: ['./tournament-playoffs.component.css']
+  selector: 'app-playoff-participants',
+  templateUrl: './playoff-participants.component.html',
+  styleUrls: ['./playoff-participants.component.css']
 })
-export class TournamentPlayoffsComponent implements OnInit {
+export class PlayoffParticipantsComponent implements OnInit {
 
   playoffStages = PlayoffStage;
   tournament: TournamentDetails;

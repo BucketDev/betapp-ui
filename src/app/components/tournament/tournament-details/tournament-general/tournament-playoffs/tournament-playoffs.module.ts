@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { SharedPipeModule } from '../../../../../pipes/shared-pipe.module';
 
-import { TournamentPlayoffsComponent } from './tournament-playoffs.component';
-import { BracketsPlayoffsComponent } from './brackets-playoffs/brackets-playoffs.component';
+import { PlayoffParticipantsComponent } from './playoff-participants/playoff-participants.component';
+import { ParticipantsBracketsComponent } from './playoff-participants/participants-brackets/participants-brackets.component';
+import { PlayoffTeamsComponent } from './playoff-teams/playoff-teams.component';
 
 
 
@@ -14,12 +15,14 @@ import { BracketsPlayoffsComponent } from './brackets-playoffs/brackets-playoffs
     SharedPipeModule,
   ],
   declarations: [
-    TournamentPlayoffsComponent,
-    BracketsPlayoffsComponent
+    PlayoffParticipantsComponent,
+    ParticipantsBracketsComponent,
+    PlayoffTeamsComponent
   ],
   exports: [
-    TournamentPlayoffsComponent,
-    BracketsPlayoffsComponent
+    PlayoffParticipantsComponent,
+    ParticipantsBracketsComponent,
+    PlayoffTeamsComponent
   ]
 })
 export class TournamentPlayoffsModule { }

@@ -1,0 +1,44 @@
+<app-loading *ngIf="!groups"></app-loading>
+<div class="card-decks animated fadeIn" *ngIf="groups">
+  <div class="card mb-1" *ngFor="let group of groups">
+    <div class="card-body p-0">
+      <table class="table table-sm m-0 table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th class="col text-center">Group {{ group.name }}</th>
+            <th class="px-3 d-none d-sm-table-cell">GP</th>
+            <th class="px-3 d-none d-sm-table-cell">GW</th>
+            <th class="px-3 d-none d-sm-table-cell">GT</th>
+            <th class="px-3 d-none d-sm-table-cell">GL</th>
+            <th class="px-3">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="group.groupTeams.length === 0; else teams"
+              class="text-muted text-center">
+            <td colspan="6">There are no teams in this group</td>
+          </tr>
+          <tr #teams class="text-center" *ngFor="let groupTeam of group.groupTeams">
+            <td class="text-left d-flex align-items-center">
+              <div class="img-fluid rounded-circle img-participant-squared"
+                   [style.background-image]="groupTeam.team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
+             </div>
+             <span class="mx-2">{{groupTeam.team.name}}</span>
+            </td>
+            <td class="d-none d-sm-table-cell">{{ groupTeam.gamesPlayed }}</td>
+            <td class="d-none d-sm-table-cell">{{ groupTeam.gamesWon }}</td>
+            <td class="d-none d-sm-table-cell">{{ groupTeam.gamesTied }}</td>
+            <td class="d-none d-sm-table-cell">{{ groupTeam.gamesLost }}</td>
+            <td>{{ groupTeam.points }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer" *ngIf="tournamentDetailsService.isCreator()">
+      <button type="button" class="btn rounded-pill btn-info btn-sm"
+              (click)="showAssignTeam(group)">
+        <fa-icon [icon]="faPlusCircle"></fa-icon> Assign team
+      </button>
+    </div>
+  </div>
+</div>
