@@ -7,7 +7,7 @@
             matInput [(ngModel)]="match.scheduledTime" name="scheduledTime" #scheduledTime="ngModel">
       </mat-form-field>
     </div>
-    <div mat-dialog-actions class="justify-content-end bg-secondary">
+    <div mat-dialog-actions class="justify-content-end">
       <app-saving-button [disabled]="!formDate.valid" (clicked)="saveDate(match)"></app-saving-button>
     </div>
 </form>

@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatchesGroupsModule } from './group-matches/matches-groups.module';
+
+import { MatchParticipantsModule } from './match-participants/match-participants.module';
+import { MatchTeamsModule } from './match-teams/match-teams.module';
 
 import { TournamentMatchesComponent } from './tournament-matches.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatchesGroupsModule
+    MatchParticipantsModule,
+    MatchTeamsModule
   ],
   declarations: [
     TournamentMatchesComponent

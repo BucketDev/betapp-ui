@@ -15,10 +15,10 @@
   </div>
   <div class="card-body p-2">
     <div *ngIf="tournament.tournamentTeams; else playoffParticipants">
-        <app-match-teams></app-match-teams>
+        <app-match-teams [playoffStage]="playoffStage"></app-match-teams>
     </div>
     <ng-template #playoffParticipants>
-        <app-match-participants></app-match-participants>
+        <app-match-participants [playoffStage]="playoffStage"></app-match-participants>
     </ng-template>
   </div>
 </div>

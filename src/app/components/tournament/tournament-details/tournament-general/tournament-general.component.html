@@ -23,7 +23,7 @@
     <div *ngIf="tournament.tournamentTeams; else playoffParticipants">
         <app-playoff-teams></app-playoff-teams>
     </div>
-    <ng-template>
+    <ng-template #playoffParticipants>
         <app-playoff-participants></app-playoff-participants>
     </ng-template>
   </div>

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { MatchParticipants } from '../interfaces/match-participants.interface';
+import { HttpClient } from '@angular/common/http';
+import { MatchTeams } from '../interfaces/match-teams.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MatchParticipantsService {
+export class MatchTeamsService {
 
-  private url: string = `${environment.endpointURL}/matchParticipants`;
+  private url: string = `${environment.endpointURL}/matchTeams`;
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,6 @@ export class MatchParticipantsService {
 
   findAllPlayoffsByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}/playoffs`);
 
-  update = (matchParticipants: MatchParticipants) => this.http.put(`${this.url}/`, matchParticipants);
+  update = (matchTeams: MatchTeams) => this.http.put(`${this.url}/`, matchTeams);
 
 }

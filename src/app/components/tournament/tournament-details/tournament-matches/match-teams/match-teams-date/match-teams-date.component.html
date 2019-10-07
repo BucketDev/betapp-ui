@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>Set new scheduled date</h3>
+<form #formDate="ngForm">
+    <div mat-dialog-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Scheduled date</mat-label>
+        <input type="date" class="text-center no-arrows" required
+            matInput [(ngModel)]="match.scheduledTime" name="scheduledTime" #scheduledTime="ngModel">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="justify-content-end">
+      <app-saving-button [disabled]="!formDate.valid" (clicked)="saveDate(match)"></app-saving-button>
+    </div>
+</form>
