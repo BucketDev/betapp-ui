@@ -27,18 +27,18 @@
         </div>
         <span class="mx-2 text-truncate w-100 text-center">{{match.groupParticipantAway.user.displayName}}</span>
       </div>
-      <div class="text-center p-0"
+      <div class="d-flex p-0 align-items-center justify-content-center flex-column"
           [ngClass]="{'col-4': !tournamentDetailsService.isCreator(), 'col-3': tournamentDetailsService.isCreator()}">
-        <div class="d-flex align-items-center justify-content-center">
-          <div class="h5 m-0 mx-1">
-            <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
+          <div class="d-flex justify-content-center mb-1">
+              <div class="h5 m-0 mx-1">
+                <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
+              </div>
+              <div class="h5 m-0 mx-1">
+                <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>
+              </div>
           </div>
-          <div class="h5 m-0 mx-1">
-            <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>
-          </div>
-        </div>
-        <small class="text-muted" *ngIf="!match.scheduledTime">TBD</small>
-        <small class="text-muted" *ngIf="match.scheduledTime">{{ match.scheduledTime | date }}</small>
+          <small class="text-muted" *ngIf="!match.scheduledTime">TBD</small>
+          <small class="text-muted" *ngIf="match.scheduledTime">{{ match.scheduledTime | date }}</small>
       </div>
       <div class="d-flex flex-column align-items-center justify-content-end col-4 p-0">
         <div class="img-fluid rounded-circle img-participant-squared"

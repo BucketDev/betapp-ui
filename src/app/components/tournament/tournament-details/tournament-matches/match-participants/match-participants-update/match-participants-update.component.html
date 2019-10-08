@@ -1,42 +1,31 @@
-<div class="list-group bg-light border rounded">
-  <form #formMatch="ngForm">
-    <div class="d-flex align-items-end">
-      <div class="col-4 d-flex justify-content-center">
-        <div class="img-fluid img-participant-capture my-2 rounded-lg shadow"
-            [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 64: 'gender-neutral-user' | uriStyleSanitizer">
+<form #formMatch="ngForm">
+    <div class="d-flex bg-primary text-light rounded-top pb-2">
+        <div class="col-4 d-flex flex-column align-items-center">
+            <div class="img-fluid img-participant-capture my-2 rounded-circle"
+                [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 64: 'gender-neutral-user' | uriStyleSanitizer">
+            </div>
+            <span class="text-truncate w-100 text-center h6">{{match.groupParticipantAway.user.displayName}}</span>
         </div>
-      </div>
-      <div class="col-4 p-0 d-flex justify-content-between">
-        <div class="d-flex justify-content-around align-items-center">
-          <div class="form-group m-0 p-2">
-            <input type="number" class="form-control no-arrows text-center" required
-            name="scoreAway" #scoreHome="ngModel"
-            [(ngModel)]="match.scoreAway">
-          </div>
-          <span class="badge badge-danger">-</span>
-          <div class="form-group m-0 p-2">
-            <input type="number" class="form-control no-arrows text-center" required
-            name="scoreHome" #scoreHome="ngModel"
-            [(ngModel)]="match.scoreHome">
-          </div>
+        <div class="col-4 d-flex justify-content-between align-items-center">
+            <div class="form-group p-1">
+                <input type="number" class="form-control form-control-sm no-arrows text-center border border-dark" required
+                        name="scoreAway" #scoreHome="ngModel"
+                        [(ngModel)]="match.scoreAway">
+            </div>
+            <div class="form-group p-1">
+                <input type="number" class="form-control form-control-sm no-arrows text-center border border-dark" required
+                        name="scoreHome" #scoreHome="ngModel"
+                        [(ngModel)]="match.scoreHome">
+            </div>
         </div>
-      </div>
-      <div class="col-4 d-flex justify-content-center">
-        <div class="img-fluid img-participant-capture my-2 rounded-lg shadow"
-            [style.background-image]="match.groupParticipantHome.user.photoUrl | photo: 64: 'gender-neutral-user' | uriStyleSanitizer">
+        <div class="col-4 d-flex flex-column align-items-center">
+            <div class="img-fluid img-participant-capture my-2 rounded-circle"
+                [style.background-image]="match.groupParticipantHome.user.photoUrl | photo: 64: 'gender-neutral-user' | uriStyleSanitizer">
+            </div>
+            <span class="text-truncate w-100 text-center h6">{{match.groupParticipantHome.user.displayName}}</span>
         </div>
-      </div>
     </div>
-    <div class="d-flex align-items-top mb-2">
-      <div class="d-flex col-4 justify-content-center">
-        <span class="text-truncate h6">{{match.groupParticipantAway.user.displayName}}</span>
-      </div>
-      <div class="d-flex justify-content-center col-4">
-          <app-saving-button [disabled]="!formMatch.valid" (clicked)="saveMatch(formMatch)"></app-saving-button>
-      </div>
-      <div class="d-flex col-4 justify-content-center">
-        <span class="text-truncate h6">{{match.groupParticipantHome.user.displayName}}</span>
-      </div>
+    <div class="d-flex justify-content-end pt-2 px-2">
+        <app-saving-button [disabled]="!formMatch.valid" (clicked)="saveMatch(formMatch)"></app-saving-button>
     </div>
-  </form>
-</div>
+</form>

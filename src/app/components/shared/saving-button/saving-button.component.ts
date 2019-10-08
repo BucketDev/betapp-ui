@@ -12,7 +12,7 @@ export class SavingButtonComponent implements OnInit {
   faSave = faSave;
   faCheck = faCheck;
   saving: boolean = false;
-  private saved: boolean = false;
+  saved: boolean = false;
   @Output() clicked = new EventEmitter<void>();
   @Input() disabled: boolean;
   @Input() small: boolean;

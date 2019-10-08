@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-
-import { environment } from '../../environments/environment';
-import { MatchParticipants } from '../interfaces/match-participants.interface';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+import { FireAuthService } from './fire-auth.service';
 import { MatchTeams } from '../interfaces/match-teams.interface';
 
 @Injectable({
@@ -12,9 +12,10 @@ export class MatchTeamsService {
 
   private url: string = `${environment.endpointURL}/matchTeams`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private auth: FireAuthService) { }
 
-  findAllByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}`);
+  findAllByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}?userUid=${this.auth.user.uid}`);
 
   findAllPlayoffsByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}/playoffs`);
 

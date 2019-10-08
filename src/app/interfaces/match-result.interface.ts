@@ -2,7 +2,7 @@ import { User } from './user.interface';
 
 export interface MatchResult {
     id?: number;
-    participant: User,
+    userId: number,
     tournamentId: number,
     matchTeamsId: number,
     scoreAway: number,

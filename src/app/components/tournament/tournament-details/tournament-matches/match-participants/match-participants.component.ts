@@ -18,7 +18,7 @@ import { MatchParticipantsDateComponent } from './match-participants-date/match-
 @Component({
   selector: 'app-match-participants',
   templateUrl: './match-participants.component.html',
-  styleUrls: ['./match-participants.component.css']
+  styleUrls: []
 })
 export class MatchParticipantsComponent implements OnInit {
   

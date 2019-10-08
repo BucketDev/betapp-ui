@@ -12,6 +12,7 @@ import { UploadComponent } from './upload/upload.component';
 import { SaveInputComponent } from './save-input/save-input.component';
 import { SavingButtonComponent } from './saving-button/saving-button.component';
 import { ParticipantsListComponent } from './participants-list/participants-list.component';
+import { AngularMaterialModule } from '../../angular-material.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ParticipantsListComponent } from './participants-list/participants-list
     RouterModule,
     FontAwesomeModule,
     SharedPipeModule,
+    AngularMaterialModule,
     FormsModule
   ],
   declarations: [

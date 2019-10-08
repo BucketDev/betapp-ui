@@ -19,7 +19,8 @@
         <li *ngIf="!matches || matches.length === 0" class="list-group-item text-muted text-center">
             <span>This stage has not yet started</span>
         </li>
-        <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1" *ngFor="let match of matches">
+        <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1"
+            *ngFor="let match of matches">
             <div class="row m-0">
                 <div class="d-flex flex-column justify-content-center align-items-center col-4 p-0">
                     <div class="img-fluid rounded-circle img-participant-squared"
@@ -27,14 +28,19 @@
                     </div>
                     <span class="mx-2 text-truncate w-100 text-center">{{match.groupTeamAway.team.name}}</span>
                 </div>
-                <div class="text-center p-0"
-                    [ngClass]="{'col-4': !tournamentDetailsService.isCreator(), 'col-3': tournamentDetailsService.isCreator()}">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="h5 m-0 mx-1">
-                        <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
+                <div class="d-flex p-0 align-items-center justify-content-center flex-column col-3">
+                    <div class="d-flex justify-content-center align-items-end mb-1">
+                        <div class="h4 m-0 mx-1">
+                            <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
                         </div>
                         <div class="h5 m-0 mx-1">
-                        <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>
+                          <span class="badge badge-warning">{{ match.matchResult ? match.matchResult.scoreAway : '-' }}</span>
+                        </div>
+                        <div class="h5 m-0 mx-1">
+                          <span class="badge badge-warning">{{ match.matchResult ? match.matchResult.scoreHome : '-' }}</span>
+                        </div>
+                        <div class="h4 m-0 mx-1">
+                            <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>
                         </div>
                     </div>
                     <small class="text-muted" *ngIf="!match.scheduledTime">TBD</small>
@@ -46,23 +52,24 @@
                     </div>
                     <span class="mx-2 text-truncate w-100 text-center">{{match.groupTeamHome.team.name}}</span>
                 </div>
-                <div *ngIf="tournamentDetailsService.isCreator()"
-                    class="col-1 d-flex p-0 align-items-stretch justify-content-end">
+                <div class="col-1 d-flex p-0 align-items-stretch justify-content-end">
                     <button class="btn btm-small btn-light border" [matMenuTriggerFor]="matchActions"
                         [disabled]="match.registeredTime">
                         <fa-icon [icon]="faEllipsisV"></fa-icon>
                     </button>
                     <mat-menu #matchActions>
-                        <button mat-menu-item (click)="showUpdateDate(match)"
-                        ><fa-icon [icon]="faClock"></fa-icon> Update Date</button>
-                        <button mat-menu-item (click)="showUpdateMatch(match, true)"
-                        ><fa-icon [icon]="faMoneyBillAlt"></fa-icon> Make a Bet</button>
-                        <button mat-menu-item (click)="showUpdateMatch(match)"
-                        ><fa-icon [icon]="faPenAlt"></fa-icon> Input Result</button>
+                        <button *ngIf="tournamentDetailsService.isCreator()"
+                            mat-menu-item (click)="showUpdateDate(match)">
+                            <fa-icon [icon]="faClock"></fa-icon> Update Date</button>
+                        <button mat-menu-item (click)="showUpdateMatch(match, true)">
+                            <fa-icon [icon]="faMoneyBillAlt"></fa-icon> Make a Bet</button>
+                        <button *ngIf="tournamentDetailsService.isCreator()"
+                            mat-menu-item (click)="showUpdateMatch(match)">
+                            <fa-icon [icon]="faPenAlt"></fa-icon> Input Result</button>
                     </mat-menu>
                 </div>
             </div>
-            <mat-expansion-panel (afterExpand)="afterExpand()">
+            <mat-expansion-panel (opened)="afterExpand(match.id)" matRipple>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <small>Participants Bets</small>
@@ -71,6 +78,7 @@
                         <small>View details</small>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
+                <app-match-teams-bets [matchTeamId]="match.id"></app-match-teams-bets>
             </mat-expansion-panel>
         </li>
     </ul>  

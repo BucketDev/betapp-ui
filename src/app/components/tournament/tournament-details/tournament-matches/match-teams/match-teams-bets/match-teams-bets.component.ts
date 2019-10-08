@@ -1,15 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+
+import { MatchResultsService } from '../../../../../../providers/match-results.service';
+import { ParticipantResults } from '../../../../../../interfaces/participant-results.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-match-teams-bets',
   templateUrl: './match-teams-bets.component.html',
-  styleUrls: ['./match-teams-bets.component.css']
+  styleUrls: []
 })
-export class MatchTeamsBetsComponent implements OnInit {
+export class MatchTeamsBetsComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  matchTeamSubscription: Subscription;
+  loading: boolean = false;
+  participantResults: ParticipantResults[];
+  @Input() matchTeamId: number;
 
-  ngOnInit() {
+  constructor(private matchResultsService: MatchResultsService) { }
+
+  ngOnDestroy(): void {
+    this.matchTeamSubscription.unsubscribe();
+  }
+  
+  ngOnInit(): void {
+    this.matchTeamSubscription = this.matchResultsService.matchTeamSelected$
+      .subscribe(value => {
+        if(this.matchTeamId === value) {
+          this.loading = true;
+          this.participantResults = null;
+          this.matchResultsService.getParticipantResults(value)
+            .subscribe((participants: ParticipantResults[]) => {
+              this.loading = false;
+              this.participantResults = participants;
+            });
+        }
+      });
   }
 
 }

@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
 import { MatchTeamsService } from '../../../../../providers/match-teams.service';
+import { MatchResultsService } from '../../../../../providers/match-results.service';
 import { MatchTeams } from '../../../../../interfaces/match-teams.interface';
 import { TournamentDetails } from '../../../../../interfaces/tournament-details.interface';
 import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
@@ -31,11 +32,13 @@ export class MatchTeamsComponent implements OnInit {
   matches: MatchTeams[];
   loading: boolean = true;
   roundNumber: number = 0;
+  matchTeamId: number;
   @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
               private matchTeamsService: MatchTeamsService,
+              private matchResultsService: MatchResultsService,
               private snackBar: MatSnackBar,
               private bottomSheet: MatBottomSheet,
               public dialog: MatDialog) {
@@ -69,13 +72,15 @@ export class MatchTeamsComponent implements OnInit {
   }
 
   showUpdateMatch = (match: MatchTeams, isABet: boolean = false) => {
-    if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
+    if ((isABet && !this.tournamentDetailsService.isCreator()) ||
+        (!isABet && this.tournamentDetailsService.isCreator()) &&
+        match.registeredTime === null) {
       this.bottomSheet.open(MatchTeamsUpdateComponent, { data: { match, isABet } })
         .afterDismissed().subscribe(this.updatedMatch);
     }
   }
 
-  showUpdateDate = (match: MatchTeams) => {
+  showUpdateDate = (match: MatchTeams, isABet: boolean = false) => {
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
       this.dialog.open(MatchTeamsDateComponent, { data: { match } })
         .afterClosed().subscribe(this.updatedMatch);
@@ -92,9 +97,7 @@ export class MatchTeamsComponent implements OnInit {
     }
   }
 
-  afterExpand = () => {
-    console.log("afterExpand");
-    
-  }
+  afterExpand = (matchTeamId: number) =>
+    this.matchResultsService.selectMatchTeamId(matchTeamId);
 
 }
