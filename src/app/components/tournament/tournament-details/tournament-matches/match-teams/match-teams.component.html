@@ -69,7 +69,8 @@
                     </mat-menu>
                 </div>
             </div>
-            <mat-expansion-panel (opened)="afterExpand(match.id)" matRipple>
+            <mat-expansion-panel (opened)="afterExpand(match.id)" matRipple
+                *ngIf="tournamentDetailsService.isCreator()">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <small>Participants Bets</small>

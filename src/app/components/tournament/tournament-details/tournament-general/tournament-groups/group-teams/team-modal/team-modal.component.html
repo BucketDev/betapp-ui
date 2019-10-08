@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="row justify-content-end">
-                <app-saving-button (clicked)="addTeam()"></app-saving-button>
+                <app-saving-button (clicked)="addTeam()" [disabled]="temExistingForm.invalid"></app-saving-button>
             </div>
         </form>
         <ng-template #notExistingTeam>

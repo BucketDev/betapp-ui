@@ -18,9 +18,7 @@
     </li>
   </ul>
 </nav>
-<div class="row position-relative p-3" *ngIf="!tournaments">
-  <app-loading></app-loading>
-</div>
+<app-loading *ngIf="!tournaments"></app-loading>
 <div class="row m-0" *ngIf="tournaments">
   <div class="col-xs col-xl-6 d-flex align-items-stretch p-1 animated fadeIn" (click)="viewTournament(tournament)"
         *ngFor="let tournament of tournaments">

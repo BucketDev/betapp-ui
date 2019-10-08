@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
@@ -12,7 +12,7 @@ import { Group } from '../../../../../../../interfaces/group.interface';
 @Component({
   selector: 'app-team-modal',
   templateUrl: './team-modal.component.html',
-  styleUrls: ['./team-modal.component.css']
+  styleUrls: []
 })
 export class TeamModalComponent implements OnInit {
 
@@ -30,10 +30,12 @@ export class TeamModalComponent implements OnInit {
 
   constructor(private bottomSheetRef: MatBottomSheetRef<TeamModalComponent>,
               private teamService: TeamService,
+              private changeDetectorRef: ChangeDetectorRef,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: {group: Group},
               private groupTeamService: GroupTeamService) {
     this.group = data.group;
-    this.teamService.getConfederations().subscribe(data => this.confederations = data);
+    this.teamService.getConfederations().subscribe(data => 
+      {this.confederations = data; this.changeDetectorRef.detectChanges()});
   }
 
   selectConfederation = (event: MatSelectChange) => {
@@ -45,7 +47,7 @@ export class TeamModalComponent implements OnInit {
     this.teams = [];
     this.teamId = null;
     this.teamService.getCountries(event.value)
-      .subscribe(data => this.countries = data)
+      .subscribe(data => {this.countries = data; this.changeDetectorRef.detectChanges()})
   }
 
   selectCountry = (event: MatSelectChange) => {
@@ -55,7 +57,7 @@ export class TeamModalComponent implements OnInit {
     this.teamId = null;
     this.countryId = event.value;
     this.teamService.getLeagues(this.confederationId, event.value)
-      .subscribe(data => this.leagues = data)
+      .subscribe(data => {this.leagues = data; this.changeDetectorRef.detectChanges()})
   }
 
   selectLeague = (event: MatSelectChange) => {
@@ -63,7 +65,7 @@ export class TeamModalComponent implements OnInit {
     this.teamId = null;
     this.leagueId = event.value;
     this.teamService.getTeams(this.confederationId, this.countryId, event.value)
-      .subscribe(data => this.teams = data)
+      .subscribe(data => {this.teams = data; this.changeDetectorRef.detectChanges()})
   }
 
   selectTeam = (event: MatSelectChange) => {

@@ -72,9 +72,7 @@ export class MatchTeamsComponent implements OnInit {
   }
 
   showUpdateMatch = (match: MatchTeams, isABet: boolean = false) => {
-    if ((isABet && !this.tournamentDetailsService.isCreator()) ||
-        (!isABet && this.tournamentDetailsService.isCreator()) &&
-        match.registeredTime === null) {
+    if (isABet || this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
       this.bottomSheet.open(MatchTeamsUpdateComponent, { data: { match, isABet } })
         .afterDismissed().subscribe(this.updatedMatch);
     }
