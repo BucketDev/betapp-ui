@@ -1,4 +1,4 @@
-<div class="position-relative p-3" *ngIf="loading; else notLoading">
+<div class="position-relative" *ngIf="loading; else notLoading">
     <app-loading></app-loading>
 </div>
 <ng-template #notLoading>
@@ -15,12 +15,12 @@
         </li>
     </ul>
     </nav>
-    <ul class="list-group mb-3">
+    <ul class="list-group">
         <li *ngIf="!matches || matches.length === 0" class="list-group-item text-muted text-center">
             <span>This stage has not yet started</span>
         </li>
         <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1"
-            *ngFor="let match of matches">
+            *ngFor="let match of rounds[roundNumber]">
             <div class="row m-0">
                 <div class="d-flex flex-column justify-content-center align-items-center col-4 p-0">
                     <div class="img-fluid rounded-circle img-participant-squared"
@@ -69,7 +69,7 @@
                     </mat-menu>
                 </div>
             </div>
-            <mat-expansion-panel (opened)="afterExpand(match.id)" matRipple
+            <mat-expansion-panel (opened)="afterExpand(match.id)"
                 *ngIf="tournamentDetailsService.isCreator()">
                 <mat-expansion-panel-header>
                     <mat-panel-title>

@@ -1,97 +1,95 @@
-<div class="row m-0 animated fadeIn" *ngIf="tournamentSettings">
-  <div class="col-12 p-0">
-    <div *ngIf="tournament.tournamentGroups" class="card">
-      <form (ngSubmit)="saveSettings()">
-        <div class="card-header border-dark">
-          <span class="h5">Group Settings</span>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="roundTrip"
-                        name="roundTrip" #roundTrip="ngModel" [(ngModel)]="tournamentSettings.groupRoundTrip">
-                <label class="custom-control-label" for="roundTrip">Round Trip</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="groupNumber">Number of Groups</label>
-              <input type="number" min="1" max="8" class="form-control" id="groupNumber"
-                    name="groupNumber" #groupNumber="ngModel" [(ngModel)]="tournamentSettings.groupNumber">
-            </div>
-            <div class="form-group">
-              <label for="first">First of each Group</label>
-              <input type="number" min="1" class="form-control" id="first"
-                    name="first" #first="ngModel" [(ngModel)]="tournamentSettings.first">
-              <small class="form-text text-muted">How many teams/people will pass to the playoffs per group</small>
-            </div>
-        </div>
-        <div class="card-header border-dark">
-          <span class="h5">Playoffs Settings</span>
-        </div>
-        <div class="card-body">
+<div *ngIf="tournamentSettings" class="card mb-2">
+  <form (ngSubmit)="saveSettings()">
+    <div *ngIf="tournament.tournamentGroups">
+      <div class="card-header border-dark">
+        <span class="h5">Group Settings</span>
+      </div>
+      <div class="card-body animated fadeIn">
           <div class="form-group">
-            <label for="playoffStage">Playoffs Stage</label>
-            <select name="playoffStage" id="playoffStage" class="form-control"
-                    (change)=stageSelected($event.target.value)
-                    #playoffStage="ngModel" [(ngModel)]="tournamentSettings.playoffStage">
-              <option value="{{stage}}" *ngFor="let stage of keys(playoffStages)">{{playoffStages[stage]}}</option>
-            </select>
-            <small class="form-text text-muted">From which stage do the playoffs will start</small>
-          </div>
-          <div class="form-group row" *ngIf="showEighthFinals">
-            <div class="col-6 col-md-3">
-              <span>{{playoffStages['EIGHTH_FINALS']}}</span>
-            </div>
-            <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="eightFinalsRoundTrip"
-                      name="eightFinalsRoundTrip" #eightFinalsRoundTrip="ngModel"
-                      [(ngModel)]="tournamentSettings.eightFinalsRoundTrip">
-              <label class="custom-control-label" for="eightFinalsRoundTrip">Round Trip</label>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="roundTrip"
+                      name="roundTrip" #roundTrip="ngModel" [(ngModel)]="tournamentSettings.groupRoundTrip">
+              <label class="custom-control-label" for="roundTrip">Round Trip</label>
             </div>
           </div>
-          <div class="form-group row" *ngIf="showQuarterFinals">
-            <div class="col-6 col-md-3">
-              <span>{{playoffStages['QUARTER_FINALS']}}</span>
-            </div>
-            <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="quarterFinalsRoundTrip"
-                      name="quarterFinalsRoundTrip" #quarterFinalsRoundTrip="ngModel"
-                      [(ngModel)]="tournamentSettings.quarterFinalsRoundTrip">
-              <label class="custom-control-label" for="quarterFinalsRoundTrip">Round Trip</label>
-            </div>
+          <div class="form-group">
+            <label for="groupNumber">Number of Groups</label>
+            <input type="number" min="1" max="8" class="form-control" id="groupNumber"
+                  name="groupNumber" #groupNumber="ngModel" [(ngModel)]="tournamentSettings.groupNumber">
           </div>
-          <div class="form-group row" *ngIf="showSemifinals">
-            <div class="col-6 col-md-3">
-              <span>{{playoffStages['SEMIFINALS']}}</span>
-            </div>
-            <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="semiFinalsRoundTrip"
-                      name="semiFinalsRoundTrip" #semiFinalsRoundTrip="ngModel"
-                      [(ngModel)]="tournamentSettings.semiFinalsRoundTrip">
-              <label class="custom-control-label" for="semiFinalsRoundTrip">Round Trip</label>
-            </div>
+          <div class="form-group">
+            <label for="first">First of each Group</label>
+            <input type="number" min="1" class="form-control" id="first"
+                  name="first" #first="ngModel" [(ngModel)]="tournamentSettings.first">
+            <small class="form-text text-muted">How many teams/people will pass to the playoffs per group</small>
           </div>
-          <div class="form-group row">
-            <div class="col-6 col-md-3">
-              <span>{{playoffStages['FINALS']}}</span>
-            </div>
-            <div class="custom-control custom-switch col-6 col-md">
-              <input type="checkbox" class="custom-control-input" id="finalRoundTrip"
-                      name="finalRoundTrip" #finalRoundTrip="ngModel"
-                      [(ngModel)]="tournamentSettings.finalRoundTrip">
-              <label class="custom-control-label" for="finalRoundTrip">Round Trip</label>
-            </div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-end mt-2 card-footer">
-          <app-saving-button (clicked)="saveSettings()"></app-saving-button>
-          <button type="button" class="btn btn-danger rounded-pill ml-2" (click)="deleteTournament()">
-            <fa-icon [icon]="faTrashAlt"></fa-icon>
-            <span *ngIf="!deleteClicked"> Delete</span>
-            <span *ngIf="deleteClicked"> Click again to delete</span>
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
+    <div class="card-header border-dark">
+      <span class="h5">Playoffs Settings</span>
+    </div>
+    <div class="card-body animated fadeIn">
+      <div class="form-group">
+        <label for="playoffStage">Playoffs Stage</label>
+        <select name="playoffStage" id="playoffStage" class="form-control"
+                (change)=stageSelected($event.target.value)
+                #playoffStage="ngModel" [(ngModel)]="tournamentSettings.playoffStage">
+          <option value="{{stage}}" *ngFor="let stage of keys(playoffStages)">{{playoffStages[stage]}}</option>
+        </select>
+        <small class="form-text text-muted">From which stage do the playoffs will start</small>
+      </div>
+      <div class="form-group row" *ngIf="showEighthFinals">
+        <div class="col-6 col-md-3">
+          <span>{{playoffStages['EIGHTH_FINALS']}}</span>
+        </div>
+        <div class="custom-control custom-switch col-6 col-md">
+          <input type="checkbox" class="custom-control-input" id="eightFinalsRoundTrip"
+                  name="eightFinalsRoundTrip" #eightFinalsRoundTrip="ngModel"
+                  [(ngModel)]="tournamentSettings.eightFinalsRoundTrip">
+          <label class="custom-control-label" for="eightFinalsRoundTrip">Round Trip</label>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="showQuarterFinals">
+        <div class="col-6 col-md-3">
+          <span>{{playoffStages['QUARTER_FINALS']}}</span>
+        </div>
+        <div class="custom-control custom-switch col-6 col-md">
+          <input type="checkbox" class="custom-control-input" id="quarterFinalsRoundTrip"
+                  name="quarterFinalsRoundTrip" #quarterFinalsRoundTrip="ngModel"
+                  [(ngModel)]="tournamentSettings.quarterFinalsRoundTrip">
+          <label class="custom-control-label" for="quarterFinalsRoundTrip">Round Trip</label>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="showSemifinals">
+        <div class="col-6 col-md-3">
+          <span>{{playoffStages['SEMIFINALS']}}</span>
+        </div>
+        <div class="custom-control custom-switch col-6 col-md">
+          <input type="checkbox" class="custom-control-input" id="semiFinalsRoundTrip"
+                  name="semiFinalsRoundTrip" #semiFinalsRoundTrip="ngModel"
+                  [(ngModel)]="tournamentSettings.semiFinalsRoundTrip">
+          <label class="custom-control-label" for="semiFinalsRoundTrip">Round Trip</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-6 col-md-3">
+          <span>{{playoffStages['FINALS']}}</span>
+        </div>
+        <div class="custom-control custom-switch col-6 col-md">
+          <input type="checkbox" class="custom-control-input" id="finalRoundTrip"
+                  name="finalRoundTrip" #finalRoundTrip="ngModel"
+                  [(ngModel)]="tournamentSettings.finalRoundTrip">
+          <label class="custom-control-label" for="finalRoundTrip">Round Trip</label>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-2 card-footer">
+      <app-saving-button (clicked)="saveSettings()"></app-saving-button>
+      <button type="button" class="btn btn-danger rounded-pill ml-2" (click)="deleteTournament()">
+        <fa-icon [icon]="faTrashAlt"></fa-icon>
+        <span *ngIf="!deleteClicked"> Delete</span>
+        <span *ngIf="deleteClicked"> Click again to delete</span>
+      </button>
+    </div>
+  </form>
 </div>

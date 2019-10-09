@@ -28,7 +28,6 @@ export class MatchParticipantsComponent implements OnInit {
   faMoneyBillAlt = faMoneyBillAlt;
   tournament: TournamentDetails;
   rounds = [];
-  matches: MatchParticipants[];
   loading: boolean = true;
   roundNumber: number = 0;
   @Input() playoffStage: PlayoffStage;
@@ -59,14 +58,10 @@ export class MatchParticipantsComponent implements OnInit {
       for (let i = 1; i <= Object.keys(rounds).length; i++)
         this.rounds.push(rounds[i]);
     }
-    this.matches = this.rounds[this.roundNumber];
     this.loading = false;
 }
 
-  showRound = (roundNumber: number) => {
-    this.roundNumber = roundNumber;
-    this.matches = this.rounds[roundNumber];
-  }
+  showRound = (roundNumber: number) => this.roundNumber = roundNumber;
 
   showUpdateMatch = (match: MatchParticipants) => {
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
@@ -86,7 +81,8 @@ export class MatchParticipantsComponent implements OnInit {
 
   updatedMatch  = (match: MatchParticipants) => {
     if (match !== undefined) {
-      this.matches = this.matches.map((_match: MatchParticipants) => (_match.id === match.id) ? match : _match);
+      this.rounds[this.roundNumber] = this.rounds[this.roundNumber]
+        .map((_match: MatchParticipants) => (_match.id === match.id) ? match : _match);
       this.snackBar.open('The match has been saved correctly', 'Okay!', {
           duration: 2000,
           horizontalPosition: 'right'

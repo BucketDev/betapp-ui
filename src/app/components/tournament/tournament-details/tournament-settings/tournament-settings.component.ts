@@ -16,7 +16,7 @@ import { SavingButtonComponent } from '../../../../components/shared/saving-butt
 @Component({
   selector: 'app-tournament-settings',
   templateUrl: './tournament-settings.component.html',
-  styleUrls: ['./tournament-settings.component.css']
+  styleUrls: []
 })
 export class TournamentSettingsComponent {
 
