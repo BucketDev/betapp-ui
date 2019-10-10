@@ -2,16 +2,15 @@
   <div class="col-md-12 col-lg-6 bg-white rounded-bottom">
     <form #form="ngForm">
       <div class="row m-0">
-        <div class="col-sm-6 border-right p-4">
-            <div class="form-group">
-              <label for="email">Title</label>
-              <input type="text" class="form-control" id="title" placeholder="Enter title" required
-                        name="title" #title="ngModel" [(ngModel)]="tournament.title">
-            </div>
+        <div class="col-sm-6 border-right p-4 d-flex flex-column">
+            <mat-form-field appearance="outline" class="col p-0 mat-form-field-custom-wrapper">
+              <mat-label>Title</mat-label>
+              <input type="text"placeholder="Enter title" required
+                    matInput name="title" #title="ngModel" [(ngModel)]="tournament.title">
+            </mat-form-field>
             <app-upload [label]="'Logo'" (photoUrl)="logoUploaded($event)"></app-upload>
-            <div class="row justify-content-center ">
-              <img src="{{tournament.photoUrl | photo: 128: 'gallery'}}" alt=""
-                  class="img-fluid img-thumbnail img-tournament-logo">
+            <div class="mt-2 img-tournament-logo rounded border"
+                [style.background-image]="tournament.photoUrl | photo: 256: 'trophy--v2' | uriStyleSanitizer">
             </div>
         </div>
         <div class="col-sm-6 p-4 justify-content-between d-flex flex-column">

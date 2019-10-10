@@ -1,14 +1,14 @@
 <form (ngSubmit)="signin()" #form="ngForm">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" placeholder="Enter email" required
-            name="email" #email="ngModel" [(ngModel)]="user.email">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Enter password" required
-            name="password" #password="ngModel" [(ngModel)]="user.password">
-  </div>
+  <mat-form-field appearance="outline" class="col p-0">
+    <mat-label>Email</mat-label>
+    <input type="email" id="email" placeholder="Enter email" required
+        matInput name="email" #email="ngModel" [(ngModel)]="user.email">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="col p-0">
+    <mat-label>Password</mat-label>
+    <input type="password" id="password" placeholder="Enter password" required
+        matInput name="password" #password="ngModel" [(ngModel)]="user.password">
+  </mat-form-field>
   <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Log In</button>
   <small>Do you want to create an account?</small>
   <button type="button" class="btn btn-outline-secondary btn-block"

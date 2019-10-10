@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import 'hammerjs';
 
-import { SavingButtonComponent } from '../../../../../../../components/shared/saving-button/saving-button.component';
 import { TeamService } from '../../../../../../../providers/team.service';
 import { GroupTeamService } from '../../../../../../../providers/group-team.service';
+import { TournamentDetailsService } from '../../../../../../../providers/tournament-details.service';
+import { SavingButtonComponent } from '../../../../../../../components/shared/saving-button/saving-button.component';
 import { GroupTeam } from '../../../../../../../interfaces/group-team.interface';
 import { Team } from '../../../../../../../interfaces/team.interface';
 import { Group } from '../../../../../../../interfaces/group.interface';
@@ -12,12 +14,12 @@ import { Group } from '../../../../../../../interfaces/group.interface';
 @Component({
   selector: 'app-team-modal',
   templateUrl: './team-modal.component.html',
-  styleUrls: []
+  styleUrls: ['./team-modal.component.css']
 })
 export class TeamModalComponent implements OnInit {
 
   group: Group;
-  existingTeam: boolean = true;
+  existingTeam: boolean = false;
   confederations: {id: string, name: string}[];
   countries: {id: string, name: string}[];
   leagues: {id: string, name: string}[];
@@ -26,14 +28,20 @@ export class TeamModalComponent implements OnInit {
   countryId: string;
   leagueId: string;
   teamId: string;
+  team: Team;
   @ViewChild(SavingButtonComponent, { static: false }) savingButton: SavingButtonComponent;
 
   constructor(private bottomSheetRef: MatBottomSheetRef<TeamModalComponent>,
+              public tournamentDetaiilsService: TournamentDetailsService,
               private teamService: TeamService,
               private changeDetectorRef: ChangeDetectorRef,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: {group: Group},
               private groupTeamService: GroupTeamService) {
     this.group = data.group;
+    this.team = {
+      name: '',
+      photoUrl: ''
+    }
     this.teamService.getConfederations().subscribe(data => 
       {this.confederations = data; this.changeDetectorRef.detectChanges()});
   }
@@ -73,13 +81,14 @@ export class TeamModalComponent implements OnInit {
   }
 
   addTeam = () => {
-    let team = this.teams.find((team: any) => team.id === this.teamId)
+    if (this.existingTeam)
+      this.team = this.teams.find((team: any) => team.id === this.teamId)
     let groupTeam: GroupTeam = {
       groupId: this.group.id,
       tournamentId: this.group.tournamentId,
       team: {
-        name: team.name,
-        photoUrl: team.photoUrl
+        name: this.team.name,
+        photoUrl: this.team.photoUrl
       }
     }
     this.groupTeamService.addTeam(groupTeam)
@@ -88,6 +97,8 @@ export class TeamModalComponent implements OnInit {
         this.bottomSheetRef.dismiss(groupTeam);
       })
   }
+
+  photoUploaded = (photoUrl: string) => this.team.photoUrl = photoUrl;
 
   ngOnInit() {
   }

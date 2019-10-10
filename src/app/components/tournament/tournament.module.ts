@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '../shared/shared.module';
 import { SharedPipeModule } from '../../pipes/shared-pipe.module';
+import { AngularMaterialModule } from '../../angular-material.module';
 import { TournamentDetailsModule } from './tournament-details/tournament-details.module';
 
 import { NewTournamentComponent } from './new/new-tournament.component';
@@ -21,6 +22,7 @@ import { TournamentDetailsComponent } from './tournament-details/tournament-deta
     FormsModule,
     RouterModule,
     FontAwesomeModule,
+    AngularMaterialModule,
     SharedModule,
     SharedPipeModule,
     TournamentDetailsModule

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { faEllipsisV, faClock, faPenAlt, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
@@ -30,12 +30,14 @@ export class MatchTeamsComponent implements OnInit {
   tournament: TournamentDetails;
   rounds = [];
   loading: boolean = true;
-  roundNumber: number = 0;
+  roundNumber: number;
   matchTeamId: number;
   @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
               private matchTeamsService: MatchTeamsService,
               private matchResultsService: MatchResultsService,
               private snackBar: MatSnackBar,
@@ -45,12 +47,19 @@ export class MatchTeamsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params => {
+      let roundId = parseInt(params['roundId']);
+      if (roundId)
+        this.roundNumber =  roundId - 1;
+      else
+        this.router.navigate([1], { relativeTo: this.activatedRoute })
+    }));
     if (!this.playoffStage)
       this.matchTeamsService.findAllByTournamentId(this.tournament.id)
-        .subscribe((data: any) => this.initializeRounds(data));
+        .subscribe(this.initializeRounds);
     else
       this.matchTeamsService.findAllPlayoffsByTournamentId(this.tournament.id)
-          .subscribe((data: any) => this.initializeRounds(data));
+          .subscribe(this.initializeRounds);
   }
 
   initializeRounds = (rounds: any) => {
@@ -64,7 +73,8 @@ export class MatchTeamsComponent implements OnInit {
     this.loading = false;
 }
 
-  showRound = (roundNumber: number) => this.roundNumber = roundNumber;
+  showRound = (roundNumber: number) => 
+    this.router.navigate([`../${roundNumber + 1}`], { relativeTo: this.activatedRoute });
 
   showUpdateMatch = (match: MatchTeams, isABet: boolean = false) => {
     if (isABet || this.tournamentDetailsService.isCreator() && match.registeredTime === null) {

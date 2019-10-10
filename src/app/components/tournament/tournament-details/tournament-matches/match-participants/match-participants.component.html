@@ -1,6 +1,4 @@
-<div class="position-relative" *ngIf="loading; else notLoading">
-    <app-loading></app-loading>
-</div>
+<app-loading *ngIf="loading; else notLoading"></app-loading>
 <ng-template #notLoading>
   <nav class="col mb-2 overflow-auto" *ngIf="rounds && rounds.length > 0">
     <ul class="pagination pagination-sm justify-content-center mb-1">
@@ -16,11 +14,11 @@
     </ul>
   </nav>
   <ul class="list-group">
-    <li *ngIf="!matches || matches.length === 0" class="list-group-item text-muted text-center">
+    <li *ngIf="!rounds || rounds.length === 0" class="list-group-item text-muted text-center">
       <span>This stage has not yet started</span>
     </li>
     <li class="animated fadeIn list-group-item d-flex justify-content-between m-0 p-1"
-        *ngFor="let match of rounds[roundNumber">
+        *ngFor="let match of rounds[roundNumber]">
       <div class="d-flex flex-column justify-content-center align-items-center col-4 p-0">
         <div class="img-fluid rounded-circle img-participant-squared"
             [style.background-image]="match.groupParticipantAway.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
@@ -29,6 +27,7 @@
       </div>
       <div class="d-flex p-0 align-items-center justify-content-center flex-column"
           [ngClass]="{'col-4': !tournamentDetailsService.isCreator(), 'col-3': tournamentDetailsService.isCreator()}">
+          <small class="font-weight-bold">Group {{match.groupName}}</small>
           <div class="d-flex justify-content-center mb-1">
               <div class="h5 m-0 mx-1">
                 <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>

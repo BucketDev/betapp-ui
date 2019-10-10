@@ -1,22 +1,20 @@
-<div class="position-relative" *ngIf="loading; else notLoading">
-    <app-loading></app-loading>
-</div>
+<app-loading *ngIf="loading; else notLoading"></app-loading>
 <ng-template #notLoading>
     <nav class="col mb-2 overflow-auto" *ngIf="rounds && rounds.length > 0">
-    <ul class="pagination pagination-sm justify-content-center mb-1">
-        <li class="page-item" [ngClass]="{'disabled': roundNumber === 0}">
-        <button type="button" class="page-link" (click)="showRound(roundNumber - 1)">Previous</button>
-        </li>
-        <li *ngFor="let round of rounds; let idx = index" class="page-item" [ngClass]="{'active': idx === roundNumber}">
-        <button type="button" class="page-link" (click)="showRound(idx)">{{ idx + 1 }}</button>
-        </li>
-        <li class="page-item" [ngClass]="{'disabled': roundNumber === rounds.length - 1}">
-        <button type="button" class="page-link" (click)="showRound(roundNumber + 1)">Next</button>
-        </li>
-    </ul>
+        <ul class="pagination pagination-sm justify-content-center mb-1">
+            <li class="page-item" [ngClass]="{'disabled': roundNumber === 0}">
+                <button type="button" class="page-link" (click)="showRound(roundNumber - 1)">Previous</button>
+            </li>
+            <li *ngFor="let round of rounds; let idx = index" class="page-item" [ngClass]="{'active': idx === roundNumber}">
+                <button type="button" class="page-link" (click)="showRound(idx)">{{ idx + 1 }}</button>
+            </li>
+            <li class="page-item" [ngClass]="{'disabled': roundNumber === rounds.length - 1}">
+                <button type="button" class="page-link" (click)="showRound(roundNumber + 1)">Next</button>
+            </li>
+        </ul>
     </nav>
     <ul class="list-group">
-        <li *ngIf="!matches || matches.length === 0" class="list-group-item text-muted text-center">
+        <li *ngIf="!rounds || rounds.length === 0" class="list-group-item text-muted text-center">
             <span>This stage has not yet started</span>
         </li>
         <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1"
@@ -29,15 +27,16 @@
                     <span class="mx-2 text-truncate w-100 text-center">{{match.groupTeamAway.team.name}}</span>
                 </div>
                 <div class="d-flex p-0 align-items-center justify-content-center flex-column col-3">
+                    <small class="font-weight-bold">Group {{match.groupName}}</small>
                     <div class="d-flex justify-content-center align-items-end mb-1">
                         <div class="h4 m-0 mx-1">
                             <span class="badge badge-dark">{{ match.registeredTime ? match.scoreAway : '-' }}</span>
                         </div>
                         <div class="h5 m-0 mx-1">
-                          <span class="badge badge-warning">{{ match.matchResult ? match.matchResult.scoreAway : '-' }}</span>
+                            <span class="badge badge-warning">{{ match.matchResult ? match.matchResult.scoreAway : '-' }}</span>
                         </div>
                         <div class="h5 m-0 mx-1">
-                          <span class="badge badge-warning">{{ match.matchResult ? match.matchResult.scoreHome : '-' }}</span>
+                            <span class="badge badge-warning">{{ match.matchResult ? match.matchResult.scoreHome : '-' }}</span>
                         </div>
                         <div class="h4 m-0 mx-1">
                             <span class="badge badge-dark">{{ match.registeredTime ? match.scoreHome : '-' }}</span>

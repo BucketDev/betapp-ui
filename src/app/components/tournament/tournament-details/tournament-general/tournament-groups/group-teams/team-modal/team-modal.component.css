@@ -1,0 +1,7 @@
+.img-team-squared {
+  height: 64px;
+  min-width: 64px;
+  max-width: 64px;
+  background-position: center;
+  background-size: cover;
+}

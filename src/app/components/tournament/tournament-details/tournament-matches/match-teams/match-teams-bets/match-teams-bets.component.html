@@ -1,18 +1,14 @@
 <app-loading *ngIf="loading"></app-loading>
 <ul class="list-group animated fadeIn fast" *ngIf="!loading">
-    <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between"
+    <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between p-1"
         *ngFor="let participantResult of participantResults">
-        <div class="d-flex align-items-center">
-            <div class="img-fluid rounded-circle img-participant-squared"
+        <div class="d-flex flex-column align-items-center col-6 p-0">
+            <div class="img-fluid rounded-circle img-participant-squared mt-1"
                 [style.background-image]="participantResult.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
             </div>
-            <span class="mx-2 text-truncate">{{ participantResult.user.displayName }}</span>
+            <span class="mx-2 text-truncate text-center w-100">{{ participantResult.user.displayName }}</span>
         </div>
-        <div class="d-flex p-0 align-items-center justify-content-center flex-column w-50">
-            <span *ngIf="participantResult.matchResult; else notMatchResult">
-                {{ participantResult.matchResult.creationTime | date: 'medium': 'GMT+6' }}
-            </span>
-            <ng-template #notMatchResult><span>TBD</span></ng-template>
+        <div class="d-flex p-0 justify-content-center flex-column col-4">
             <div class="d-flex justify-content-center align-items-end mb-1">
                 <div class="h5 m-0 mx-1">
                   <span class="badge badge-warning">{{ participantResult.matchResult ? participantResult.matchResult.scoreAway : '-' }}</span>
@@ -21,6 +17,13 @@
                   <span class="badge badge-warning">{{ participantResult.matchResult ? participantResult.matchResult.scoreHome : '-' }}</span>
                 </div>
             </div>
+            <small *ngIf="participantResult.matchResult; else notMatchResult"
+                    class="text-center">
+                {{ participantResult.matchResult.creationTime | date: 'medium': 'GMT+6' }}
+            </small>
+            <ng-template #notMatchResult>
+                <small class="text-center">TBD</small>
+            </ng-template>
         </div>
     </li>
 </ul>      

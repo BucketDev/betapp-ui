@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { faEllipsisV, faClock, faPenAlt, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -34,6 +35,8 @@ export class MatchParticipantsComponent implements OnInit {
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
               private matchParticipantsService: MatchParticipantsService,
               private snackBar: MatSnackBar,
               private bottomSheet: MatBottomSheet,
@@ -42,12 +45,19 @@ export class MatchParticipantsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params => {
+      let roundId = parseInt(params['roundId']);
+      if (roundId)
+        this.roundNumber =  roundId - 1;
+      else
+        this.router.navigate([1], { relativeTo: this.activatedRoute })
+    }));
     if (!this.playoffStage)
       this.matchParticipantsService.findAllByTournamentId(this.tournament.id)
-        .subscribe((data: any) => this.initializeRounds(data));
+      .subscribe(this.initializeRounds);
     else
       this.matchParticipantsService.findAllPlayoffsByTournamentId(this.tournament.id)
-          .subscribe((data: any) => this.initializeRounds(data));
+      .subscribe(this.initializeRounds);
   }
 
   initializeRounds = (rounds: any) => {
@@ -61,7 +71,8 @@ export class MatchParticipantsComponent implements OnInit {
     this.loading = false;
 }
 
-  showRound = (roundNumber: number) => this.roundNumber = roundNumber;
+  showRound = (roundNumber: number) => 
+    this.router.navigate([`../${roundNumber + 1}`], { relativeTo: this.activatedRoute });
 
   showUpdateMatch = (match: MatchParticipants) => {
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {

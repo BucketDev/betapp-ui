@@ -1,6 +1,7 @@
 import { User } from './user.interface';
 import { PoolSettings } from './pool-settings.interface';
 import { TournamentSettings } from './tournament-settings.interface';
+import { TournamentStage } from './tournament-stage.enum';
 
 export interface TournamentDetails {
     id: number,
@@ -14,5 +15,6 @@ export interface TournamentDetails {
     participants: User[],
     poolSettings?: PoolSettings,
     tournamentSettings?: TournamentSettings,
-    userWinner?: User
+    userWinner?: User,
+    tournamentStage: TournamentStage
 }

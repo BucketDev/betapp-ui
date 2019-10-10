@@ -5,6 +5,7 @@ import { MatchResult } from './match-result.interface';
 export interface MatchTeams {
     id: number,
     tournamentId: number,
+    groupName: string,
     groupTeamAway?: GroupTeam,
     scoreAway: number,
     groupTeamHome?: GroupTeam,

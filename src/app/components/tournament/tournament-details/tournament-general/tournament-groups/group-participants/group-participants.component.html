@@ -2,7 +2,7 @@
 <div class="card-decks animated fadeIn" *ngIf="groups">
   <div class="card mb-1" *ngFor="let group of groups">
     <div class="card-body p-0">
-      <table class="table table-sm m-0 table-responsive">
+      <table class="table table-sm m-0 table-hover table-responsive">
         <thead class="thead-dark">
           <tr>
             <th class="col text-center">Group {{ group.name }}</th>
@@ -34,9 +34,8 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer" *ngIf="tournamentDetailsService.isCreator()">
-      <button type="button" class="btn rounded-pill btn-info btn-sm"
-              (click)="showPendingGroupParticipants(group)">
+    <div class="card-footer" *ngIf="tournamentDetailsService.isCreator() && tournamentDetailsService.isNewTournament()">
+      <button type="button" class="btn rounded-pill btn-info btn-sm" (click)="showPendingGroupParticipants(group)">
         <fa-icon [icon]="faPlusCircle"></fa-icon> Assign participant
       </button>
     </div>

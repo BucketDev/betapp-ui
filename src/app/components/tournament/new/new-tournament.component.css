@@ -2,10 +2,20 @@
   height: 128px;
 }
 
+:host ::ng-deep .mat-form-field-custom-wrapper div.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
 .list-group-item-action {
   color: inherit;
 }
 
 .list-group-item.active {
   color: #fff;
+}
+
+.img-tournament-logo {
+  background-position: center;
+  height: 192px;
+  background-size: cover;
 }

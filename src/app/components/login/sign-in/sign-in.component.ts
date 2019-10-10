@@ -5,13 +5,13 @@ import { FireAuthService } from '../../../providers/fire-auth.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  styleUrls: []
 })
 export class SignInComponent implements OnInit {
   user: User;
 
   constructor(private auth: FireAuthService) {
-    this.user = {email: 'rodrigo.loyola@live.com', password: 'robalon'};
+    this.user = {email: '', password: ''};
   }
 
   ngOnInit() {

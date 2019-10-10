@@ -4,6 +4,7 @@ import { PlayoffStage } from './playoff-stage.enum';
 export interface MatchParticipants {
     id: number,
     tournamentId: number,
+    groupName: string,
     groupParticipantAway: GroupParticipant,
     scoreAway: number,
     groupParticipantHome: GroupParticipant,

@@ -13,7 +13,7 @@ import { GroupTeam } from '../../../../../../interfaces/group-team.interface';
 @Component({
   selector: 'app-group-teams',
   templateUrl: './group-teams.component.html',
-  styleUrls: ['./group-teams.component.css']
+  styleUrls: []
 })
 export class GroupTeamsComponent implements OnInit {
 
@@ -24,8 +24,8 @@ export class GroupTeamsComponent implements OnInit {
               public tournamentDetailsService: TournamentDetailsService,
               private snackBar: MatSnackBar,
               private bottomSheet: MatBottomSheet) {
-      this.groupService.findAllByTournamentUid(this.tournamentDetailsService.tournament.uid)
-        .subscribe((groups: Group[]) => this.groups = groups);
+    this.groupService.findAllByTournamentUid(this.tournamentDetailsService.tournament.uid)
+      .subscribe((groups: Group[]) => this.groups = groups);
   }
 
   ngOnInit() {

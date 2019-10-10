@@ -1,0 +1,32 @@
+<div class="card mb-2">
+    <div class="card-header border-dark">
+        <span class="h5">Leaderboard</span>
+    </div>
+    <div class="card-body">
+        <app-loading *ngIf="!leaderboard"></app-loading>
+        <div class="border">
+            <table *ngIf="leaderboard"
+                class="table table-sm m-0 table-hover animated fadeIn">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Participant</th>
+                        <th class="text-center">Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let participant of leaderboard">
+                        <td class="d-flex align-items-center">
+                            <div class="img-fluid rounded-circle img-participant-squared"
+                                    [style.background-image]="participant.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
+                            </div>
+                            <span class="mx-2 text-truncate w100">{{participant.user.displayName}}</span>
+                        </td>
+                        <td class="text-center">
+                            {{participant.points}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

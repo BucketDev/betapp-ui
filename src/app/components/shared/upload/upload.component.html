@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label for="file" *ngIf="label">{{label}}</label>
+  <label for="file" *ngIf="label">{{label}}:</label>
   <div class="d-flex">
     <input type="file" style="display: none" #fileInput (change)="fileSelected(fileInput)">
     <input type="text" [(ngModel)]="upload.name" class="form-control input-browse" id="file" required
