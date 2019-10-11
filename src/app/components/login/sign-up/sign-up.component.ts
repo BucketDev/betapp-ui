@@ -12,7 +12,7 @@ import { User } from '../../../interfaces/user.interface';
 export class SignUpComponent implements OnInit {
 
   user: User;
-  repassword: string = 'robalon';
+  repassword: string = '';
 
   constructor(private auth: FireAuthService) {
     this.user = {email:''}
