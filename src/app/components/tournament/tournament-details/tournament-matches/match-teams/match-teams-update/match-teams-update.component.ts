@@ -17,6 +17,7 @@ export class MatchTeamsUpdateComponent implements OnInit {
 
   match: MatchTeams;
   isABet: boolean = false;
+  title: string;
 
   constructor(private bottomSheetRef: MatBottomSheetRef<MatchTeamsUpdateComponent>,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: {match: MatchTeams, isABet: boolean},
@@ -24,6 +25,7 @@ export class MatchTeamsUpdateComponent implements OnInit {
               private matchResultsService: MatchResultsService,
               private auth: FireAuthService) {
     this.isABet = data.isABet;
+    this.title = this.isABet ? 'Make a Bet': 'Input Result';
     this.match = Object.assign({}, data.match);
     if(this.isABet) {
       this.match.scoreAway = data.match.matchResult ? this.match.matchResult.scoreAway : null;
@@ -45,7 +47,8 @@ export class MatchTeamsUpdateComponent implements OnInit {
         matchTeamsId: this.match.id,
         scoreAway: this.match.scoreAway,
         scoreHome: this.match.scoreHome,
-        tournamentId: this.match.tournamentId
+        tournamentId: this.match.tournamentId,
+        points: 0
       }
       this.matchResultsService.update(matchResult)
         .subscribe((data: MatchResult) => {

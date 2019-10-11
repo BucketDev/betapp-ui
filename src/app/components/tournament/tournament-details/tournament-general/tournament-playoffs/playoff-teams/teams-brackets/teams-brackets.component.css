@@ -1,0 +1,8 @@
+li .img-team-squared,
+td .img-team-squared {
+  height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  background-position: center;
+  background-size: cover;
+}

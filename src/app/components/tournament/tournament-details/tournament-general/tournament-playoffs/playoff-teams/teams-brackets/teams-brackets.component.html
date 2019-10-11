@@ -1,0 +1,28 @@
+<div class="p-0 my-2 mx-1">
+  <ul class="list-group">
+    <li *ngIf="!showAwayTeam()" class="list-group-item p-1 d-flex align-items-center">
+      <div class="img-fluid rounded-circle img-team-squared"
+            [style.background-image]="null | photo: 32: 'error' | uriStyleSanitizer">
+      </div>
+      <small class="text-muted mx-1">TBD</small>
+    </li>
+    <li *ngIf="showAwayTeam()" class="list-group-item p-1 d-flex align-items-center">
+      <div class="img-fluid rounded-circle img-team-squared"
+            [style.background-image]="groupTeams[0].user.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
+      </div>
+      <small class="mx-1 text-truncate">{{groupTeams[0].team.name}}</small>
+    </li>
+    <li *ngIf="!showHomeTeam()" class="list-group-item p-1 d-flex align-items-center">
+      <div class="img-fluid rounded-circle img-team-squared"
+            [style.background-image]="null | photo: 32: 'error' | uriStyleSanitizer">
+      </div>
+      <small class="text-muted mx-1">TBD</small>
+    </li>
+    <li *ngIf="showHomeTeam()" class="list-group-item p-1 d-flex align-items-center">
+      <div class="img-fluid rounded-circle img-team-squared"
+            [style.background-image]="groupTeams[1].user.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
+      </div>
+      <small class="mx-1 text-truncate">{{groupTeams[1].team.name}}</small>
+    </li>
+  </ul>
+</div>  

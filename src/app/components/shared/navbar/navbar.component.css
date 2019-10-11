@@ -1,3 +1,19 @@
 .navbar {
   background: linear-gradient(to right, #70d467, #6fbbfa)
 }
+
+::ng-deep .betapp-profile-nav .mat-button-wrapper {
+  display: flex !important;
+}
+
+.mat-toolbar-menu-row.mat-toolbar-row {
+  height: 48px;
+}
+
+.nav-profile-squared {
+  height: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  background-position: center;
+  background-size: cover;
+}

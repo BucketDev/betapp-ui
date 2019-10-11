@@ -1,22 +1,18 @@
 <div class="row m-0 d-flex overflow-hidden justify-content-around">
   <div class="d-flex col-4 flex-column justify-content-around p-0" *ngIf="showEightFinals()">
-    <app-participants-brackets [groupParticipants]="group.groupParticipants"
-                            *ngFor="let group of groups['EIGHTH_FINALS']">
+    <app-participants-brackets [groupParticipants]="group.groupParticipants" *ngFor="let group of groups['EIGHTH_FINALS']">
     </app-participants-brackets>
   </div>
   <div class="d-flex col-4 flex-column justify-content-around p-0" *ngIf="showQuarterFinals()">
-    <app-participants-brackets [groupParticipants]="group.groupParticipants"
-                            *ngFor="let group of groups['QUARTER_FINALS']">
+    <app-participants-brackets [groupParticipants]="group.groupParticipants" *ngFor="let group of groups['QUARTER_FINALS']">
     </app-participants-brackets>
   </div>
   <div class="d-flex col-4 flex-column justify-content-around p-0" *ngIf="showSemiFinals()">
-    <app-participants-brackets [groupParticipants]="group.groupParticipants"
-                            *ngFor="let group of groups['SEMIFINALS']">
+    <app-participants-brackets [groupParticipants]="group.groupParticipants" *ngFor="let group of groups['SEMIFINALS']">
     </app-participants-brackets>
   </div>
   <div class="d-flex col-4 flex-column justify-content-around p-0">
-    <app-participants-brackets [groupParticipants]="group.groupParticipants"
-                            *ngFor="let group of groups['FINALS']">
+    <app-participants-brackets [groupParticipants]="group.groupParticipants" *ngFor="let group of groups['FINALS']">
     </app-participants-brackets>
   </div>
 </div>

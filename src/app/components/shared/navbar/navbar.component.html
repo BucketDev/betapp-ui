@@ -1,32 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand" href="#" [routerLink]="['dashboard']">
-    <img src="https://png.icons8.com/cotton/football2/32" alt=""> Betapp
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link"
-            routerLinkActive='active'
-            [routerLink]="['/dashboard']">Home</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item mx-md-2" *ngIf="auth.user">
-            <button type="button" class="btn btn-block btn-outline-light p-0 d-flex align-items-center"
-                    [routerLink]="['/profile', auth.user.uid]">
-              <div [style.background-image]="auth.user.photoUrl | photo: 36: 'gender-neutral-user' | uriStyleSanitizer"
-                  class="img-profile-squared rounded-left"></div>
-              <small class="text-monospace mx-2 mt-1">{{auth.user.displayName}}</small>
-            </button>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-danger" type="button" (click)="logout()">
-          <fa-icon [icon]="faSignOutAlt"></fa-icon> Log out
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <button mat-button [routerLink]="['dashboard']" class="mx-1">
+        <img src="https://png.icons8.com/cotton/football2/32" alt="App name"> Betapp
+      </button>
+      <button mat-button class="mx-1" [matMenuTriggerFor]="tournamentsMenu">Tournaments</button>
+      <mat-menu #tournamentsMenu="matMenu">
+        <button mat-menu-item [routerLink]="['/tournament', 'new']">
+          <img src="https://png.icons8.com/cotton/trophy--v2/24" alt="new tournament"> New Tournament
         </button>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <button mat-menu-item>
+            <img src="https://png.icons8.com/cotton/search--v5/24" alt="find tournament"> Find Tournament
+        </button>
+      </mat-menu>
+    </div>
+    <div class="d-flex align-items-center">
+      <button mat-mini-fab [routerLink]="['/profile', auth.user.uid]" class="mx-1 py-1 nav-profile-squared" *ngIf="auth.user"
+              [style.background-image]="auth.user.photoUrl | photo: 40: 'gender-neutral-user' | uriStyleSanitizer">
+      </button>
+      <button mat-mini-fab color="warn" (click)="logout()" class="mx-1"
+          [style.background-image]="null | photo: 40: 'shutdown--v1': 'color' | uriStyleSanitizer">
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
