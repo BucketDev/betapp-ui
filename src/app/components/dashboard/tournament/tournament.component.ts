@@ -4,9 +4,9 @@ import { User as FireBaseUser } from 'firebase/app';
 
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { TournamentParticipantsService } from '../../../providers/tournament-participants.service';
+import { TournamentParticipantsService } from '../../../providers/tournament/tournament-participants.service';
 
-import { TournamentParticipants } from '../../../interfaces/tournament-participants.interface';
+import { TournamentParticipants } from '../../../interfaces/tournament/tournament-participants.interface';
 import { Router } from '@angular/router';
 
 @Component({

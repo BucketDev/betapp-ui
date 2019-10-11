@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TournamentDetailsService } from '../../../../../../providers/tournament-details.service';
-import { GroupService } from '../../../../../../providers/group.service';
-import { PlayoffStage } from '../../../../../../interfaces/playoff-stage.enum';
-import { TournamentDetails } from '../../../../../../interfaces/tournament-details.interface';
-import { TournamentSettings } from '../../../../../../interfaces/tournament-settings.interface';
-import { Group } from '../../../../../../interfaces/group.interface';
+import { TournamentDetailsService } from '../../../../../../providers/tournament/tournament-details.service';
+import { GroupService } from '../../../../../../providers/group/group.service';
+import { PlayoffStage } from '../../../../../../interfaces/types/playoff-stage.enum';
+import { TournamentDetails } from '../../../../../../interfaces/tournament/tournament-details.interface';
+import { TournamentSettings } from '../../../../../../interfaces/tournament/tournament-settings.interface';
+import { Group } from '../../../../../../interfaces/group/group.interface';
 
 @Component({
   selector: 'app-playoff-participants',
@@ -18,7 +18,7 @@ export class PlayoffParticipantsComponent implements OnInit {
   tournament: TournamentDetails;
   tournamentSettings: TournamentSettings;
   playoffStage: PlayoffStage;
-  groups = {};
+  groups: any;
 
   constructor(private tournamentDetailsService: TournamentDetailsService,
               private groupService: GroupService) {
@@ -26,11 +26,14 @@ export class PlayoffParticipantsComponent implements OnInit {
     this.tournamentSettings = this.tournament.tournamentSettings;
     this.playoffStage = PlayoffStage[this.tournamentSettings.playoffStage];
     this.groupService.findAllPlayoffsByTournamentUid(this.tournamentDetailsService.tournament.uid)
-      .subscribe((groups: Group[]) => groups.forEach((group: Group) => {
+      .subscribe((groups: Group[]) => {
+        this.groups = {};
+        groups.forEach((group: Group) => {
           if(!this.groups[group.playoffStage])
             this.groups[group.playoffStage] = [];
           this.groups[group.playoffStage].push(group);
-        }));
+        });
+      });
   }
 
   ngOnInit() { }

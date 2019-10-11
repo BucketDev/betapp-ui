@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FireAuthService } from '../../../providers/fire-auth.service';
+import { FireAuthService } from '../../../providers/shared/fire-auth.service';
 
-import { User } from '../../../interfaces/user.interface';
+import { User } from '../../../interfaces/user/user.interface';
 
 @Component({
   selector: 'app-sign-up',

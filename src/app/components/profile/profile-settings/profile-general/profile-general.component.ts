@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FireAuthService } from '../../../../providers/fire-auth.service';
-import { UserService } from '../../../../providers/user.service';
+import { FireAuthService } from '../../../../providers/shared/fire-auth.service';
+import { UserService } from '../../../../providers/user/user.service';
 
-import { User } from '../../../../interfaces/user.interface';
+import { User } from '../../../../interfaces/user/user.interface';
 
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 import { SavingButtonComponent } from '../../../../components/shared/saving-button/saving-button.component';

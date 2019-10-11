@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Upload } from '../../interfaces/upload.interface';
+import { Upload } from '../../interfaces/shared/upload.interface';
 import { UploadTask } from '@angular/fire/storage/interfaces';
 
 @Injectable({

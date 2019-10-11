@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faUserCircle, faWallet, faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { FireAuthService } from '../../providers/fire-auth.service';
+import { FireAuthService } from '../../providers/shared/fire-auth.service';
 
 @Component({
   selector: 'app-profile',

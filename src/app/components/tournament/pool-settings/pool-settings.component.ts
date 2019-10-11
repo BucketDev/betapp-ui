@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { faPenAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { PoolSettingsService } from '../../../providers/pool-settings.service';
-import { TournamentDetailsService } from '../../../providers/tournament-details.service';
+import { PoolSettingsService } from '../../../providers/tournament/pool-settings.service';
+import { TournamentDetailsService } from '../../../providers/tournament/tournament-details.service';
 
-import { PoolSettings } from '../../../interfaces/pool-settings.interface';
-import { TournamentDetails } from '../../../interfaces/tournament-details.interface';
+import { PoolSettings } from '../../../interfaces/tournament/pool-settings.interface';
+import { TournamentDetails } from '../../../interfaces/tournament/tournament-details.interface';
 
 @Component({
   selector: 'app-pool-settings',

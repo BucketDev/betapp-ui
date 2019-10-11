@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
-import { MatchResultsService } from '../../../../../../providers/match-results.service';
-import { ParticipantResults } from '../../../../../../interfaces/participant-results.interface';
+import { MatchResultsService } from '../../../../../../providers/match/match-results.service';
+import { ParticipantResults } from '../../../../../../interfaces/match/participant-results.interface';
 import { Subscription } from 'rxjs';
 
 @Component({

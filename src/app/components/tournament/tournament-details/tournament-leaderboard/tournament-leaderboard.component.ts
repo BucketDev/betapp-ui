@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
-import { LeaderboardService } from '../../../../providers/leaderboard.service';
+import { TournamentDetailsService } from '../../../../providers/tournament/tournament-details.service';
+import { LeaderboardService } from '../../../../providers/leaderboard/leaderboard.service';
 
-import { Leaderboard } from '../../../../interfaces/leaderboard.interface';
+import { Leaderboard } from '../../../../interfaces/leaderboard/leaderboard.interface';
 
 @Component({
   selector: 'app-tournament-leaderboard',

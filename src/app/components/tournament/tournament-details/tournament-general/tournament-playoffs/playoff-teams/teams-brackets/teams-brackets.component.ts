@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { GroupTeam } from '../../../../../../../interfaces/group-team.interface';
+import { GroupTeam } from '../../../../../../../interfaces/group/group-team.interface';
 
 @Component({
   selector: 'app-teams-brackets',

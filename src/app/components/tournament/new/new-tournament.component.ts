@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { faSave, faTimesCircle, faLock, faLockOpen, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 
-import { TournamentService } from '../../../providers/tournament.service';
-import { FireAuthService } from '../../../providers/fire-auth.service';
+import { TournamentService } from '../../../providers/tournament/tournament.service';
+import { FireAuthService } from '../../../providers/shared/fire-auth.service';
 
-import { Tournament } from '../../../interfaces/tournament.interface';
-import { TournamentPrivacy } from '../../../interfaces/tournament-privacy.enum';
+import { Tournament } from '../../../interfaces/tournament/tournament.interface';
+import { TournamentPrivacy } from '../../../interfaces/types/tournament-privacy.enum';
 import { Router } from '@angular/router';
 import { SavingButtonComponent } from '../../shared/saving-button/saving-button.component';
 

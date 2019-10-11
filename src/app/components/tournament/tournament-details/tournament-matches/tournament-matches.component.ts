@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
-import { TournamentDetails } from '../../../../interfaces/tournament-details.interface';
-import { TournamentSettings } from '../../../../interfaces/tournament-settings.interface';
-import { PlayoffStage } from '../../../../interfaces/playoff-stage.enum';
+import { TournamentDetailsService } from '../../../../providers/tournament/tournament-details.service';
+import { TournamentDetails } from '../../../../interfaces/tournament/tournament-details.interface';
+import { TournamentSettings } from '../../../../interfaces/tournament/tournament-settings.interface';
+import { PlayoffStage } from '../../../../interfaces/types/playoff-stage.enum';
 
 @Component({
   selector: 'app-tournament-matches',

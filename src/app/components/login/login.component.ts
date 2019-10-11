@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FireAuthService } from '../../providers/fire-auth.service';
+import { FireAuthService } from '../../providers/shared/fire-auth.service';
 
 @Component({
   selector: 'app-login',

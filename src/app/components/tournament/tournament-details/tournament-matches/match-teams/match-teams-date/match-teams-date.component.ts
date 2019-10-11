@@ -1,9 +1,9 @@
 import { Component, ViewChild, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { MatchTeamsService } from '../../../../../../providers/match-teams.service';
+import { MatchTeamsService } from '../../../../../../providers/match/match-teams.service';
 import { SavingButtonComponent } from '../../../../../shared/saving-button/saving-button.component';
-import { MatchTeams } from '../../../../../../interfaces/match-teams.interface';
+import { MatchTeams } from '../../../../../../interfaces/match/match-teams.interface';
 
 @Component({
   selector: 'app-match-teams-date',

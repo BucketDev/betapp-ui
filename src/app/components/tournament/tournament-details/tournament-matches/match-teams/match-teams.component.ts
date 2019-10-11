@@ -6,12 +6,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 
-import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
-import { MatchTeamsService } from '../../../../../providers/match-teams.service';
-import { MatchResultsService } from '../../../../../providers/match-results.service';
-import { MatchTeams } from '../../../../../interfaces/match-teams.interface';
-import { TournamentDetails } from '../../../../../interfaces/tournament-details.interface';
-import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
+import { TournamentDetailsService } from '../../../../../providers/tournament/tournament-details.service';
+import { MatchTeamsService } from '../../../../../providers/match/match-teams.service';
+import { MatchResultsService } from '../../../../../providers/match/match-results.service';
+import { MatchTeams } from '../../../../../interfaces/match/match-teams.interface';
+import { TournamentDetails } from '../../../../../interfaces/tournament/tournament-details.interface';
+import { PlayoffStage } from '../../../../../interfaces/types/playoff-stage.enum';
 import { SavingButtonComponent } from '../../../../shared/saving-button/saving-button.component';
 import { MatchTeamsUpdateComponent } from './match-teams-update/match-teams-update.component';
 import { MatchTeamsDateComponent } from './match-teams-date/match-teams-date.component';

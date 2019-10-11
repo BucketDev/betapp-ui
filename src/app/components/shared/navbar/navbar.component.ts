@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FireAuthService } from '../../../providers/fire-auth.service';
+import { FireAuthService } from '../../../providers/shared/fire-auth.service';
 
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 

@@ -3,13 +3,13 @@ import { MatSelectChange } from '@angular/material/select';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import 'hammerjs';
 
-import { TeamService } from '../../../../../../../providers/team.service';
-import { GroupTeamService } from '../../../../../../../providers/group-team.service';
-import { TournamentDetailsService } from '../../../../../../../providers/tournament-details.service';
+import { TeamService } from '../../../../../../../providers/match/team.service';
+import { GroupTeamService } from '../../../../../../../providers/group/group-team.service';
+import { TournamentDetailsService } from '../../../../../../../providers/tournament/tournament-details.service';
 import { SavingButtonComponent } from '../../../../../../../components/shared/saving-button/saving-button.component';
-import { GroupTeam } from '../../../../../../../interfaces/group-team.interface';
-import { Team } from '../../../../../../../interfaces/team.interface';
-import { Group } from '../../../../../../../interfaces/group.interface';
+import { GroupTeam } from '../../../../../../../interfaces/group/group-team.interface';
+import { Team } from '../../../../../../../interfaces/match/team.interface';
+import { Group } from '../../../../../../../interfaces/group/group.interface';
 
 @Component({
   selector: 'app-team-modal',

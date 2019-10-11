@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { GroupParticipant } from '../../../../../../../interfaces/group-participant.interface';
+import { GroupParticipant } from '../../../../../../../interfaces/group/group-participant.interface';
 
 @Component({
   selector: 'app-participants-brackets',

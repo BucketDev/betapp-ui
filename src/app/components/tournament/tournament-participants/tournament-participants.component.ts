@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FireAuthService } from '../../../providers/fire-auth.service';
-import { UserService } from '../../../providers/user.service';
-import { TournamentService } from '../../../providers/tournament.service';
-import { TournamentDetailsService } from '../../../providers/tournament-details.service';
+import { FireAuthService } from '../../../providers/shared/fire-auth.service';
+import { UserService } from '../../../providers/user/user.service';
+import { TournamentService } from '../../../providers/tournament/tournament.service';
+import { TournamentDetailsService } from '../../../providers/tournament/tournament-details.service';
 
 import { faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { User } from '../../../interfaces/user.interface';
-import { TournamentDetails } from '../../../interfaces/tournament-details.interface';
+import { User } from '../../../interfaces/user/user.interface';
+import { TournamentDetails } from '../../../interfaces/tournament/tournament-details.interface';
 
 @Component({
   selector: 'app-tournament-participants',

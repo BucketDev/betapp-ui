@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { FireAuthService } from './providers/fire-auth.service';
+import { FireAuthService } from './providers/shared/fire-auth.service';
 
 @Component({
   selector: 'app-root',

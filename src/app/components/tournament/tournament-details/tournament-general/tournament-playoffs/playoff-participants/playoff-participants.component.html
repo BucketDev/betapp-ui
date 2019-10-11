@@ -1,4 +1,5 @@
-<div class="row m-0 d-flex overflow-hidden justify-content-around">
+<app-loading *ngIf="!groups"></app-loading>
+<div class="row m-0 d-flex overflow-hidden justify-content-around" *ngIf="groups">
   <div class="d-flex col-4 flex-column justify-content-around p-0" *ngIf="showEightFinals()">
     <app-participants-brackets [groupParticipants]="group.groupParticipants" *ngFor="let group of groups['EIGHTH_FINALS']">
     </app-participants-brackets>

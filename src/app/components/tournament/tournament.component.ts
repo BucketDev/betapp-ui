@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TournamentDetails } from '../../interfaces/tournament-details.interface';
+import { TournamentDetails } from '../../interfaces/tournament/tournament-details.interface';
 
-import { FireAuthService } from '../../providers/fire-auth.service';
-import { TournamentDetailsService } from '../../providers/tournament-details.service';
-import { TournamentService } from '../../providers/tournament.service';
+import { FireAuthService } from '../../providers/shared/fire-auth.service';
+import { TournamentDetailsService } from '../../providers/tournament/tournament-details.service';
+import { TournamentService } from '../../providers/tournament/tournament.service';
 
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 

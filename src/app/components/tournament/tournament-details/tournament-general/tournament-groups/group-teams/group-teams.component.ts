@@ -3,12 +3,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { GroupService } from '../../../../../../providers/group.service';
-import { TournamentDetailsService } from '../../../../../../providers/tournament-details.service';
+import { GroupService } from '../../../../../../providers/group/group.service';
+import { TournamentDetailsService } from '../../../../../../providers/tournament/tournament-details.service';
 
-import { Group } from '../../../../../../interfaces/group.interface';
+import { Group } from '../../../../../../interfaces/group/group.interface';
 import { TeamModalComponent } from './team-modal/team-modal.component';
-import { GroupTeam } from '../../../../../../interfaces/group-team.interface';
+import { GroupTeam } from '../../../../../../interfaces/group/group-team.interface';
 
 @Component({
   selector: 'app-group-teams',

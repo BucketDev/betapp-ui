@@ -7,11 +7,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 
-import { TournamentDetailsService } from '../../../../../providers/tournament-details.service';
-import { MatchParticipantsService } from '../../../../../providers/match-participants.service';
-import { MatchParticipants } from '../../../../../interfaces/match-participants.interface';
-import { TournamentDetails } from '../../../../../interfaces/tournament-details.interface';
-import { PlayoffStage } from '../../../../../interfaces/playoff-stage.enum';
+import { TournamentDetailsService } from '../../../../../providers/tournament/tournament-details.service';
+import { MatchParticipantsService } from '../../../../../providers/match/match-participants.service';
+import { MatchParticipants } from '../../../../../interfaces/match/match-participants.interface';
+import { TournamentDetails } from '../../../../../interfaces/tournament/tournament-details.interface';
+import { PlayoffStage } from '../../../../../interfaces/types/playoff-stage.enum';
 import { SavingButtonComponent } from '../../../../shared/saving-button/saving-button.component';
 import { MatchParticipantsUpdateComponent } from './match-participants-update/match-participants-update.component';
 import { MatchParticipantsDateComponent } from './match-participants-date/match-participants-date.component';

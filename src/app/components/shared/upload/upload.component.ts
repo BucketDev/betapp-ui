@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { Upload } from '../../../interfaces/upload.interface';
+import { Upload } from '../../../interfaces/shared/upload.interface';
 import { faSearch, faTrash, faUpload, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { UploadService } from '../../../providers/shared/upload.service';
 

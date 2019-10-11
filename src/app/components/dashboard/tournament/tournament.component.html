@@ -17,10 +17,12 @@
       (click)="viewTournament(tournament)" *ngFor="let tournament of tournaments">
     <div class="card flex-fill" matRipple>
       <div class="card-body p-0">
-        <div class="card-title-logo d-flex flex-column p-1"
-              [ngClass]="{'justify-content-between': tournament.userWinner, 'justify-content-end': !tournament.userWinner}"
+        <div class="card-title-logo d-flex flex-column p-1 justify-content-between"
               [style.background-image]="tournament.photoUrl | photo: 128: 'trophy--v2' | uriStyleSanitizer: true">
-          <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/cotton/medal--v1/32" alt=""></span>
+          <div class="d-flex justify-content-between">
+            <span><img class="img-fluid" src="https://png.icons8.com/color/earth-planet/24" alt=""></span>
+            <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/cotton/medal--v1/32" alt=""></span>
+          </div>
           <span class="text-light text-center text-truncate d-block">
             {{tournament.title}}
           </span>

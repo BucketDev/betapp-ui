@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { faPlusCircle, faRocket } from '@fortawesome/free-solid-svg-icons';
 
-import { FireAuthService } from '../../../../providers/fire-auth.service';
-import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
-import { TournamentService } from '../../../../providers/tournament.service';
-import { TournamentStage } from '../../../../interfaces/tournament-stage.enum';
-import { TournamentDetails } from '../../../../interfaces/tournament-details.interface';
+import { FireAuthService } from '../../../../providers/shared/fire-auth.service';
+import { TournamentDetailsService } from '../../../../providers/tournament/tournament-details.service';
+import { TournamentService } from '../../../../providers/tournament/tournament.service';
+import { TournamentStage } from '../../../../interfaces/types/tournament-stage.enum';
+import { TournamentDetails } from '../../../../interfaces/tournament/tournament-details.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -51,10 +51,10 @@ export class TournamentGeneralComponent {
       .stage({
         id: this.tournament.id,
         uid: this.tournament.uid,
-        tournamentStage: "FINALS_STAGE"
+        tournamentStage: "PLAYOFF_STAGE"
       })
       .subscribe(() => {
-        this.snackBar.open(`${TournamentStage.FINALS_STAGE} has been initialized`, "Okay!", {
+        this.snackBar.open(`${TournamentStage.PLAYOFF_STAGE} has been initialized`, "Okay!", {
           duration: 2000,
           horizontalPosition: 'end'
         });

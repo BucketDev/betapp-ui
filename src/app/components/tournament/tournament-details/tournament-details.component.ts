@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TournamentDetailsService } from '../../../providers/tournament-details.service';
+import { TournamentDetailsService } from '../../../providers/tournament/tournament-details.service';
 
 @Component({
   selector: 'app-tournament-details',

@@ -2,11 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { FireAuthService } from '../../../../../../providers/fire-auth.service';
-import { MatchTeamsService } from '../../../../../../providers/match-teams.service';
-import { MatchResultsService } from '../../../../../../providers/match-results.service';
-import { MatchTeams } from '../../../../../../interfaces/match-teams.interface';
-import { MatchResult } from '../../../../../../interfaces/match-result.interface';
+import { FireAuthService } from '../../../../../../providers/shared/fire-auth.service';
+import { MatchTeamsService } from '../../../../../../providers/match/match-teams.service';
+import { MatchResultsService } from '../../../../../../providers/match/match-results.service';
+import { MatchTeams } from '../../../../../../interfaces/match/match-teams.interface';
+import { MatchResult } from '../../../../../../interfaces/match/match-result.interface';
 
 @Component({
   selector: 'app-match-teams-update',

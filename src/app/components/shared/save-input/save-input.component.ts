@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { faSave, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { InputType } from '../../../interfaces/input-type.interface';
+import { InputType } from '../../../interfaces/shared/input-type.interface';
 
 @Component({
   selector: 'app-save-input',

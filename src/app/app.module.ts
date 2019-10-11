@@ -19,7 +19,7 @@ import { TournamentModule } from './components/tournament/tournament.module';
 import { ProfileModule } from './components/profile/profile.module';
 
 import { environment } from '../environments/environment';
-import { FireAuthInterceptor } from './providers/fire-auth.interceptor';
+import { FireAuthInterceptor } from './providers/shared/fire-auth.interceptor';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({

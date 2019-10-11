@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../interfaces/user.interface';
-import { FireAuthService } from '../../../providers/fire-auth.service';
+import { User } from '../../../interfaces/user/user.interface';
+import { FireAuthService } from '../../../providers/shared/fire-auth.service';
 
 @Component({
   selector: 'app-sign-in',

@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { TournamentDetailsService } from '../../../../providers/tournament-details.service';
-import { TournamentSettingsService } from '../../../../providers/tournament-settings.service';
-import { TournamentService } from '../../../../providers/tournament.service';
+import { TournamentDetailsService } from '../../../../providers/tournament/tournament-details.service';
+import { TournamentSettingsService } from '../../../../providers/tournament/tournament-settings.service';
+import { TournamentService } from '../../../../providers/tournament/tournament.service';
 
-import { TournamentDetails } from '../../../../interfaces/tournament-details.interface';
-import { TournamentSettings } from '../../../../interfaces/tournament-settings.interface';
-import { PlayoffStage } from '../../../../interfaces/playoff-stage.enum';
+import { TournamentDetails } from '../../../../interfaces/tournament/tournament-details.interface';
+import { TournamentSettings } from '../../../../interfaces/tournament/tournament-settings.interface';
+import { PlayoffStage } from '../../../../interfaces/types/playoff-stage.enum';
 
 import { SavingButtonComponent } from '../../../../components/shared/saving-button/saving-button.component';
 

@@ -4,11 +4,11 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { Group } from '../../../../../../interfaces/group.interface';
-import { GroupParticipant } from '../../../../../../interfaces/group-participant.interface';
-import { TournamentStage } from '../../../../../../interfaces/tournament-stage.enum';
-import { GroupService } from '../../../../../../providers/group.service';
-import { TournamentDetailsService } from '../../../../../../providers/tournament-details.service';
+import { Group } from '../../../../../../interfaces/group/group.interface';
+import { GroupParticipant } from '../../../../../../interfaces/group/group-participant.interface';
+import { TournamentStage } from '../../../../../../interfaces/types/tournament-stage.enum';
+import { GroupService } from '../../../../../../providers/group/group.service';
+import { TournamentDetailsService } from '../../../../../../providers/tournament/tournament-details.service';
 import { ParticipantModalComponent } from './participant-modal/participant-modal.component';
 
 @Component({
