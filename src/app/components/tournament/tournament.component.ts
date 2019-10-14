@@ -39,7 +39,7 @@ export class TournamentComponent implements OnInit {
 
   ngOnInit() { }
 
-  showUploadPhoto = () => this.uploadingPhoto = true;
+  toggleUploadPhoto = () => this.uploadingPhoto = !this.uploadingPhoto;
 
   updatePhotoURL = (photoUrl: string) => {
     this.uploadingPhoto = false;

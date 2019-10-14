@@ -1,0 +1,15 @@
+<ul class="list-group animated fadeIn fast" *ngIf="users">
+    <li *ngIf="users.length === 0"
+        class="list-group-item text-muted text-center">
+      <span>There are no users with that name</span>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex align-items-center"
+        *ngFor="let user of users"
+        (click)="userSelected(user)">
+      <div class="img-fluid rounded-circle img-participant-squared"
+            [style.background-image]="user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
+      </div>
+      <span class="mx-2">{{user.displayName}}</span>
+    </li>
+  </ul>
+  

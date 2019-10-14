@@ -23,6 +23,7 @@ export class TournamentDetailsService {
 
   isCreator = () => this.auth.user.id === this.tournament.userCreationId;
 
-  isNewTournament = () => this.tournament.tournamentStage === this.tournamentStage['NEW_TOURNAMENT'];
+  isNewTournament = () =>
+    this.tournamentStage[this.tournament.tournamentStage] === this.tournamentStage['NEW_TOURNAMENT'];
 
 }

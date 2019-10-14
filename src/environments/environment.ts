@@ -6,13 +6,14 @@ export const environment = {
   production: false,
   endpointURL: "http://localhost:8080",
   firebase: {
-    apiKey: "AIzaSyAwzi5820duCdri3jfUV63V-qTepHoIVqs",
-    authDomain: "betapp-c377b.firebaseapp.com",
-    databaseURL: "https://betapp-c377b.firebaseio.com",
-    projectId: "betapp-c377b",
-    storageBucket: "betapp-c377b.appspot.com",
-    messagingSenderId: "647350066980",
-    appId: "1:647350066980:web:39c822ea933ff928"
+    apiKey: "AIzaSyC3436CUZiN271EgCkMhsqmc8SxkG0otkM",
+    authDomain: "betapp-backup.firebaseapp.com",
+    databaseURL: "https://betapp-backup.firebaseio.com",
+    projectId: "betapp-backup",
+    storageBucket: "betapp-backup.appspot.com",
+    messagingSenderId: "806143009296",
+    appId: "1:806143009296:web:d46d465d4024bbfd896095",
+    measurementId: "G-HTQ6CNFMVX"
   }
 };
 

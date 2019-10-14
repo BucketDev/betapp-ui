@@ -11,7 +11,7 @@ import { SavingButtonComponent } from '../../../../components/shared/saving-butt
 @Component({
   selector: 'app-profile-general',
   templateUrl: './profile-general.component.html',
-  styleUrls: ['./profile-general.component.css']
+  styleUrls: []
 })
 export class ProfileGeneralComponent implements OnInit {
 

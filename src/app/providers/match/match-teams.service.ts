@@ -17,7 +17,7 @@ export class MatchTeamsService {
 
   findAllByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}?userUid=${this.auth.user.uid}`);
 
-  findAllPlayoffsByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}/playoffs`);
+  findAllPlayoffsByTournamentId = (id: number) => this.http.get(`${this.url}/tournament/${id}/playoffs?userUid=${this.auth.user.uid}`);
 
   update = (matchTeams: MatchTeams) => this.http.put(`${this.url}/`, matchTeams);
 

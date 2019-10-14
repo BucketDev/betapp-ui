@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { User as FireBaseUser, auth } from 'firebase/app';
 import { User } from '../../interfaces/user/user.interface';
 import { UserService } from '../user/user.service';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

@@ -3,3 +3,19 @@
   height: 256px;
   background-size: cover;
 }
+
+.img-tournament-privacy {
+  height: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  background-position: center;
+  background-size: cover;
+}
+
+.img-tournament-edit {
+  height: 32px;
+  min-width: 24px;
+  max-width: 24px;
+  background-position: center;
+  background-size: cover;
+}

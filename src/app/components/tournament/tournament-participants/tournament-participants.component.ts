@@ -45,7 +45,7 @@ export class TournamentParticipantsComponent implements OnInit {
     if(participant.value.length > 3) {
       this.userService.findByDisplayName(participant.value)
         .subscribe((data: User[]) => this.newParticipants = data);
-    } else if(participant.value.length === 0) {
+    } else {
       this.newParticipants = null;
     }
   }

@@ -9,7 +9,6 @@ export const TOURNAMENT_DETAILS_ROUTES: Routes = [
   { path: 'general', component: TournamentGeneralComponent },
   { path: 'leaderboard', component: TournamentLeaderboardComponent },
   { path: 'matches', component: TournamentMatchesComponent },
-  { path: 'matches/:roundId', component: TournamentMatchesComponent },
   { path: 'settings', component: TournamentSettingsComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'general' }
 ];

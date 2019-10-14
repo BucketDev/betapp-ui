@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../../interfaces/user/user.interface';
 
 import { environment } from '../../../environments/environment';
-import { FireAuthService } from '../shared/fire-auth.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,13 +1,15 @@
 <app-loading *ngIf="loading || !auth.user"></app-loading>
 <div class="row animated fadeIn" *ngIf="!loading && auth.user">
   <div class="col-lg-3">
-    <div class="mt-2 img-tournament-logo d-flex align-items-end rounded-top border"
+    <div class="mt-2 p-2 img-tournament-logo d-flex flex-column justify-content-between rounded-top border"
         [style.background-image]="tournament.photoUrl | photo: 256: 'trophy--v2' | uriStyleSanitizer: true">
-      <div class="col p-2 d-flex flex-row justify-content-between align-items-center text-light">
-        <span class="h3 m-0 text-truncate">{{tournament.title}}</span>
-        <button type="button" class="btn btn-sm btn-outline-light" (click)="showUploadPhoto()"
+      <button mat-stroked-button class="img-tournament-privacy"
+              [style.background-image]="tournament.tournamentPrivacy | imgPrivacy | uriStyleSanitizer"></button>
+      <div class="d-flex flex-row justify-content-between align-items-center text-light">
+        <span class="h4 w-100 m-0 text-truncate">{{tournament.title}}</span>
+        <button mat-mini-fab color="default" (click)="toggleUploadPhoto()" class="p-0"
                 *ngIf="tournamentDetailsService.isCreator()">
-          <fa-icon [icon]="faCameraRetro"></fa-icon>
+            <img src="https://png.icons8.com/color/edit-image/24" alt="edit tournament picture">
         </button>
       </div>
     </div>

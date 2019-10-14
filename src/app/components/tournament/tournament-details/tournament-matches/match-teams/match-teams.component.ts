@@ -30,14 +30,12 @@ export class MatchTeamsComponent implements OnInit {
   tournament: TournamentDetails;
   rounds = [];
   loading: boolean = true;
-  roundNumber: number;
+  roundNumber: number = 0;
   matchTeamId: number;
   @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router,
               private matchTeamsService: MatchTeamsService,
               private matchResultsService: MatchResultsService,
               private snackBar: MatSnackBar,
@@ -47,13 +45,6 @@ export class MatchTeamsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params => {
-      let roundId = parseInt(params['roundId']);
-      if (roundId)
-        this.roundNumber =  roundId - 1;
-      else
-        this.router.navigate([1], { relativeTo: this.activatedRoute })
-    }));
     if (!this.playoffStage)
       this.matchTeamsService.findAllByTournamentId(this.tournament.id)
         .subscribe(this.initializeRounds);
@@ -73,8 +64,7 @@ export class MatchTeamsComponent implements OnInit {
     this.loading = false;
 }
 
-  showRound = (roundNumber: number) => 
-    this.router.navigate([`../${roundNumber + 1}`], { relativeTo: this.activatedRoute });
+  showRound = (roundNumber: number) => this.roundNumber = roundNumber;
 
   showUpdateMatch = (match: MatchTeams, isABet: boolean = false) => {
     if (isABet || this.tournamentDetailsService.isCreator() && match.registeredTime === null) {

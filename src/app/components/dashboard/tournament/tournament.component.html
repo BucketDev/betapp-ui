@@ -20,8 +20,8 @@
         <div class="card-title-logo d-flex flex-column p-1 justify-content-between"
               [style.background-image]="tournament.photoUrl | photo: 128: 'trophy--v2' | uriStyleSanitizer: true">
           <div class="d-flex justify-content-between">
-            <span><img class="img-fluid" src="https://png.icons8.com/color/earth-planet/24" alt=""></span>
-            <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/cotton/medal--v1/32" alt=""></span>
+            <span class="img-tournament-privacy"><img [src]="tournament.tournamentPrivacy | imgPrivacy" alt="privacy"></span>
+            <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/color/trophy/24" alt="tournament finished"></span>
           </div>
           <span class="text-light text-center text-truncate d-block">
             {{tournament.title}}

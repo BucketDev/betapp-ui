@@ -1,3 +1,5 @@
+import { TournamentPrivacy } from '../types/tournament-privacy.enum';
+
 export interface TournamentParticipants {
     id: number,
     uid: string,
@@ -7,4 +9,5 @@ export interface TournamentParticipants {
     userCreationId: number,
     userWinner: boolean,
     participantsNumber: number
+    tournamentPrivacy: TournamentPrivacy
 }

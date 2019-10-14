@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PhotoPipe } from './photo.pipe';
 import { UriStyleSanitizerPipe } from './uri-style-sanitizer.pipe';
+import { ImgPrivacyPipe } from './img-privacy.pipe';
 
 @NgModule({
   imports: [
@@ -10,11 +11,13 @@ import { UriStyleSanitizerPipe } from './uri-style-sanitizer.pipe';
   ],
   declarations: [
     PhotoPipe,
-    UriStyleSanitizerPipe
+    UriStyleSanitizerPipe,
+    ImgPrivacyPipe
   ],
   exports: [
     PhotoPipe,
-    UriStyleSanitizerPipe
+    UriStyleSanitizerPipe,
+    ImgPrivacyPipe
   ]
 })
 export class SharedPipeModule { }
