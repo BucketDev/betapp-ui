@@ -12,27 +12,15 @@ import { User } from '../../../../../interfaces/user/user.interface';
 })
 export class ProfileFollowersComponent implements OnInit {
 
-  user: UserFollower;
-  loading: boolean = true;
+  loading: boolean = false;
 
-  constructor(private userFollowersService: UserFollowersService,
-              private route: ActivatedRoute) {
-    this.route.parent.parent.params
-      .subscribe(params => this.userFollowersService.findByUid(params['uid'])
-        .subscribe((user: UserFollower) => {
-          this.loading = false;
-          this.user = user;
-        }));
-  }
-
-  following = (user: User) =>
-    this.user.following.filter((_user: User) => _user.id === user.id).length > 0;
+  constructor(public userFollowersService: UserFollowersService) { }
 
   follow = (user: User) => {
     this.loading = true;
     this.userFollowersService.follow(user.uid)
       .subscribe((user: User) => {
-        this.user.following.push(user);
+        this.userFollowersService.user.following.push(user);
         this.loading = false;
       });
   }

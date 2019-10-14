@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
+import { UserFollowersService } from '../../../../../providers/user/user-followers.service';
 import { User } from '../../../../../interfaces/user/user.interface';
 
 @Component({
@@ -12,7 +13,8 @@ export class FollowModalComponent implements OnInit {
 
   user: User;
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<FollowModalComponent>,
+  constructor(public userFollowersService: UserFollowersService,
+              private bottomSheetRef: MatBottomSheetRef<FollowModalComponent>,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: {user: User}) {
     this.user = data.user;
   }

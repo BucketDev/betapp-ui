@@ -3,9 +3,9 @@
 }
 
 .img-follower-squared {
-  height: 96px;
-  min-width: 96px;
-  max-width: 96px;
+  height: 80px;
+  min-width: 80px;
+  max-width: 80px;
   background-position: center;
   background-size: cover;
 }

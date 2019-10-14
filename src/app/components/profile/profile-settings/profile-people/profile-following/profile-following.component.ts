@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 import { UserFollowersService } from '../../../../../providers/user/user-followers.service';
-import { UserFollower } from '../../../../../interfaces/user/user-follower.interface';
 import { UserService } from '../../../../../providers/user/user.service';
+import { UserFollower } from '../../../../../interfaces/user/user-follower.interface';
 import { User } from '../../../../../interfaces/user/user.interface';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FollowModalComponent } from '../follow-modal/follow-modal.component';
 
 @Component({
@@ -15,21 +14,13 @@ import { FollowModalComponent } from '../follow-modal/follow-modal.component';
 })
 export class ProfileFollowingComponent implements OnInit {
 
-  user: UserFollower;
+  loading: boolean = false;
   searchResultUsers: User[];
-  loading: boolean = true;
+  name: string;
 
-  constructor(private userFollowersService: UserFollowersService,
+  constructor(public userFollowersService: UserFollowersService,
               private userService: UserService,
-              private bottomSheet: MatBottomSheet,
-              private route: ActivatedRoute) {
-    this.route.parent.parent.params
-      .subscribe(params => this.userFollowersService.findByUid(params['uid'])
-        .subscribe((user: UserFollower) => {
-          this.loading = false;
-          this.user = user;
-        }));
-  }
+              private bottomSheet: MatBottomSheet) { }
 
   searchUser = (userElement: HTMLInputElement) => {
     if(userElement.value.length > 3) {
@@ -43,12 +34,12 @@ export class ProfileFollowingComponent implements OnInit {
   follow = (user: User) => {
     let ref = this.bottomSheet.open(FollowModalComponent, { data: { user } });
     ref.afterDismissed().subscribe((data: User) => {
-      this.searchResultUsers = null;
+      this.clearSearch();
       if (data) {
         this.loading = true;
         this.userFollowersService.follow(data.uid)
           .subscribe((user: User) => {
-            this.user.following.push(user);
+            this.userFollowersService.user.following.push(user);
             this.loading = false;
           });
       }
@@ -59,9 +50,15 @@ export class ProfileFollowingComponent implements OnInit {
     this.loading = true;
     this.userFollowersService.unfollow(user.uid)
       .subscribe(() => {
-        this.user.following = this.user.following.filter((_user: User) => _user.id != user.id);
+        this.userFollowersService.user.following =
+          this.userFollowersService.user.following.filter((_user: User) => _user.id != user.id);
         this.loading = false;
       });
+  }
+
+  clearSearch = () => {
+    this.name = "";
+    this.searchResultUsers = null;
   }
 
   ngOnInit() { }
