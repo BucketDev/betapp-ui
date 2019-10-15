@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User as FireBaseUser } from 'firebase/app';
 
@@ -8,14 +8,16 @@ import { TournamentParticipantsService } from '../../../providers/tournament/tou
 
 import { TournamentParticipants } from '../../../interfaces/tournament/tournament-participants.interface';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-tournament',
   templateUrl: './tournament.component.html',
   styleUrls: ['./tournament.component.css']
 })
-export class TournamentComponent implements OnInit {
-
+export class TournamentComponent implements OnInit, OnDestroy {
+  
+  userSubscription: Subscription;
   faPlusCircle = faPlusCircle;
   tournaments: TournamentParticipants[];
   first: boolean = true;
@@ -27,13 +29,18 @@ export class TournamentComponent implements OnInit {
   constructor(public afAuth:AngularFireAuth,
               private router: Router,
               private tournamentParticipants: TournamentParticipantsService) {
-    this.afAuth.authState.subscribe((user: FireBaseUser) => {
+    this.userSubscription = this.afAuth.authState.subscribe((user: FireBaseUser) => {
       if(user) {
         this.user = user;
         this.findTournaments(0);
       }
     });
   }
+    
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
+  }
+  
   findPrevTournaments = () => this.findTournaments(this.pageNumber - 1);
 
   findNextTournaments = () => this.findTournaments(this.pageNumber + 1);

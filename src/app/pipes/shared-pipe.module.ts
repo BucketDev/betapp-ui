@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PhotoPipe } from './photo.pipe';
 import { UriStyleSanitizerPipe } from './uri-style-sanitizer.pipe';
 import { ImgPrivacyPipe } from './img-privacy.pipe';
+import { ImgNotificationPipe } from './img-notification.pipe';
 
 @NgModule({
   imports: [
@@ -12,12 +13,14 @@ import { ImgPrivacyPipe } from './img-privacy.pipe';
   declarations: [
     PhotoPipe,
     UriStyleSanitizerPipe,
-    ImgPrivacyPipe
+    ImgPrivacyPipe,
+    ImgNotificationPipe
   ],
   exports: [
     PhotoPipe,
     UriStyleSanitizerPipe,
-    ImgPrivacyPipe
+    ImgPrivacyPipe,
+    ImgNotificationPipe
   ]
 })
 export class SharedPipeModule { }

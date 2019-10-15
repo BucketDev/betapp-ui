@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { FireAuthService } from './providers/shared/fire-auth.service';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
 
   constructor(private router: Router,
               private auth: FireAuthService) {
-    this.auth.afAuth.authState.subscribe(() => this.loading = false);
+    this.auth.afAuth.authState.subscribe((user: User) => { if(user) this.loading = false });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd)
         this.showNavBar = !event.url.startsWith('/login');

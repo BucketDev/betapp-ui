@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TournamentComponent } from './tournament/tournament.component';
 import { RouterModule } from '@angular/router';
+import { TimeLineComponent } from './time-line/time-line.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     DashboardComponent,
     ProfileComponent,
-    TournamentComponent
+    TournamentComponent,
+    TimeLineComponent
   ],
 })
 export class DashboardModule { }
