@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FireAuthService } from '../../../providers/shared/fire-auth.service';
+import { NavBarService } from '../../../providers/shared/nav-bar.service';
 
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +11,13 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavbarComponent implements OnInit {
 
-  faSignOutAlt = faSignOutAlt;
-
-  constructor(public auth: FireAuthService) { }
+  constructor(public auth: FireAuthService,
+              public navBarService: NavBarService) { }
 
   ngOnInit() {
   }
+
+  toggleSideNav = () => this.navBarService.showSideNav = !this.navBarService.showSideNav
 
   logout = () => {
     this.auth.logout();

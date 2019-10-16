@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { SharedPipeModule } from '../../pipes/shared-pipe.module';
+import { AngularMaterialModule } from '../../angular-material.module';
 
 import { LoadingComponent } from './loading/loading.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -12,7 +13,7 @@ import { UploadComponent } from './upload/upload.component';
 import { SaveInputComponent } from './save-input/save-input.component';
 import { SavingButtonComponent } from './saving-button/saving-button.component';
 import { ParticipantsListComponent } from './participants-list/participants-list.component';
-import { AngularMaterialModule } from '../../angular-material.module';
+import { ProfileSharedComponent } from './profile/profile-shared.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { AngularMaterialModule } from '../../angular-material.module';
     UploadComponent,
     SaveInputComponent,
     SavingButtonComponent,
-    ParticipantsListComponent
+    ParticipantsListComponent,
+    ProfileSharedComponent
   ],
   exports: [
     LoadingComponent,
@@ -37,7 +39,8 @@ import { AngularMaterialModule } from '../../angular-material.module';
     UploadComponent,
     SaveInputComponent,
     SavingButtonComponent,
-    ParticipantsListComponent
+    ParticipantsListComponent,
+    ProfileSharedComponent
   ]
 })
 export class SharedModule { }

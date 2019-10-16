@@ -1,20 +1,20 @@
 <ul class="nav nav-pills my-2 bg-dark text-light rounded nav-fill">
-  <li class="nav-item">
+  <li class="nav-item" matRipple>
     <a class="nav-link" [routerLink]="['general']" routerLinkActive='active'>
       General
     </a>
   </li>
-  <li class="nav-item" *ngIf="tournamentDetailsService.tournament.tournamentTeams">
+  <li class="nav-item" *ngIf="tournamentDetailsService.tournament.tournamentTeams" matRipple>
     <a class="nav-link" [routerLink]="['leaderboard']" routerLinkActive='active'>
       Leaderboard
     </a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" matRipple>
     <a class="nav-link" href="#" [routerLink]="['matches']" routerLinkActive='active'>
       Matches
     </a>
   </li>
-  <li class="nav-item" *ngIf="tournamentDetailsService.isCreator()">
+  <li class="nav-item" *ngIf="tournamentDetailsService.isCreator()" matRipple>
     <a class="nav-link" href="#" [routerLink]="['settings']" routerLinkActive='active'>
       Settings
     </a>

@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="navBarService.showNavBar">
   <mat-toolbar-row class="d-flex justify-content-between">
     <div class="d-flex align-items-center">
       <button mat-button [routerLink]="['dashboard']" class="mx-1">
@@ -15,7 +15,7 @@
       </mat-menu>
     </div>
     <div class="d-flex align-items-center">
-      <button mat-mini-fab [routerLink]="['/profile', auth.user.uid]" class="mx-1 py-1 nav-profile-squared" *ngIf="auth.user"
+      <button mat-mini-fab (click)="toggleSideNav()" class="mx-1 py-1 nav-profile-squared" *ngIf="auth.user"
               [style.background-image]="auth.user.photoUrl | photo: 40: 'gender-neutral-user' | uriStyleSanitizer">
       </button>
       <button mat-mini-fab color="warn" (click)="logout()" class="mx-1"

@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { FireAuthService } from './providers/shared/fire-auth.service';
 import { User } from 'firebase';
+
+import { FireAuthService } from './providers/shared/fire-auth.service';
+import { NavBarService } from './providers/shared/nav-bar.service';
+import { ProfileSharedComponent } from './components/shared/profile/profile-shared.component';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +13,23 @@ import { User } from 'firebase';
 })
 export class AppComponent {
   title: string = 'BetApp';
-  showNavBar: boolean = true;
   loading: boolean = true;
+  @ViewChild(ProfileSharedComponent, { static: false }) profile: ProfileSharedComponent;
 
   constructor(private router: Router,
-              private auth: FireAuthService) {
+              private auth: FireAuthService,
+              public navBarService: NavBarService) {
     this.auth.afAuth.authState.subscribe((user: User) => { if(user) this.loading = false });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd)
-        this.showNavBar = !event.url.startsWith('/login');
+        this.navBarService.showNavBar = !event.url.startsWith('/login');
     });
+  }
+
+  openedChange = (opened) => {
+    if (opened)
+      this.profile.findUserInfo();
+    else
+      this.profile.clearUserInfo();
   }
 }

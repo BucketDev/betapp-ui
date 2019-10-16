@@ -6,11 +6,11 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserNotificationService {
+export class NotificationUsersService {
 
-  private url: string = `${environment.endpointURL}/userNotifications`
+  private url: string = `${environment.endpointURL}/notificationUsers`
 
   constructor(private http: HttpClient) { }
 
-  findByUid = (uid: string) => this.http.get(`${this.url}/uid/${uid}`);
+  findByUserUid = (uid: string) => this.http.get(`${this.url}/uid/${uid}`);
 }
