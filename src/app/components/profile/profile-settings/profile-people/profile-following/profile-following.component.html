@@ -23,9 +23,7 @@
         </li>
         <ng-template #following>
           <li class="list-group-item p-2 d-flex" *ngFor="let user of userFollowersService.user.following">
-            <div class="img-fluid img-follower-squared mat-elevation-z4 rounded"
-                [style.background-image]="user.photoUrl | photo: 80: 'gender-neutral-user' | uriStyleSanitizer">
-            </div>
+            <app-profile-photo [user]="user" [viewProfile]="false"></app-profile-photo>
             <div class="d-flex flex-column px-2 flex-fill">
               <span class="h5 text-break">{{user.displayName}}</span>
               <small class="text-break font-italic">{{user?.description}}</small>

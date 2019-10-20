@@ -1,0 +1,14 @@
+<div class="d-flex img-profile-cover rounded flex-column justify-content-between p-1 mat-elevation-z2"
+    matRipple
+    [ngClass]="{
+      'img-profile-sm': size === 'small',
+      'img-profile-lg': size === 'large',
+      'rounded-circle': circle
+    }"
+    [style.background-image]="user.photoUrl | photo: 192: 'gender-neutral-user' | uriStyleSanitizer: displayName()"
+    (click)="photoClicked()">
+    <span></span>
+    <span *ngIf="displayName()" class="text-center text-light text-truncate w-100">
+      {{ user.displayName }}
+    </span>
+</div>

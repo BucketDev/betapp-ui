@@ -9,6 +9,7 @@ import { User } from '../../../interfaces/user/user.interface';
 export class ParticipantsListComponent implements OnInit {
 
   @Input() participants: User[];
+  @Input() viewProfile: boolean = false;
   @Input() emptyLabel: string = "There are no participants";
   @Output() participantEvent = new EventEmitter<User>();
 

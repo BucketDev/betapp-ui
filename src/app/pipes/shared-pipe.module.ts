@@ -5,6 +5,7 @@ import { PhotoPipe } from './photo.pipe';
 import { UriStyleSanitizerPipe } from './uri-style-sanitizer.pipe';
 import { ImgPrivacyPipe } from './img-privacy.pipe';
 import { ImgNotificationPipe } from './img-notification.pipe';
+import { TextNotificationPipe } from './text-notification.pipe';
 
 @NgModule({
   imports: [
@@ -14,13 +15,15 @@ import { ImgNotificationPipe } from './img-notification.pipe';
     PhotoPipe,
     UriStyleSanitizerPipe,
     ImgPrivacyPipe,
-    ImgNotificationPipe
+    ImgNotificationPipe,
+    TextNotificationPipe
   ],
   exports: [
     PhotoPipe,
     UriStyleSanitizerPipe,
     ImgPrivacyPipe,
-    ImgNotificationPipe
+    ImgNotificationPipe,
+    TextNotificationPipe
   ]
 })
 export class SharedPipeModule { }

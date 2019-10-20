@@ -3,9 +3,9 @@
     <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between p-1"
         *ngFor="let participantResult of participantResults">
         <div class="d-flex flex-column align-items-center col-6 p-0">
-            <div class="img-fluid rounded-circle img-participant-squared mt-1"
-                [style.background-image]="participantResult.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-            </div>
+            <app-profile-photo size="small"
+                [circle]="true"
+                [user]="participantResult.user"></app-profile-photo>
             <span class="mx-2 text-truncate text-center w-100">{{ participantResult.user.displayName }}</span>
         </div>
         <div class="d-flex p-0 justify-content-center flex-column col-4">

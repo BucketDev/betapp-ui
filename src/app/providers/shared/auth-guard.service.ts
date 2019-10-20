@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router, CanActivateChild } from '@angular/router';
 import { FireAuthService } from './fire-auth.service';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor(private auth: FireAuthService) { }
+  constructor(private auth: FireAuthService,
+              private router: Router) { }
 
-  canActivate(): boolean {
-    return this.auth.authenticated;
+  canActivate() {
+    return this.auth.$userRetrieved.pipe(map((logged => {
+      if(!logged) {
+        this.router.navigate(['/login']);
+      }
+      return logged;
+    })))
   }
 }

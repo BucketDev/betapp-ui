@@ -7,9 +7,7 @@
       <small class="text-muted mx-1">TBD</small>
     </li>
     <li *ngIf="showAwayParticipant()" class="list-group-item p-1 d-flex align-items-center">
-      <div class="img-fluid rounded-circle img-participant-squared"
-            [style.background-image]="groupParticipants[0].user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-      </div>
+      <app-profile-photo size="small" [circle]="true" [user]="groupParticipants[0].user"></app-profile-photo>
       <small class="mx-1 text-truncate">{{groupParticipants[0].user.displayName}}</small>
     </li>
     <li *ngIf="!showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center">
@@ -19,9 +17,7 @@
       <small class="text-muted mx-1">TBD</small>
     </li>
     <li *ngIf="showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center">
-      <div class="img-fluid rounded-circle img-participant-squared"
-            [style.background-image]="groupParticipants[1].user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-      </div>
+      <app-profile-photo size="small" [circle]="true" [user]="groupParticipants[1].user"></app-profile-photo>
       <small class="mx-1 text-truncate">{{groupParticipants[1].user.displayName}}</small>
     </li>
   </ul>

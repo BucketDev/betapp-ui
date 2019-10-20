@@ -13,7 +13,9 @@ import { UploadComponent } from './upload/upload.component';
 import { SaveInputComponent } from './save-input/save-input.component';
 import { SavingButtonComponent } from './saving-button/saving-button.component';
 import { ParticipantsListComponent } from './participants-list/participants-list.component';
-import { ProfileSharedComponent } from './profile/profile-shared.component';
+import { ProfileSideNavComponent } from './profile/profile-sidenav/profile-sidenav.component';
+import { ProfilePhotoComponent } from './profile/profile-photo/profile-photo.component';
+import { ProfileModalComponent } from './profile/profile-photo/profile-modal/profile-modal.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { ProfileSharedComponent } from './profile/profile-shared.component';
     SaveInputComponent,
     SavingButtonComponent,
     ParticipantsListComponent,
-    ProfileSharedComponent
+    ProfileSideNavComponent,
+    ProfilePhotoComponent,
+    ProfileModalComponent
   ],
   exports: [
     LoadingComponent,
@@ -40,7 +44,11 @@ import { ProfileSharedComponent } from './profile/profile-shared.component';
     SaveInputComponent,
     SavingButtonComponent,
     ParticipantsListComponent,
-    ProfileSharedComponent
+    ProfileSideNavComponent,
+    ProfilePhotoComponent
+  ],
+  entryComponents: [
+    ProfileModalComponent
   ]
 })
 export class SharedModule { }

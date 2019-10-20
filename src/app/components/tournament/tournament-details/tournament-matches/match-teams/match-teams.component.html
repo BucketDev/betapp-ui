@@ -17,7 +17,7 @@
     <li *ngIf="!rounds || rounds.length === 0" class="list-group-item text-muted text-center">
       <span>This stage has not yet started</span>
     </li>
-    <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1"
+    <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1 bg-light"
         *ngFor="let match of rounds[roundNumber]"
         [matBadge]="match.matchResult?.points" [matBadgeHidden]="!match.registeredTime" matBadgeColor="accent" matBadgeOverlap="true">
       <div class="row m-0">
@@ -71,13 +71,14 @@
             </mat-menu>
           </div>
       </div>
-      <mat-expansion-panel (opened)="afterExpand(match.id)" *ngIf="tournamentDetailsService.isCreator()">
+      <mat-expansion-panel class="m-1" (opened)="afterExpand(match.id)" (closed)="panelOpenState = false" *ngIf="tournamentDetailsService.isCreator()">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <small>Participants Bets</small>
           </mat-panel-title>
           <mat-panel-description>
-            <small>View details</small>
+            <small *ngIf="!panelOpenState">View details</small>
+            <small *ngIf="panelOpenState">Hide details</small>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <app-match-teams-bets [matchTeamId]="match.id"></app-match-teams-bets>

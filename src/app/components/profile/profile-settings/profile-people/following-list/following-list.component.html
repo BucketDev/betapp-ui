@@ -6,9 +6,7 @@
     <li class="list-group-item list-group-item-action d-flex align-items-center"
         *ngFor="let user of users"
         (click)="userSelected(user)">
-      <div class="img-fluid rounded-circle img-participant-squared"
-            [style.background-image]="user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-      </div>
+      <app-profile-photo size="small" [circle]="true" [user]="user" [viewProfile]="false"></app-profile-photo>
       <span class="mx-2">{{user.displayName}}</span>
     </li>
   </ul>

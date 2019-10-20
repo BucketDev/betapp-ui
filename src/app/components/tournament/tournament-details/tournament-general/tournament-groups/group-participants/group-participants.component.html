@@ -20,9 +20,7 @@
           </tr>
           <tr #participants class="text-center" *ngFor="let groupParticipant of group.groupParticipants">
             <td class="text-left d-flex align-items-center">
-              <div class="img-fluid rounded-circle img-participant-squared"
-                   [style.background-image]="groupParticipant.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-             </div>
+              <app-profile-photo size="small" [circle]="true" [user]="groupParticipant.user"></app-profile-photo>
              <span class="mx-2">{{groupParticipant.user.displayName}}</span>
             </td>
             <td class="d-none d-sm-table-cell">{{ groupParticipant.gamesPlayed }}</td>

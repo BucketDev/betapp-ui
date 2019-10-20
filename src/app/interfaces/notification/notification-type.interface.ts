@@ -1,5 +1,3 @@
-export interface NotificationType {
-  id: number,
-  name: string,
-  text: string
+export enum NotificationType {
+  NEW_TOURNAMENT = 'New Tournament'
 }

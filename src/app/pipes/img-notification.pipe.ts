@@ -10,8 +10,8 @@ export class ImgNotificationPipe implements PipeTransform {
   transform(value: NotificationType, size?: number): any {
     size = size || 24;
     let uri = "";
-    switch(value.id) {
-      case 1:
+    switch(NotificationType[value]) {
+      case NotificationType.NEW_TOURNAMENT:
         uri = `https://png.icons8.com/cotton/trophy--v2/${size}`
         break;
     }

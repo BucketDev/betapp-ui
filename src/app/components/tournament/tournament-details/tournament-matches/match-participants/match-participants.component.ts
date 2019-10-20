@@ -45,19 +45,12 @@ export class MatchParticipantsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params => {
-      let roundId = parseInt(params['roundId']);
-      if (roundId)
-        this.roundNumber =  roundId - 1;
-      else
-        this.router.navigate([1], { relativeTo: this.activatedRoute })
-    }));
     if (!this.playoffStage)
       this.matchParticipantsService.findAllByTournamentId(this.tournament.id)
-      .subscribe(this.initializeRounds);
+        .subscribe(this.initializeRounds);
     else
       this.matchParticipantsService.findAllPlayoffsByTournamentId(this.tournament.id)
-      .subscribe(this.initializeRounds);
+          .subscribe(this.initializeRounds);
   }
 
   initializeRounds = (rounds: any) => {

@@ -1,13 +1,13 @@
 <app-loading *ngIf="loading"></app-loading>
-<div *ngIf="!loading" class="d-flex flex-column betapp-body">
-  <app-navbar></app-navbar>
+<div *ngIf="!loading" class="d-flex flex-column h-100">
+  <app-navbar *ngIf="showNavBar"></app-navbar>
   <mat-sidenav-container class="bg-transparent flex-grow-1">
-    <div class="container-fluid">
+    <div class="container-fluid h-100">
       <router-outlet></router-outlet>
     </div>
     <mat-sidenav [(opened)]="navBarService.showSideNav" mode="over" position="end"
                 (openedChange)="openedChange($event)">
-      <app-shared-profile></app-shared-profile>
+      <app-profile-sidenav></app-profile-sidenav>
     </mat-sidenav>
   </mat-sidenav-container>
 </div>

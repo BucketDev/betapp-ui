@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class NavBarService {
   
   showSideNav: boolean = false;
-  showNavBar: boolean = true;
   
   constructor() { }
 

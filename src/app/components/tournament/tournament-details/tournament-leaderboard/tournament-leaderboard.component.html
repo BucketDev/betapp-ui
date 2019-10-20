@@ -16,9 +16,9 @@
                 <tbody>
                     <tr *ngFor="let participant of leaderboard">
                         <td class="d-flex align-items-center">
-                            <div class="img-fluid rounded-circle img-participant-squared"
-                                    [style.background-image]="participant.user.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-                            </div>
+                            <app-profile-photo size="small"
+                                [circle]="true"
+                                [user]="participant.user"></app-profile-photo>
                             <span class="mx-2 text-truncate w100">{{participant.user.displayName}}</span>
                         </td>
                         <td class="text-center">

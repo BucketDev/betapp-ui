@@ -21,9 +21,13 @@ export class UserFollowersService {
   following = (user: User) =>
     this.user.following.filter((_user: User) => _user.id === user.id).length > 0;
 
+  sameUser = (user: User) => this.auth.user.uid === user.uid;
+
   findCountByUid = (uid: string) => this.http.get(`${this.url}/count/uid/${uid}`);
 
   findByUid = (uid: string) => this.http.get(`${this.url}/uid/${uid}`);
+
+  findFollowingByUid = (uid: string, followingUid: string) => this.http.get(`${this.url}?uid=${uid}&followingUid=${followingUid}`);
 
   follow = (toUid: string) => this.http.post(`${this.url}/from/${this.auth.user.uid}/to/${toUid}`, {});
 

@@ -5,10 +5,11 @@
   </li>
 	<li class="list-group-item list-group-item-action d-flex align-items-center"
       *ngFor="let participant of participants"
-	    (click)="participantSelected(participant)">
-	  <div class="img-fluid rounded-circle img-participant-squared"
-	        [style.background-image]="participant.photoUrl | photo: 32: 'gender-neutral-user' | uriStyleSanitizer">
-	  </div>
+			(click)="participantSelected(participant)">
+		<app-profile-photo size="small"
+			[circle]="true"
+			[user]="participant"
+			[viewProfile]="viewProfile"></app-profile-photo>
 	  <span class="mx-2">{{participant.displayName}}</span>
 	</li>
 </ul>

@@ -10,19 +10,20 @@
 </div>
 <ng-template #showNotifications>
   <div class="card mb-2" *ngFor="let notificationUser of notifications">
-    <div class="card-header bg-secondary text-white d-flex align-items-center p-2">
-      <div class="img-fluid img-notification-origin-squared mat-elevation-z4 rounded-circle"
-          [style.background-image]="notificationUser.user.photoUrl | photo: 48: 'gender-neutral-user' | uriStyleSanitizer">
-      </div>
+    <div class="card-header bg-secondary text-white d-flex align-items-start align-items-sm-center p-1 mat-elevation-z2">
+      <app-profile-photo size="small"
+        [circle]="true"
+        [user]="notificationUser.user"></app-profile-photo>
       <div class="mx-2">
           <span class="font-weight-bold mr-1">{{notificationUser.user.displayName}}</span>
-          <span class="font-weight-light text-break">{{notificationUser.notification.notificationType.text}}</span>
+          <span class="font-weight-light text-break">{{notificationUser.notification.notificationType | textNotification}}</span>
       </div>
     </div>
     <div class="card-body p-0">
       <div class="d-flex">
-          <div class="img-fluid img-notification-destiny-squared"
-              [style.background-image]="notificationUser.notification.destinyPhotoUrl | photo: 48: 'trophy--v2' | uriStyleSanitizer">
+          <div class="img-fluid img-notification-destiny-squared" matRipple
+            (click)="goToDestiny(notificationUser.notification)"
+            [style.background-image]="notificationUser.notification.destinyPhotoUrl | photo: 48: 'trophy--v2' | uriStyleSanitizer">
           </div>
           <div class="d-flex align-items-center mx-2">
             <div class="img-fluid img-notification-type"

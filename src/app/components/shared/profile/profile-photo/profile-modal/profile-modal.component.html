@@ -1,0 +1,22 @@
+<ul class="list-group animated fadeIn fast col p-0">
+  <app-loading *ngIf="loading"></app-loading>
+  <li class="list-group-item p-2 d-flex" *ngIf="!loading || user">
+      <app-profile-photo [user]="user" [viewProfile]="false"></app-profile-photo>
+    <div class="d-flex flex-column px-2 flex-fill">
+      <span class="h5 text-break">{{user.displayName}}</span>
+      <small class="text-break font-italic">{{user?.description}}</small>
+      <small>
+        <span class="font-weight-bold">{{user.followingCount}}</span> Following
+        <span class="font-weight-bold">{{user.followersCount}}</span> Followers
+      </small>
+      <div class="d-flex justify-content-end">
+          <button mat-raised-button color="warn" (click)="unfollow()" *ngIf="user.following">
+            <img src="https://png.icons8.com/color/cancel/24" alt="unfollow"> Unfollow
+          </button>
+        <button mat-raised-button color="default" (click)="follow()" *ngIf="!user.following && !userFollowersService.sameUser(user)">
+          <img src="https://png.icons8.com/color/checked/24" alt="follow"> Follow
+        </button>
+      </div>
+    </div>
+  </li>
+</ul>
