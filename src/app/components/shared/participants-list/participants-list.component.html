@@ -3,9 +3,9 @@
       class="list-group-item text-muted text-center">
     <span>{{ emptyLabel }}</span>
   </li>
-	<li class="list-group-item list-group-item-action d-flex align-items-center"
+	<li class="list-group-item list-group-item-action d-flex align-items-center" #itemParticipant
       *ngFor="let participant of participants"
-			(click)="participantSelected(participant)">
+			(click)="participantSelected(participant, itemParticipant)">
 		<app-profile-photo size="small"
 			[circle]="true"
 			[user]="participant"

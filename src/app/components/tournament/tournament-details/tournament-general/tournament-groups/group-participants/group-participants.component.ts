@@ -6,7 +6,6 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Group } from '../../../../../../interfaces/group/group.interface';
 import { GroupParticipant } from '../../../../../../interfaces/group/group-participant.interface';
-import { TournamentStage } from '../../../../../../interfaces/types/tournament-stage.enum';
 import { GroupService } from '../../../../../../providers/group/group.service';
 import { TournamentDetailsService } from '../../../../../../providers/tournament/tournament-details.service';
 import { ParticipantModalComponent } from './participant-modal/participant-modal.component';
@@ -41,13 +40,13 @@ export class GroupParticipantsComponent implements OnInit {
     let ref = this.bottomSheet.open(ParticipantModalComponent, {
       data: {group}
     });
-    ref.afterDismissed().subscribe((data: GroupParticipant) => {
+    ref.afterDismissed().subscribe((data: GroupParticipant[]) => {
       if(data !== undefined) {
-        this.groups.forEach((group: Group) => {
-          if (group.id === data.groupId)
-          group.groupParticipants.push(data);
+        this.groups.forEach((_group: Group) => {
+          if (group.id === _group.id)
+            _group.groupParticipants.push(...data);
         });
-        this.snackBar.open(`${data.user.displayName} has been added!`, 'Okay!', {
+        this.snackBar.open(`${data.length} participants were added!`, 'Okay!', {
           horizontalPosition: 'right',
           duration: 2000
         });

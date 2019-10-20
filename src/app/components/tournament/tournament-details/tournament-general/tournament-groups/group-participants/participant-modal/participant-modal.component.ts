@@ -20,6 +20,7 @@ export class ParticipantModalComponent implements OnInit {
 
   faTimesCircle = faTimesCircle;
   participants: User[];
+  selectedParticipants: User[] = [];
   group: Group;
   loading: boolean = false;
 
@@ -44,17 +45,15 @@ export class ParticipantModalComponent implements OnInit {
 
   dismiss = () => this.bottomSheetRef.dismiss();
 
-  selectParticipant = (participant :User) => {
-    this.loading = true;
-    let groupParticipant: GroupParticipant = {
-      groupId: this.group.id,
-      tournamentId: this.group.tournamentId,
-      user: participant
-    };
-    this.groupParticipantService.saveParticipant(groupParticipant)
-      .subscribe((groupParticipant: GroupParticipant) => {
+  participantsSelected = (participants :User[]) => {
+    this.selectedParticipants = participants;
+  }
+
+  saveParticipants = () => {this.loading = true;
+    this.groupParticipantService.saveByGroupId(this.group.id, this.selectedParticipants)
+      .subscribe((groupParticipants: GroupParticipant[]) => {
         this.loading = false;
-        this.bottomSheetRef.dismiss(groupParticipant);
+        this.bottomSheetRef.dismiss(groupParticipants);
       });
   }
 

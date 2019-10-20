@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
-import { GroupParticipant } from '../../interfaces/group/group-participant.interface';
+import { User } from '../../interfaces/user/user.interface';
+import { Group } from '../..//interfaces/group/group.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class GroupParticipantService {
   findByTournamentId = (tournamentId: number) =>
     this.http.get(`${this.url}/tournament/${tournamentId}`);
 
-  saveParticipant = (groupParticipant: GroupParticipant) =>
-    this.http.post(`${this.url}/`, groupParticipant);
+  saveByGroupId = (groupId: number, users: User[]) =>
+    this.http.post(`${this.url}/group/${groupId}`, users);
 
 }
