@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Tournament } from '../../interfaces/tournament/tournament.interface';
 import { User } from '../../interfaces/user/user.interface';
 
@@ -23,7 +23,15 @@ export class TournamentService {
 
   updatePhoto = (tournament: {id: number, photoUrl: string}) => this.http.put(`${this.url}/${tournament.id}/photo`, tournament);
 
-  addParticipant = (id: number, user: User) => this.http.post(`${this.url}/${id}/participants`, user);
+  addParticipant = (id: number, user: User) => this.http.post(`${this.url}/${id}/participant`, user);
+
+  deleteParticipants = (id: number, users: User[]) => {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      body: users
+    }
+    return this.http.delete(`${this.url}/${id}/participants`, httpOptions);
+  };
 
   stage = (tournament: {id: number, uid: string, tournamentStage: string}) => this.http.put(`${this.url}/stage`, tournament);
 

@@ -21,7 +21,8 @@ export class TournamentDetailsService {
 
   findByUid = (uid: string) => this.http.get(`${this.url}/${uid}`);
 
-  isCreator = () => this.auth.user.id === this.tournament.userCreationId;
+  isCreator = (userId?: number) => 
+    userId ? this.auth.user.id === userId : this.auth.user.id === this.tournament.userCreationId;
 
   isNewTournament = () =>
     this.tournamentStage[this.tournament.tournamentStage] === this.tournamentStage['NEW_TOURNAMENT'];

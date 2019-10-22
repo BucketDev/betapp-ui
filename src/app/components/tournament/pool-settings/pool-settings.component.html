@@ -11,9 +11,9 @@
           <span class="display-4 text-info font-weight-bold">{{poolSettings.balance | currency}}</span>
         </li>
         <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between align-items-center">
             <h5 class="m-0">Description</h5>
-            <button type="button" class="btn btn-sm btn-outline-warning"
+            <button mat-raised-button class="bg-warning"
                     (click)="editDescription()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>
@@ -29,9 +29,9 @@
           </div>
         </li>
         <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between align-items-center">
             <h5 class="m-0">Amount per participant</h5>
-            <button type="button" class="btn btn-sm btn-outline-warning"
+            <button mat-raised-button class="bg-warning"
                     (click)="editAmount()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>
@@ -47,9 +47,9 @@
           </div>
         </li>
         <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between align-items-center">
             <h5 class="m-0">Goal</h5>
-            <button type="button" class="btn btn-sm btn-outline-warning"
+            <button mat-raised-button class="bg-warning"
                     (click)="editGoal()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>
@@ -65,9 +65,9 @@
           </div>
         </li>
         <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between align-items-center">
             <h5 class="m-0">Limit date</h5>
-            <button type="button" class="btn btn-sm btn-outline-warning"
+            <button mat-raised-button class="bg-warning"
                     (click)="editLimit()" *ngIf="tournamentDetailsService.isCreator()">
               <fa-icon [icon]="faPenAlt"></fa-icon>
             </button>

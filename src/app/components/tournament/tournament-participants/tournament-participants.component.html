@@ -18,6 +18,24 @@
     </app-participants-list>
   </div>
 </div>
-<h5 class="bg-dark text-light text-center py-3 mb-0 mt-2 rounded-top">Participants</h5>
+<div class="rounded-top mt-2 p-2 bg-dark d-flex justify-content-between align-items-center">
+  <div class="col-4 d-flex justify-content-start p-0">
+    <button mat-raised-button (click)="toggleEdit()" *ngIf="tournamentDetailsService.isCreator()"
+      [ngClass]="{'bg-secondary text-white': edit, 'bg-warning': !edit}">
+      <fa-icon [icon]="faPenAlt"></fa-icon>
+    </button>
+  </div>
+  <div class="col-4 d-flex justify-content-center p-2">
+    <span class="text-light h5 m-0">Participants</span>
+  </div>
+  <div class="col-4 d-flex justify-content-end p-0">
+    <button mat-raised-button color="warn" *ngIf="edit" (click)="deleteParticipants()">
+        <fa-icon [icon]="faTrashAlt"></fa-icon>
+    </button>
+  </div>
+</div>
 <app-loading *ngIf="loading"></app-loading>
-<app-participants-list [participants]="participants" [viewProfile]="true"></app-participants-list>
+<app-participants-list [participants]="participants"
+  (participantsEvent)="participantsEvent($event)"
+  [viewProfile]="true"[selectable]="edit">
+</app-participants-list>

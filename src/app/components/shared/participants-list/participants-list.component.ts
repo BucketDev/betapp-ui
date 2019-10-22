@@ -34,4 +34,10 @@ export class ParticipantsListComponent implements OnInit {
       this.participantEvent.emit(participant);
   }
 
+  clearSelections = () => {
+    document.querySelectorAll('.list-group-item.list-group-participants')
+      .forEach((element) => element.classList.remove('active'));
+    this.selectedParticipants = [];
+  }
+
 }

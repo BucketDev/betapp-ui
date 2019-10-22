@@ -3,3 +3,11 @@
   height: calc(1.5em + .5rem + 2px);
   font-size: .875rem;
 }
+
+.btn-edit-participants {
+  height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  background-position: center;
+  background-size: cover;
+}

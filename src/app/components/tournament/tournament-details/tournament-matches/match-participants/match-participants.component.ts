@@ -62,10 +62,9 @@ export class MatchParticipantsComponent implements OnInit {
         this.rounds.push(rounds[i]);
     }
     this.loading = false;
-}
+  }
 
-  showRound = (roundNumber: number) => 
-    this.router.navigate([`../${roundNumber + 1}`], { relativeTo: this.activatedRoute });
+  showRound = (roundNumber: number) => this.roundNumber = roundNumber;
 
   showUpdateMatch = (match: MatchParticipants) => {
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
