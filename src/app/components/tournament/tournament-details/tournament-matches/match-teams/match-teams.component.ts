@@ -63,7 +63,7 @@ export class MatchTeamsComponent implements OnInit {
         this.rounds.push(rounds[i]);
     }
     this.loading = false;
-}
+  }
 
   showRound = (roundNumber: number) => this.roundNumber = roundNumber;
 
