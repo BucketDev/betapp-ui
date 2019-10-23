@@ -3,3 +3,15 @@
   min-width: 240px;
   background: #dfe4ea !important;
 }
+
+mat-toolbar {
+  font-size: .8em;
+}
+
+:host ::ng-deep .mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: auto;
+}

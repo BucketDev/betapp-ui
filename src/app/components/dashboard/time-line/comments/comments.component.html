@@ -1,0 +1,28 @@
+<mat-expansion-panel class="m-o" (opened)="afterExpand()" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span>Show comments</span>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-loading *ngIf="loading"></app-loading>
+    <div class="card border-0" *ngFor="let comment of comments">
+      <div class="card-header border-0 d-flex bg-white align-items-center p-1">
+        <app-profile-photo size="small" [circle]="true"></app-profile-photo>
+        <div class="d-flex flex-column align-items-start">
+          <span class="mx-2">{{ comment.user.displayName }}</span>
+          <small class="mx-2 text-muted">{{ comment.creationDate | date: 'medium' }}</small>
+        </div>
+      </div>
+      <div class="card-body p-2 bg-light rounded">
+        <span> {{comment.comment}} </span>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+      <mat-form-field appearance="outline" class="flex-grow-1">
+        <input type="text" placeholder="Type your comment" matInput [(ngModel)]="comment.comment">
+      </mat-form-field>
+      <button mat-stroked-button class="ml-1" (click)="addComment()" [disabled]="loading">
+        <fa-icon [icon]="faCommentAlt"></fa-icon>
+      </button>
+    </div>
+</mat-expansion-panel>

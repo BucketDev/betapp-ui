@@ -1,12 +1,20 @@
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading" class="d-flex flex-column h-100">
   <app-navbar *ngIf="showNavBar"></app-navbar>
-  <mat-sidenav-container class="bg-transparent flex-grow-1">
-    <div class="container-fluid h-100">
+  <mat-sidenav-container class="bg-transparent d-flex flex-column justify-content-between flex-grow-1">
+    <div class="container-fluid flex-grow-1">
       <router-outlet></router-outlet>
     </div>
-    <mat-sidenav [(opened)]="navBarService.showSideNav" mode="over" position="end"
-                (openedChange)="openedChange($event)">
+    <mat-toolbar color="primary" class="text-light justify-content-end p-2">
+      <span class="d-none d-sm-inline-block">Developed by</span>
+      <button mat-stroked-button class="mx-2">
+        <fa-icon [icon]="faTwitter"></fa-icon><span class="d-none d-sm-inline-block mx-1">vanfigo</span>
+      </button>
+      <button mat-stroked-button>
+        <fa-icon [icon]="faGithub"></fa-icon><span class="d-none d-sm-inline-block mx-1">vanfigo</span>
+      </button>
+    </mat-toolbar>
+    <mat-sidenav [(opened)]="navBarService.showSideNav" mode="over" position="end" (openedChange)="openedChange($event)">
       <app-profile-sidenav></app-profile-sidenav>
     </mat-sidenav>
   </mat-sidenav-container>

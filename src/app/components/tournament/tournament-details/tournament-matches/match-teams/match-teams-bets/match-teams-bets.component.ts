@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 import { MatchResultsService } from '../../../../../../providers/match/match-results.service';
+import { TournamentDetailsService } from '../../../../../../providers/tournament/tournament-details.service';
 import { ParticipantResults } from '../../../../../../interfaces/match/participant-results.interface';
 import { Subscription } from 'rxjs';
 
@@ -14,9 +15,11 @@ export class MatchTeamsBetsComponent implements OnInit, OnDestroy {
   matchTeamSubscription: Subscription;
   loading: boolean = false;
   participantResults: ParticipantResults[];
+  panelOpenState: boolean = false;
   @Input() matchTeamId: number;
 
-  constructor(private matchResultsService: MatchResultsService) { }
+  constructor(public tournamentDetailsService: TournamentDetailsService,
+              private matchResultsService: MatchResultsService) { }
 
   ngOnDestroy(): void {
     this.matchTeamSubscription.unsubscribe();
@@ -35,6 +38,11 @@ export class MatchTeamsBetsComponent implements OnInit, OnDestroy {
             });
         }
       });
+  }
+
+  afterExpand = (matchTeamId: number) => {
+    this.matchResultsService.selectMatchTeamId(matchTeamId);
+    this.panelOpenState = true
   }
 
 }

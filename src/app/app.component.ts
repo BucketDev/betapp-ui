@@ -1,11 +1,10 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { User } from 'firebase';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { FireAuthService } from './providers/shared/fire-auth.service';
 import { NavBarService } from './providers/shared/nav-bar.service';
 import { ProfileSideNavComponent } from './components/shared/profile/profile-sidenav/profile-sidenav.component';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +16,8 @@ export class AppComponent implements OnInit {
   title: string = 'BetApp';
   loading: boolean = true;
   showNavBar: boolean = true;
+  faTwitter = faTwitter;
+  faGithub = faGithub;
   @ViewChild(ProfileSideNavComponent, { static: false }) profile: ProfileSideNavComponent;
 
   constructor(private router: Router,

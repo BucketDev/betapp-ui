@@ -7,10 +7,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
 import { AngularMaterialModule } from '../../angular-material.module';
 import { SharedPipeModule } from '../../pipes/shared-pipe.module';
+import { TimeLineModule } from './time-line/time-line.module';
 
 import { DashboardComponent } from './dashboard.component';
 import { TournamentComponent } from './tournament/tournament.component';
-import { TimeLineComponent } from './time-line/time-line.component';
 
 @NgModule({
   imports: [
@@ -19,12 +19,12 @@ import { TimeLineComponent } from './time-line/time-line.component';
     SharedPipeModule,
     AngularMaterialModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    TimeLineModule
   ],
   declarations: [
     DashboardComponent,
-    TournamentComponent,
-    TimeLineComponent
+    TournamentComponent
   ],
 })
 export class DashboardModule { }

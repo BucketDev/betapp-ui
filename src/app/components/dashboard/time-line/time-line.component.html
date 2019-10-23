@@ -1,16 +1,16 @@
-<div class="card my-2">
+<div class="card my-2 d-none">
   <div class="card-header">New certified tournaments</div>
   <div class="card-body"></div>
 </div>
 <app-loading *ngIf="!notifications"></app-loading>
-<div class="card mb-2" *ngIf="notifications?.length === 0; else showNotifications">
+<div class="card my-2" *ngIf="notifications?.length === 0; else showNotifications">
   <div class="card-body">
     <span class="list-group-item text-muted text-center">There's no activity yet</span>
   </div>
 </div>
 <ng-template #showNotifications>
-  <div class="card mb-2" *ngFor="let notificationUser of notifications">
-    <div class="card-header bg-secondary text-white d-flex align-items-start align-items-sm-center p-1 mat-elevation-z2">
+  <div class="card my-2" *ngFor="let notificationUser of notifications">
+    <div class="card-header bg-white border-0 d-flex align-items-start align-items-sm-center p-2">
       <app-profile-photo size="small"
         [circle]="true"
         [user]="notificationUser.user"></app-profile-photo>
@@ -21,11 +21,11 @@
     </div>
     <div class="card-body p-0">
       <div class="d-flex">
-          <div class="img-fluid img-notification-destiny-squared" matRipple
+          <div class="img-fluid img-notification-destiny-squared m-1 rounded-left" matRipple
             (click)="goToDestiny(notificationUser.notification)"
             [style.background-image]="notificationUser.notification.destinyPhotoUrl | photo: 48: 'trophy--v2' | uriStyleSanitizer">
           </div>
-          <div class="d-flex align-items-center mx-2">
+          <div class="d-flex align-items-center mx-2 flex-grow-1">
             <div class="img-fluid img-notification-type"
                 [style.background-image]="notificationUser.notification.notificationType | imgNotification | uriStyleSanitizer">
             </div>
@@ -33,15 +33,16 @@
           </div>
       </div>
     </div>
-    <div class="card-footer d-flex p-1">
-      <button mat-button class="flex-fill d-flex justify-content-center">
+    <div class="card-footer d-flex p-0">
+      <button mat-button class="flex-fill d-flex justify-content-center m-1">
         <img src="https://png.icons8.com/color/two-hearts/24" alt="like">
         <span class="font-weight-light mx-2">Like</span>
       </button>
-      <button mat-button class="flex-fill d-flex justify-content-center">
+      <button mat-button class="flex-fill d-flex justify-content-center m-1">
         <img src="https://png.icons8.com/color/chat-bubble/24" alt="like">
         <span class="font-weight-light mx-2">Comment</span>
       </button>
     </div>
+    <app-comments [notificationId]="notificationUser.notification.id"></app-comments>
   </div>
 </ng-template>

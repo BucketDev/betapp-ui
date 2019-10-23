@@ -71,18 +71,7 @@
             </mat-menu>
           </div>
       </div>
-      <mat-expansion-panel class="m-1" (opened)="afterExpand(match.id)" (closed)="panelOpenState = false" *ngIf="tournamentDetailsService.isCreator()">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <small>Participants Bets</small>
-          </mat-panel-title>
-          <mat-panel-description>
-            <small *ngIf="!panelOpenState">View details</small>
-            <small *ngIf="panelOpenState">Hide details</small>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-match-teams-bets [matchTeamId]="match.id"></app-match-teams-bets>
-      </mat-expansion-panel>
+      <app-match-teams-bets [matchTeamId]="match.id"></app-match-teams-bets>
     </li>
   </ul>  
 </ng-template>

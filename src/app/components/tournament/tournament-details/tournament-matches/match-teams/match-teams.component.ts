@@ -32,7 +32,6 @@ export class MatchTeamsComponent implements OnInit {
   loading: boolean = true;
   roundNumber: number = 0;
   matchTeamId: number;
-  panelOpenState: boolean = false;
   @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
@@ -90,11 +89,6 @@ export class MatchTeamsComponent implements OnInit {
           horizontalPosition: 'right'
         });
     }
-  }
-
-  afterExpand = (matchTeamId: number) => {
-    this.matchResultsService.selectMatchTeamId(matchTeamId);
-    this.panelOpenState = true
   }
 
 }
