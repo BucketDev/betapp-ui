@@ -5,12 +5,12 @@
     <div class="container-fluid flex-grow-1">
       <router-outlet></router-outlet>
     </div>
-    <mat-toolbar color="primary" class="text-light justify-content-end p-2">
+    <mat-toolbar color="primary" class="text-light justify-content-end p-2 mat-toolbar-row-secondary">
       <span class="d-none d-sm-inline-block">Developed by</span>
-      <button mat-stroked-button class="mx-2">
+      <button mat-stroked-button class="mx-2" (click)="twitterNavigate()">
         <fa-icon [icon]="faTwitter"></fa-icon><span class="d-none d-sm-inline-block mx-1">vanfigo</span>
       </button>
-      <button mat-stroked-button>
+      <button mat-stroked-button (click)="gitHubNavigate()">
         <fa-icon [icon]="faGithub"></fa-icon><span class="d-none d-sm-inline-block mx-1">vanfigo</span>
       </button>
     </mat-toolbar>

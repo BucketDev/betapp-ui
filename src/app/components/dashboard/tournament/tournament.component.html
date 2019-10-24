@@ -11,29 +11,42 @@
     </li>
   </ul>
 </nav>
-<app-loading *ngIf="!tournaments"></app-loading>
-<div class="row m-0 mt-1" *ngIf="tournaments">
-  <div class="col-xs col-xl-6 d-flex align-items-stretch p-1 animated fadeIn"
-      (click)="viewTournament(tournament)" *ngFor="let tournament of tournaments">
-    <div class="card flex-fill" matRipple>
-      <div class="card-body p-0">
-        <div class="card-title-logo d-flex flex-column p-1 justify-content-between"
-              [style.background-image]="tournament.photoUrl | photo: 128: 'trophy--v2' | uriStyleSanitizer: true">
-          <div class="d-flex justify-content-between">
-            <span class="img-tournament-privacy"><img [src]="tournament.tournamentPrivacy | imgPrivacy" alt="privacy"></span>
-            <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/color/trophy/24" alt="tournament finished"></span>
+<app-loading *ngIf="!tournaments; else tournamentsCreated"></app-loading>
+<ng-template #tournamentsCreated>
+  <div class="d-flex my-1 justify-content-between flex-wrap">
+    <div class="col-xs col-sm-6 py-1 px-0 px-sm-1 d-flex animated fadeIn" *ngIf="tournaments.length === 0"
+      [routerLink]="['/tournament', 'new']">
+      <div class="card flex-grow-1 mat-elevation-z2 betapp-tournament-placeholder" matRipple>
+        <div class="card-body p-0 align-items-center d-flex">
+          <div class="d-flex flex-column align-items-center flex-grow-1 w-100">
+            <span class="h2"><fa-icon [icon]="faPlusCircle"></fa-icon></span>
+            <span class="text-center text-break font-weight-bold h5">Add a tournament</span>
           </div>
-          <span class="text-light text-center text-truncate d-block">
-            {{tournament.title}}
+        </div>
+      </div>
+    </div>
+    <div class="col-xs col-sm-6 py-1 px-0 px-sm-1 d-flex align-items-stretch animated fadeIn"
+        (click)="viewTournament(tournament)" *ngFor="let tournament of tournaments">
+      <div class="card flex-grow-1 mat-elevation-z2 border-0" matRipple>
+        <div class="card-body p-0">
+          <div class="card-title-logo d-flex flex-column p-1 justify-content-between"
+                [style.background-image]="tournament.photoUrl | photo: 128: 'trophy--v2' | uriStyleSanitizer: true">
+            <div class="d-flex justify-content-between">
+              <span class="img-tournament-privacy"><img [src]="tournament.tournamentPrivacy | imgPrivacy" alt="privacy"></span>
+              <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/color/trophy/24" alt="tournament finished"></span>
+            </div>
+            <span class="text-light text-center text-truncate d-block">
+              {{tournament.title}}
+            </span>
+          </div>
+          <span class="card-text p-1 d-flex align-items-center justify-content-center">
+            Participants <span class="badge badge-success mx-1">{{tournament.participantsNumber}}</span>
           </span>
         </div>
-        <span class="card-text p-1 d-flex align-items-center justify-content-center">
-          Participants <span class="badge badge-success mx-1">{{tournament.participantsNumber}}</span>
-        </span>
-      </div>
-      <div class="card-footer p-1 text-success bg-dark">
-        <span class="card-text text-center d-block">{{tournament.creationDate | date}}</span>
+        <div class="card-footer p-1 text-success bg-dark">
+          <span class="card-text text-center d-block">{{tournament.creationDate | date}}</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>

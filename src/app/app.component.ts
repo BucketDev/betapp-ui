@@ -39,4 +39,9 @@ export class AppComponent implements OnInit {
     else
       this.profile.clearUserInfo();
   }
+
+  twitterNavigate = () => window.open('https://twitter.com/RodrigoLoyJar', '_blank')
+
+  gitHubNavigate= () => window.open('https://github.com/vanfigo', '_blank')
+  
 }

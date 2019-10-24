@@ -10,6 +10,7 @@ import { TournamentService } from '../../../../providers/tournament/tournament.s
 import { TournamentDetails } from '../../../../interfaces/tournament/tournament-details.interface';
 import { TournamentSettings } from '../../../../interfaces/tournament/tournament-settings.interface';
 import { PlayoffStage } from '../../../../interfaces/types/playoff-stage.enum';
+import { TournamentStage } from '../../../../interfaces/types/tournament-stage.enum';
 
 import { SavingButtonComponent } from '../../../../components/shared/saving-button/saving-button.component';
 
@@ -21,6 +22,7 @@ import { SavingButtonComponent } from '../../../../components/shared/saving-butt
 export class TournamentSettingsComponent {
 
   tournament: TournamentDetails;
+  tournamentStage = TournamentStage;
   tournamentSettings: TournamentSettings;
   @ViewChild(SavingButtonComponent, { static: false }) savingButton: SavingButtonComponent;
 
@@ -84,6 +86,15 @@ export class TournamentSettingsComponent {
       this.deleteClicked = true;
       setTimeout(() => this.deleteClicked = false, 2000);
     }
+  }
+
+  disableGroupStage = () => {
+    return TournamentStage[this.tournament.tournamentStage] !== TournamentStage.NEW_TOURNAMENT;
+  }
+
+  disablePlayoffStage = () => {
+    return TournamentStage[this.tournament.tournamentStage] === TournamentStage.PLAYOFF_STAGE ||
+      TournamentStage[this.tournament.tournamentStage] === TournamentStage.FINISHED_TOURNAMENT;
   }
 
 }

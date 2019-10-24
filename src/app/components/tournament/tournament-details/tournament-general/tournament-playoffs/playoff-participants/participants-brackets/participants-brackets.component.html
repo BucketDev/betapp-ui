@@ -1,24 +1,24 @@
 <div class="p-0 my-2 mx-1">
   <ul class="list-group">
-    <li *ngIf="!showAwayParticipant()" class="list-group-item p-1 d-flex align-items-center">
+    <li *ngIf="!showAwayParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
       <div class="img-fluid rounded-circle img-participant-squared"
-            [style.background-image]="null | photo: 32: 'error' | uriStyleSanitizer">
+            [style.background-image]="null | photo: 32: 'warning-shield': 'color' | uriStyleSanitizer">
       </div>
-      <small class="text-muted mx-1">TBD</small>
+      <small class="text-muted mx-1 d-none d-sm-inline-block flex-grow-1">TBD</small>
     </li>
-    <li *ngIf="showAwayParticipant()" class="list-group-item p-1 d-flex align-items-center">
+    <li *ngIf="showAwayParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
       <app-profile-photo size="small" [circle]="true" [user]="groupParticipants[0].user"></app-profile-photo>
-      <small class="mx-1 text-truncate">{{groupParticipants[0].user.displayName}}</small>
+      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{groupParticipants[0].user.displayName}}</small>
     </li>
-    <li *ngIf="!showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center">
+    <li *ngIf="!showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
       <div class="img-fluid rounded-circle img-participant-squared"
-            [style.background-image]="null | photo: 32: 'error' | uriStyleSanitizer">
+            [style.background-image]="null | photo: 32: 'warning-shield': 'color' | uriStyleSanitizer">
       </div>
-      <small class="text-muted mx-1">TBD</small>
+      <small class="text-muted mx-1 d-none d-sm-inline-block flex-grow-1">TBD</small>
     </li>
-    <li *ngIf="showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center">
+    <li *ngIf="showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
       <app-profile-photo size="small" [circle]="true" [user]="groupParticipants[1].user"></app-profile-photo>
-      <small class="mx-1 text-truncate">{{groupParticipants[1].user.displayName}}</small>
+      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{groupParticipants[1].user.displayName}}</small>
     </li>
   </ul>
 </div>

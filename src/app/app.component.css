@@ -12,6 +12,7 @@ mat-toolbar {
   display: flex;
   flex-direction: column;
 }
-.mat-toolbar-row, .mat-toolbar-single-row {
+
+:host ::ng-deep .mat-toolbar-row-secondary.mat-toolbar-row {
   height: auto;
 }

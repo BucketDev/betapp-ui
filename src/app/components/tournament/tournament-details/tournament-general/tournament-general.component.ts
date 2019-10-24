@@ -64,4 +64,13 @@ export class TournamentGeneralComponent {
       horizontalPosition: 'end'
     }));
 
+  hideStartGroup = () => {
+    return TournamentStage[this.tournament.tournamentStage] !== TournamentStage.NEW_TOURNAMENT;
+  }
+
+  hideStartPlayoff = () => {
+    return TournamentStage[this.tournament.tournamentStage] === TournamentStage.PLAYOFF_STAGE ||
+      TournamentStage[this.tournament.tournamentStage] === TournamentStage.FINISHED_TOURNAMENT;
+  }
+
 }

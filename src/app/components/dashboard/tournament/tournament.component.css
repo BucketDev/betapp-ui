@@ -19,3 +19,9 @@
   background-position: center;
   background-size: cover;
 }
+
+.betapp-tournament-placeholder {
+  height: 178px;
+  background-color: #8395a7;
+  color: #576574;
+}

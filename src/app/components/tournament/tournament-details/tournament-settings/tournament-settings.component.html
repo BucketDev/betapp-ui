@@ -7,19 +7,19 @@
       <div class="card-body animated fadeIn">
           <div class="form-group">
             <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="roundTrip"
+              <input type="checkbox" class="custom-control-input" id="roundTrip" [disabled]="disableGroupStage()"
                       name="roundTrip" #roundTrip="ngModel" [(ngModel)]="tournamentSettings.groupRoundTrip">
               <label class="custom-control-label" for="roundTrip">Round Trip</label>
             </div>
           </div>
           <div class="form-group">
             <label for="groupNumber">Number of Groups</label>
-            <input type="number" min="1" max="8" class="form-control" id="groupNumber"
+            <input type="number" min="1" max="8" class="form-control" id="groupNumber" [disabled]="disableGroupStage()"
                   name="groupNumber" #groupNumber="ngModel" [(ngModel)]="tournamentSettings.groupNumber">
           </div>
           <div class="form-group">
             <label for="first">First of each Group</label>
-            <input type="number" min="1" class="form-control" id="first"
+            <input type="number" min="1" class="form-control" id="first" [disabled]="disableGroupStage()"
                   name="first" #first="ngModel" [(ngModel)]="tournamentSettings.first">
             <small class="form-text text-muted">How many teams/people will pass to the playoffs per group</small>
           </div>
@@ -31,7 +31,7 @@
     <div class="card-body animated fadeIn">
       <div class="form-group">
         <label for="playoffStage">Playoffs Stage</label>
-        <select name="playoffStage" id="playoffStage" class="form-control"
+        <select name="playoffStage" id="playoffStage" class="form-control" [disabled]="disablePlayoffStage()"
                 (change)=stageSelected($event.target.value)
                 #playoffStage="ngModel" [(ngModel)]="tournamentSettings.playoffStage">
           <option value="{{stage}}" *ngFor="let stage of keys(playoffStages)">{{playoffStages[stage]}}</option>
@@ -43,7 +43,7 @@
           <span>{{playoffStages['EIGHTH_FINALS']}}</span>
         </div>
         <div class="custom-control custom-switch col-6 col-md">
-          <input type="checkbox" class="custom-control-input" id="eightFinalsRoundTrip"
+          <input type="checkbox" class="custom-control-input" id="eightFinalsRoundTrip" [disabled]="disablePlayoffStage()"
                   name="eightFinalsRoundTrip" #eightFinalsRoundTrip="ngModel"
                   [(ngModel)]="tournamentSettings.eightFinalsRoundTrip">
           <label class="custom-control-label" for="eightFinalsRoundTrip">Round Trip</label>
@@ -54,7 +54,7 @@
           <span>{{playoffStages['QUARTER_FINALS']}}</span>
         </div>
         <div class="custom-control custom-switch col-6 col-md">
-          <input type="checkbox" class="custom-control-input" id="quarterFinalsRoundTrip"
+          <input type="checkbox" class="custom-control-input" id="quarterFinalsRoundTrip" [disabled]="disablePlayoffStage()"
                   name="quarterFinalsRoundTrip" #quarterFinalsRoundTrip="ngModel"
                   [(ngModel)]="tournamentSettings.quarterFinalsRoundTrip">
           <label class="custom-control-label" for="quarterFinalsRoundTrip">Round Trip</label>
@@ -65,7 +65,7 @@
           <span>{{playoffStages['SEMIFINALS']}}</span>
         </div>
         <div class="custom-control custom-switch col-6 col-md">
-          <input type="checkbox" class="custom-control-input" id="semiFinalsRoundTrip"
+          <input type="checkbox" class="custom-control-input" id="semiFinalsRoundTrip" [disabled]="disablePlayoffStage()"
                   name="semiFinalsRoundTrip" #semiFinalsRoundTrip="ngModel"
                   [(ngModel)]="tournamentSettings.semiFinalsRoundTrip">
           <label class="custom-control-label" for="semiFinalsRoundTrip">Round Trip</label>
@@ -76,7 +76,7 @@
           <span>{{playoffStages['FINALS']}}</span>
         </div>
         <div class="custom-control custom-switch col-6 col-md">
-          <input type="checkbox" class="custom-control-input" id="finalRoundTrip"
+          <input type="checkbox" class="custom-control-input" id="finalRoundTrip" [disabled]="disablePlayoffStage()"
                   name="finalRoundTrip" #finalRoundTrip="ngModel"
                   [(ngModel)]="tournamentSettings.finalRoundTrip">
           <label class="custom-control-label" for="finalRoundTrip">Round Trip</label>

@@ -3,9 +3,9 @@
   <div class="card-body"></div>
 </div>
 <app-loading *ngIf="!notifications"></app-loading>
-<div class="card my-2" *ngIf="notifications?.length === 0; else showNotifications">
-  <div class="card-body">
-    <span class="list-group-item text-muted text-center">There's no activity yet</span>
+<div class="card my-2 bg-light" *ngIf="notifications?.length === 0; else showNotifications">
+  <div class="card-body text-center m-0">
+    <span class="h5 font-weight-bold">Start following people to see what they're doing</span>
   </div>
 </div>
 <ng-template #showNotifications>
@@ -20,8 +20,8 @@
       </div>
     </div>
     <div class="card-body p-0">
-      <div class="d-flex">
-          <div class="img-fluid img-notification-destiny-squared m-1 rounded-left" matRipple
+      <div class="d-flex mx-2 mb-2">
+          <div class="img-fluid img-notification-destiny-squared rounded mat-elevation-z2" matRipple
             (click)="goToDestiny(notificationUser.notification)"
             [style.background-image]="notificationUser.notification.destinyPhotoUrl | photo: 48: 'trophy--v2' | uriStyleSanitizer">
           </div>
