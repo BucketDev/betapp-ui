@@ -32,6 +32,7 @@ export class FireAuthService {
             });
           });
       } else {
+        this.isNewUser = false;
         this.session = null;
         let route = this.router.url.startsWith('/login') ? this.router.url : '/login';
         this.router.navigate([route]);
