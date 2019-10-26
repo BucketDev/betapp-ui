@@ -2,11 +2,13 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
   
-button:focus {
-  outline:0 !important;
+button:focus,
+select:focus,
+.btn:focus {
+  outline: none !important;
 }
 
 html, body {

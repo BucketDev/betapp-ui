@@ -1,88 +1,92 @@
 <div class="row m-0 my-2">
   <div class="col-12 p-0">
     <div class="card">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-center" *ngIf="tournament.userWinner">
-          <app-profile-photo size="large"
-            [user]="tournament.userWinner"></app-profile-photo>
-        </li>
-        <li class="list-group-item d-flex flex-column align-items-center">
-          <span class="d-block">Balance</span>
-          <span class="display-4 text-info font-weight-bold">{{poolSettings.balance | currency}}</span>
-        </li>
-        <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between align-items-center">
-            <span class="m-0">Description</span>
-            <button mat-raised-button class="bg-warning"
-                    (click)="editDescription()" *ngIf="tournamentDetailsService.isCreator()">
-              <fa-icon [icon]="faPenAlt"></fa-icon>
-            </button>
-          </div>
-          <div *ngIf="!editingDescription">
-            <small class="text-muted" *ngIf="poolSettings.description">{{poolSettings.description}}</small>
-            <small class="text-muted font-italic" *ngIf="!poolSettings.description">Brief description of the tournament</small>
-          </div>
-          <div *ngIf="editingDescription">
-            <app-save-input [inputType]="'TEXT-AREA'" [value]=poolSettings.description
-                            (cancel)="cancelDescription()" (save)="saveDescription($event)">
-            </app-save-input>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between align-items-center">
-            <span class="m-0">Amount per participant</span>
-            <button mat-raised-button class="bg-warning"
-                    (click)="editAmount()" *ngIf="tournamentDetailsService.isCreator()">
-              <fa-icon [icon]="faPenAlt"></fa-icon>
-            </button>
-          </div>
-          <div *ngIf="!editingAmount">
-            <small class="text-muted" *ngIf="poolSettings.amount > 0">{{poolSettings.amount | currency}}</small>
-            <small class="text-muted font-italic" *ngIf="poolSettings.amount == 0">How much a participant should pay</small>
-          </div>
-          <div *ngIf="editingAmount">
-            <app-save-input [inputType]="'NUMBER'" [value]=poolSettings.amount
-                            (cancel)="cancelAmount()" (save)="saveAmount($event)">
-            </app-save-input>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between align-items-center">
-            <span class="m-0">Goal</span>
-            <button mat-raised-button class="bg-warning"
-                    (click)="editGoal()" *ngIf="tournamentDetailsService.isCreator()">
-              <fa-icon [icon]="faPenAlt"></fa-icon>
-            </button>
-          </div>
-          <div *ngIf="!editingGoal">
-            <small class="text-muted" *ngIf="poolSettings.goal > 0">{{poolSettings.goal | currency}}</small>
-            <small class="text-muted font-italic" *ngIf="poolSettings.goal == 0">Stablish the pool goal</small>
-          </div>
-          <div *ngIf="editingGoal">
-            <app-save-input [inputType]="'NUMBER'" [value]=poolSettings.goal
-                            (cancel)="cancelGoal()" (save)="saveGoal($event)">
-            </app-save-input>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="d-flex w-100 justify-content-between align-items-center">
-            <span class="m-0">Limit date</span>
-            <button mat-raised-button class="bg-warning"
-                    (click)="editLimit()" *ngIf="tournamentDetailsService.isCreator()">
-              <fa-icon [icon]="faPenAlt"></fa-icon>
-            </button>
-          </div>
-          <div *ngIf="!editingLimit">
-            <small class="text-muted" *ngIf="poolSettings.limitDate">{{poolSettings.limitDate | date}}</small>
-            <small class="text-muted font-italic" *ngIf="!poolSettings.limitDate">Stablish a limit date for the participants to pay</small>
-          </div>
-          <div *ngIf="editingLimit">
-            <app-save-input [inputType]="'DATE'" [value]=poolSettings.limitDate
-                            (cancel)="cancelLimit()" (save)="saveLimit($event)">
-            </app-save-input>
-          </div>
-        </li>
-      </ul>
+      <div class="card-header border-dark">
+        <span class="h5 m-0">Pool Settings</span>
+      </div>
+      <div class="card-body p-0">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-center" *ngIf="tournament.userWinner">
+            <app-profile-photo size="large"
+              [user]="tournament.userWinner"></app-profile-photo>
+          </li>
+          <li class="list-group-item d-flex flex-column align-items-center">
+            <span>Balance</span>
+            <span class="display-4 text-info font-weight-bold">{{poolSettings.balance | currency}}</span>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+              <span>Description</span>
+              <button mat-raised-button class="bg-warning" (click)="editDescription()" *ngIf="tournamentDetailsService.isCreator()">
+                <fa-icon [icon]="faPenAlt"></fa-icon>
+              </button>
+            </div>
+            <div *ngIf="!editingDescription">
+              <small class="text-muted" *ngIf="poolSettings.description">{{poolSettings.description}}</small>
+              <small class="text-muted font-italic" *ngIf="!poolSettings.description">Brief description of the tournament</small>
+            </div>
+            <div *ngIf="editingDescription">
+              <app-save-input [inputType]="'TEXT-AREA'" [value]=poolSettings.description
+                (cancel)="cancelDescription()" (save)="saveDescription($event)" label="Description">
+              </app-save-input>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+              <span>Amount per participant</span>
+              <button mat-raised-button class="bg-warning"
+                      (click)="editAmount()" *ngIf="tournamentDetailsService.isCreator()">
+                <fa-icon [icon]="faPenAlt"></fa-icon>
+              </button>
+            </div>
+            <div *ngIf="!editingAmount">
+              <small class="text-muted" *ngIf="poolSettings.amount > 0">{{poolSettings.amount | currency}}</small>
+              <small class="text-muted font-italic" *ngIf="poolSettings.amount == 0">How much a participant should pay</small>
+            </div>
+            <div *ngIf="editingAmount">
+              <app-save-input [inputType]="'NUMBER'" [value]=poolSettings.amount prefix="$&nbsp;"
+                (cancel)="cancelAmount()" (save)="saveAmount($event)" label="Amount per participant">
+              </app-save-input>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+              <span>Goal</span>
+              <button mat-raised-button class="bg-warning"
+                      (click)="editGoal()" *ngIf="tournamentDetailsService.isCreator()">
+                <fa-icon [icon]="faPenAlt"></fa-icon>
+              </button>
+            </div>
+            <div *ngIf="!editingGoal">
+              <small class="text-muted" *ngIf="poolSettings.goal > 0">{{poolSettings.goal | currency}}</small>
+              <small class="text-muted font-italic" *ngIf="poolSettings.goal == 0">Stablish the pool goal</small>
+            </div>
+            <div *ngIf="editingGoal">
+              <app-save-input [inputType]="'NUMBER'" [value]=poolSettings.goal prefix="$&nbsp;"
+                (cancel)="cancelGoal()" (save)="saveGoal($event)" label="Goal">
+              </app-save-input>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+              <span>Limit date</span>
+              <button mat-raised-button class="bg-warning"
+                      (click)="editLimit()" *ngIf="tournamentDetailsService.isCreator()">
+                <fa-icon [icon]="faPenAlt"></fa-icon>
+              </button>
+            </div>
+            <div *ngIf="!editingLimit">
+              <small class="text-muted" *ngIf="poolSettings.limitDate">{{poolSettings.limitDate | date: 'longDate'}}</small>
+              <small class="text-muted font-italic" *ngIf="!poolSettings.limitDate">Stablish a limit date for the participants to pay</small>
+            </div>
+            <div *ngIf="editingLimit">
+              <app-save-input [inputType]="'DATE'" [value]=poolSettings.limitDate
+                (cancel)="cancelLimit()" (save)="saveLimit($event)" label="Limit Date">
+              </app-save-input>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

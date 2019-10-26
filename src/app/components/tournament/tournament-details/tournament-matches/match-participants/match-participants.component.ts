@@ -74,8 +74,6 @@ export class MatchParticipantsComponent implements OnInit {
   }
 
   showUpdateDate = (match: MatchParticipants) => {
-    console.log(match);
-    
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
       let ref = this.dialog.open(MatchParticipantsDateComponent, { data: { match } });
       ref.afterClosed().subscribe(this.updatedMatch);

@@ -1,10 +1,11 @@
 <h3 mat-dialog-title>Set new scheduled date</h3>
 <form #formDate="ngForm">
     <div mat-dialog-content>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="col p-0">
         <mat-label>Scheduled date</mat-label>
-        <input type="date" class="text-center no-arrows" required
-            matInput [(ngModel)]="match.scheduledTime" name="scheduledTime" #scheduledTime="ngModel">
+        <input [matDatepicker]="scheduledPicker" required matInput (click)="scheduledPicker.open()"
+          [(ngModel)]="match.scheduledTime" name="scheduledTime" #scheduledTime="ngModel">
+        <mat-datepicker #scheduledPicker></mat-datepicker>
       </mat-form-field>
     </div>
     <div mat-dialog-actions class="justify-content-end">

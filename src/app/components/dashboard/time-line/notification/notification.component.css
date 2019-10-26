@@ -1,0 +1,16 @@
+.img-notification-type {
+  height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  background-position: center;
+  background-size: cover;
+}
+
+.img-notification-destiny-squared {
+  height: 96px;
+  min-width: 96px;
+  max-width: 96px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}

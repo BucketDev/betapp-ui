@@ -5,7 +5,7 @@ import { faSave, faCheck } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-saving-button',
   templateUrl: './saving-button.component.html',
-  styleUrls: ['./saving-button.component.css']
+  styleUrls: []
 })
 export class SavingButtonComponent implements OnInit {
 
@@ -20,6 +20,8 @@ export class SavingButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  getColor = () => this.saving ? 'accent' : 'primary';
 
   onClick = () => {
     if (!this.saving && !this.saved) {

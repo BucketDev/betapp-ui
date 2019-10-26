@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,22 +18,22 @@ import { SavingButtonComponent } from '../../../../components/shared/saving-butt
 @Component({
   selector: 'app-tournament-settings',
   templateUrl: './tournament-settings.component.html',
-  styleUrls: []
+  styleUrls: ['./tournament-settings.component.css']
 })
 export class TournamentSettingsComponent {
 
+  faTrashAlt = faTrashAlt;
   tournament: TournamentDetails;
-  tournamentStage = TournamentStage;
   tournamentSettings: TournamentSettings;
-  @ViewChild(SavingButtonComponent, { static: false }) savingButton: SavingButtonComponent;
-
   playoffStages = PlayoffStage;
-  keys = Object.keys;
+  tournamentStage = TournamentStage;
   showSemifinals: boolean = true;
   showQuarterFinals: boolean = true;
   showEighthFinals: boolean = true;
-  faTrashAlt = faTrashAlt;
   deleteClicked: boolean = false;
+  formSettings: FormGroup;
+  keys = Object.keys;
+  @ViewChild(SavingButtonComponent, { static: false }) savingButton: SavingButtonComponent;
 
   constructor(private tournamentDetailsService: TournamentDetailsService,
               private tournamentSettingsService: TournamentSettingsService,
@@ -40,8 +41,106 @@ export class TournamentSettingsComponent {
               private tournamentService: TournamentService) {
     this.tournament = this.tournamentDetailsService.tournament;
     this.tournamentSettings = this.tournament.tournamentSettings;
-    this.showStages(PlayoffStage[this.tournamentSettings.playoffStage])
+    this.showStages(PlayoffStage[this.tournamentSettings.playoffStage]);
+    this.formSettings = new FormGroup({
+      'groupRoundTrip': new FormControl({
+        value: this.tournamentSettings.groupRoundTrip,
+        disabled: this.disableGroupStage()
+      }, [
+        Validators.required
+      ]),
+      'groupNumber': new FormControl({
+        value: this.tournamentSettings.groupNumber,
+        disabled: this.disableGroupStage()
+      }, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(8)
+      ]),
+      'first': new FormControl({
+        value: this.tournamentSettings.first,
+        disabled: this.disableGroupStage()
+      }, [
+        Validators.required,
+        Validators.min(1)
+      ]),
+      'playoffStage': new FormControl({
+        value: this.tournamentSettings.playoffStage,
+        disabled: this.disablePlayoffStage()
+      }),
+      'eightFinalsRoundTrip': new FormControl({
+        value: this.tournamentSettings.eightFinalsRoundTrip,
+        disabled: this.disablePlayoffStage()
+      }, [
+        Validators.required
+      ]),
+      'quarterFinalsRoundTrip': new FormControl({
+        value: this.tournamentSettings.quarterFinalsRoundTrip,
+        disabled: this.disablePlayoffStage()
+      }, [
+        Validators.required
+      ]),
+      'semiFinalsRoundTrip': new FormControl({
+        value: this.tournamentSettings.semiFinalsRoundTrip,
+        disabled: this.disablePlayoffStage()
+      }, [
+        Validators.required
+      ]),
+      'finalRoundTrip': new FormControl({
+        value: this.tournamentSettings.finalRoundTrip,
+        disabled: this.disablePlayoffStage()
+      }, [
+        Validators.required
+      ])
+    });
+    this.formSettings.controls['playoffStage'].setValidators([
+      Validators.required,
+      this.notEnoughParticipants
+    ]);
+    this.formSettings.controls['playoffStage'].markAsTouched();
   }
+
+  getGroupsErrorMessage = () => {
+    let errors: ValidationErrors = this.formSettings.get('groupNumber').errors;
+    if (errors['required'])
+      return 'This field is required';
+    if (errors['min'])
+      return `Minimum value is ${errors['min']['min']}`;
+    if (errors['max'])
+      return `Maximum value is ${errors['max']['max']}`;
+  }
+
+  getFirstOfGroupErrorMessage = () => {
+    let errors: ValidationErrors = this.formSettings.get('first').errors;
+    if (errors['required'])
+      return 'This field is required';
+    if (errors['min'])
+      return `Minimum value is ${errors['min']['min']}`;
+  }
+
+  getPlayoffStageErrorMessage = () => {
+    let errors: ValidationErrors = this.formSettings.get('playoffStage').errors;    
+    if (errors['required'])
+      return 'This field is required';
+    if (errors['notenough'])
+      return `Participants required ${errors['notenough']['required']} actual ${errors['notenough']['actual']}`;
+  }
+
+  notEnoughParticipants = (control: FormControl): {[key: string]: any} | null => {    
+    let groupNumber = this.formSettings.controls['groupNumber'].value;
+    let first = this.formSettings.controls['first'].value;
+    let participants = parseInt(groupNumber) * parseInt(first);
+    switch(PlayoffStage[control.value]) {
+      case PlayoffStage.EIGHTH_FINALS:
+        return participants === 16 ? null : { notenough: { required: 16, actual: participants } };
+      case PlayoffStage.QUARTER_FINALS:
+          return participants === 8 ? null : { notenough: { required: 8, actual: participants } };
+      case PlayoffStage.SEMIFINALS:
+          return participants === 4 ? null : { notenough: { required: 4, actual: participants } };
+      case PlayoffStage.FINALS:
+          return participants === 2 ? null : { notenough: { required: 2, actual: participants } };
+    }
+  };
 
   stageSelected = (value: string) => this.showStages(PlayoffStage[value]);
 
@@ -71,9 +170,10 @@ export class TournamentSettingsComponent {
   }
 
   saveSettings = () => {
-    this.tournamentSettingsService.upsert(this.tournamentSettings)
+    this.formSettings.value['tournamentId'] = this.tournamentSettings.tournamentId;
+    this.tournamentSettingsService.upsert(this.formSettings.value)
     .subscribe((data: TournamentSettings) => {
-      this.tournamentSettings = data;
+      this.tournamentDetailsService.tournament.tournamentSettings = data;
       this.savingButton.setSaved();
     });
   }
@@ -96,5 +196,7 @@ export class TournamentSettingsComponent {
     return TournamentStage[this.tournament.tournamentStage] === TournamentStage.PLAYOFF_STAGE ||
       TournamentStage[this.tournament.tournamentStage] === TournamentStage.FINISHED_TOURNAMENT;
   }
+
+  validateStage = () => this.formSettings.controls['playoffStage'].updateValueAndValidity()
 
 }

@@ -1,7 +1,9 @@
 import { Notification } from './notification.interface';
 import { User } from '../user/user.interface';
 
-export interface NoificationUser {
+export interface NoitficationUser {
   user: User,
-  notification: Notification
+  notification: Notification,
+  likes: number,
+  liked: boolean
 }

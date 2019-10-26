@@ -9,6 +9,7 @@ import { AngularMaterialModule } from '../../../angular-material.module';
 
 import { TimeLineComponent } from './time-line.component';
 import { CommentsComponent } from './comments/comments.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CommentsComponent } from './comments/comments.component';
   ],
   declarations: [
     TimeLineComponent,
-    CommentsComponent
+    CommentsComponent,
+    NotificationComponent
   ],
   exports: [
     TimeLineComponent

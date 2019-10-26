@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   toggleSideNav = () => this.navBarService.showSideNav = !this.navBarService.showSideNav
 
   logout = () => {
+    this.navBarService.showSideNav = false;
     this.auth.logout();
   }
 

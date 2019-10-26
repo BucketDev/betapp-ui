@@ -15,6 +15,8 @@ export class SaveInputComponent implements OnInit {
   faSave = faSave;
   faTimesCircle = faTimesCircle;
   @Input() value: string;
+  @Input() label: string;
+  @Input() prefix: string;
   @Output() save = new EventEmitter<string>();
   @Output() cancel = new EventEmitter<void>();
 

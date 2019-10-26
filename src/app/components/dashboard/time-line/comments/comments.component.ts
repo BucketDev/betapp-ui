@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { FireAuthService } from '../../../../providers/shared/fire-auth.service';
@@ -14,9 +14,11 @@ export class CommentsComponent implements OnInit {
 
   faCommentAlt = faCommentAlt;
   @Input() notificationId: number;
+  commenting: boolean = false
   loading: boolean = false;
   comments: NotificationComment[];
   comment: NotificationComment;
+  @ViewChild('inputComment', {static: true}) inputComment: ElementRef;
 
   constructor(private notificationCommentsService: NotificationCommentsService,
               private auth: FireAuthService) {
@@ -36,6 +38,11 @@ export class CommentsComponent implements OnInit {
       .subscribe((data: NotificationComment[]) => {
         this.comments = data;
         this.loading = false;
+        if (this.commenting)
+          setTimeout(() => {
+            (<HTMLElement> this.inputComment.nativeElement).focus();
+            (<HTMLElement> this.inputComment.nativeElement).scrollIntoView();
+          }, 200);
       });
   }
 
@@ -48,5 +55,7 @@ export class CommentsComponent implements OnInit {
         this.loading = false;
       })
   }
+
+  startCommenting = () => this.commenting = true
 
 }

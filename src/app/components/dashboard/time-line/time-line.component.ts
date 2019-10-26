@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { User as FireBaseUser} from 'firebase/app';
 
 import { NotificationUsersService } from '../../../providers/user/user-notification.service';
-import { NoificationUser } from '../../../interfaces/notification/notification-user.interface';
+import { NoitficationUser } from '../../../interfaces/notification/notification-user.interface';
 import { Notification } from '../../../interfaces/notification/notification.interface';
 import { NotificationType } from '../../../interfaces/notification/notification-type.interface';
 
@@ -17,14 +17,14 @@ import { NotificationType } from '../../../interfaces/notification/notification-
 export class TimeLineComponent implements OnInit, OnDestroy {
   
   userSubscription: Subscription;
-  notifications: NoificationUser[];
+  notifications: NoitficationUser[];
 
   constructor(private userNotificationService: NotificationUsersService,
               private afAuth: AngularFireAuth,
               private router: Router) {
       this.userSubscription = this.afAuth.authState.subscribe((user: FireBaseUser) => 
         user && this.userNotificationService.findByUserUid(user.uid)
-            .subscribe((notifications: NoificationUser[]) => this.notifications = notifications)
+            .subscribe((notifications: NoitficationUser[]) => this.notifications = notifications)
       );
     }
     
@@ -42,5 +42,4 @@ export class TimeLineComponent implements OnInit, OnDestroy {
         break;
     }
   }
-
 }

@@ -1,17 +1,21 @@
 <div class="form-group my-2">
   <form (ngSubmit)="saveValue()" #form="ngForm">
-    <textarea rows="3" class="form-control" *ngIf="inputType === 'TEXT-AREA'"
-              required [(ngModel)]="value" name="value"></textarea>
-    <input type="number" class="form-control" *ngIf="inputType === 'NUMBER'"
-            required [(ngModel)]="value" name="value">
-    <input type="date" class="form-control" *ngIf="inputType === 'DATE'"
-            required [(ngModel)]="value" name="value">
+    <mat-form-field class="col p-0" appearance="outline">
+      <mat-label>{{ label }}</mat-label>
+      <textarea matInput *ngIf="inputType === 'TEXT-AREA'" [(ngModel)]="value" name="value"></textarea>
+      <input matInput type="number" *ngIf="inputType === 'NUMBER'" [(ngModel)]="value" name="value">
+      <div *ngIf="inputType === 'DATE'">
+        <input matInput [matDatepicker]="limitDate" (placeholder)="label" [(ngModel)]="value" name="value" (click)="limitDate.open()">
+        <mat-datepicker #limitDate></mat-datepicker>
+      </div>
+      <span matPrefix class="mb-1"> {{prefix}} </span>
+    </mat-form-field>
     <div class="d-flex justify-content-end mt-2">
-      <button type="submit" class="btn btn-outline-primary btn-sm rounded-pill">
-        <fa-icon [icon]="faSave"></fa-icon> Save
+      <button mat-raised-button color="primary" type="submit" class="mx-2">
+        <fa-icon [icon]="faSave"></fa-icon>
       </button>
-      <button type="button" class="btn btn-danger btn-sm ml-2 rounded-pill" (click)="cancelValue()">
-        <fa-icon [icon]="faTimesCircle"></fa-icon> Cancel
+      <button mat-raised-button color="warn" type="button" (click)="cancelValue()">
+        <fa-icon [icon]="faTimesCircle"></fa-icon>
       </button>
     </div>
   </form>

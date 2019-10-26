@@ -1,5 +1,5 @@
-<button class="btn rounded-pill" type="button"
-        [ngClass]="{'btn-primary': !saved, 'btn-success': saved, 'btn-sm': small}"
+<button type="button" mat-raised-button [color]="getColor()"
+        [ngClass]="{'btn-sm': small}"
         (click)="onClick()" [disabled]="disabled">
   <span *ngIf="!saving">
     <fa-icon [icon]="faSave"></fa-icon>

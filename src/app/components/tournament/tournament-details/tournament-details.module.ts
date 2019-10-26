@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { AngularMaterialModule } from '../../../angular-material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { SharedPipeModule } from '../../../pipes/shared-pipe.module';
 import { TournamentGeneralModule } from './tournament-general/tournament-general.module';
@@ -16,7 +17,9 @@ import { TournamentLeaderboardComponent } from './tournament-leaderboard/tournam
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
+    AngularMaterialModule,
     FontAwesomeModule,
     SharedModule,
     SharedPipeModule,

@@ -1,4 +1,4 @@
-<mat-expansion-panel class="m-o" (opened)="afterExpand()">
+<mat-expansion-panel class="m-o" (opened)="afterExpand()" (closed)="commenting = false" [expanded]="commenting">
     <mat-expansion-panel-header>
         <mat-panel-title>
           <span>Show comments</span>
@@ -11,15 +11,13 @@
         <div class="d-flex flex-column align-items-start flex-grow-1 mx-1">
           <span class="mx-2">{{ comment.user.displayName }}</span>
           <small class="mx-2 text-muted">{{ comment.creationDate | date: 'medium' }}</small>
-          <div class="mx-2 p-2 bg-light rounded align-self-stretch">
-            <span> {{comment.comment}} </span>
-          </div>
+          <span class="p-2 bg-light rounded align-self-stretch"> {{comment.comment}} </span>
         </div>
       </div>
     </div>
     <div class="d-flex align-items-center">
       <mat-form-field appearance="outline" class="flex-grow-1">
-        <input type="text" placeholder="Type your comment" matInput [(ngModel)]="comment.comment">
+        <input type="text" placeholder="Type your comment" matInput [(ngModel)]="comment.comment" #inputComment>
       </mat-form-field>
       <button mat-stroked-button class="ml-1" (click)="addComment()" [disabled]="loading">
         <fa-icon [icon]="faCommentAlt"></fa-icon>

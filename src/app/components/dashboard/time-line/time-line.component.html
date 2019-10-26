@@ -9,40 +9,7 @@
   </div>
 </div>
 <ng-template #showNotifications>
-  <div class="card my-2" *ngFor="let notificationUser of notifications">
-    <div class="card-header bg-white border-0 d-flex align-items-start align-items-sm-center p-2">
-      <app-profile-photo size="small"
-        [circle]="true"
-        [user]="notificationUser.user"></app-profile-photo>
-      <div class="mx-2">
-          <span class="font-weight-bold mr-1">{{notificationUser.user.displayName}}</span>
-          <span class="font-weight-light text-break">{{notificationUser.notification.notificationType | textNotification}}</span>
-      </div>
-    </div>
-    <div class="card-body p-0">
-      <div class="d-flex mx-2 mb-2">
-          <div class="img-fluid img-notification-destiny-squared rounded mat-elevation-z2" matRipple
-            (click)="goToDestiny(notificationUser.notification)"
-            [style.background-image]="notificationUser.notification.destinyPhotoUrl | photo: 48: 'trophy--v2' | uriStyleSanitizer">
-          </div>
-          <div class="d-flex align-items-center mx-2 flex-grow-1">
-            <div class="img-fluid img-notification-type"
-                [style.background-image]="notificationUser.notification.notificationType | imgNotification | uriStyleSanitizer">
-            </div>
-            <span class="text-break mx-2 font-weight-bold">{{notificationUser.notification.destinyName}}</span>
-          </div>
-      </div>
-    </div>
-    <div class="card-footer d-flex p-0">
-      <button mat-button class="flex-fill d-flex justify-content-center m-1">
-        <img src="https://png.icons8.com/color/two-hearts/24" alt="like">
-        <span class="font-weight-light mx-2">Like</span>
-      </button>
-      <button mat-button class="flex-fill d-flex justify-content-center m-1">
-        <img src="https://png.icons8.com/color/chat-bubble/24" alt="like">
-        <span class="font-weight-light mx-2">Comment</span>
-      </button>
-    </div>
-    <app-comments [notificationId]="notificationUser.notification.id"></app-comments>
+  <div *ngFor="let notificationUser of notifications">
+    <app-notification [notificationUser]="notificationUser"></app-notification>
   </div>
 </ng-template>

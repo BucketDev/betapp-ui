@@ -17,7 +17,7 @@
     <li *ngIf="!rounds || rounds.length === 0" class="list-group-item text-muted text-center">
       <span>This stage has not yet started</span>
     </li>
-    <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1 bg-light"
+    <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1"
         *ngFor="let match of rounds[roundNumber]"
         [matBadge]="match.matchResult?.points" [matBadgeHidden]="!match.registeredTime" matBadgeColor="accent" matBadgeOverlap="true">
       <div class="row m-0">
@@ -25,7 +25,7 @@
           <div class="img-fluid rounded-circle img-participant-squared"
               [style.background-image]="match.groupTeamAway.team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
           </div>
-          <span class="mx-2 text-truncate w-100 text-center">{{match.groupTeamAway.team.name}}</span>
+          <span class="mx-2 text-truncate w-100 text-center d-none d-sm-block">{{match.groupTeamAway.team.name}}</span>
         </div>
           <div class="d-flex p-0 align-items-center justify-content-center flex-column col-3">
             <small class="font-weight-bold">Group {{match.groupName}}</small>
@@ -44,17 +44,16 @@
               </div>
             </div>
             <small class="text-muted" *ngIf="!match.scheduledTime">TBD</small>
-            <small class="text-muted" *ngIf="match.scheduledTime">{{ match.scheduledTime | date }}</small>
+            <small class="text-muted text-center" *ngIf="match.scheduledTime">{{ match.scheduledTime | date: 'longDate' }}</small>
           </div>
-          <div class="d-flex flex-column align-items-center justify-content-end col-4 p-0">
+          <div class="d-flex flex-column align-items-center justify-content-center col-4 p-0">
             <div class="img-fluid rounded-circle img-participant-squared"
                     [style.background-image]="match.groupTeamHome.team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
             </div>
-            <span class="mx-2 text-truncate w-100 text-center">{{match.groupTeamHome.team.name}}</span>
+            <span class="mx-2 text-truncate w-100 text-center d-none d-sm-block">{{match.groupTeamHome.team.name}}</span>
           </div>
-          <div class="col-1 d-flex p-0 align-items-stretch justify-content-end">
-            <button class="btn btm-small btn-light border" [matMenuTriggerFor]="matchActions"
-                [disabled]="match.registeredTime">
+          <div class="col-1 d-flex p-0 align-items-center justify-content-end">
+            <button mat-mini-fab color="primary" class="mat-elevation-z2" [matMenuTriggerFor]="matchActions" [disabled]="match.registeredTime">
               <fa-icon [icon]="faEllipsisV"></fa-icon>
             </button>
             <mat-menu #matchActions>
