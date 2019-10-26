@@ -1,31 +1,35 @@
 <app-loading *ngIf="loading; else notLoading"></app-loading>
 <ng-template #notLoading>
-  <nav class="col mb-2 overflow-auto" *ngIf="rounds && rounds.length > 0">
+  <nav class="col mb-2 overflow-auto" *ngIf="rounds && pages.length > 0">
     <ul class="pagination pagination-sm justify-content-center mb-1">
-      <li class="page-item" [ngClass]="{'disabled': roundNumber === 0}">
-        <button type="button" class="page-link" (click)="showRound(roundNumber - 1)">Previous</button>
+      <li class="page-item" [ngClass]="{'disabled': pageNumber === 0}">
+        <button type="button" class="page-link" (click)="showRound(pageNumber - 1)">
+          <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
+        </button>
       </li>
-      <li *ngFor="let round of rounds; let idx = index" class="page-item" [ngClass]="{'active': idx === roundNumber}">
-        <button type="button" class="page-link" (click)="showRound(idx)">{{ idx + 1 }}</button>
+      <li *ngFor="let page of pages; let idx = index" class="page-item" [ngClass]="{'active': idx === pageNumber}">
+        <button type="button" class="page-link" (click)="showRound(idx)">{{ page }}</button>
       </li>
-      <li class="page-item" [ngClass]="{'disabled': roundNumber === rounds.length - 1}">
-        <button type="button" class="page-link" (click)="showRound(roundNumber + 1)">Next</button>
+      <li class="page-item" [ngClass]="{'disabled': pageNumber === pages.length - 1}">
+        <button type="button" class="page-link" (click)="showRound(pageNumber + 1)">
+          <fa-icon [icon]="faChevronCircleRight"></fa-icon>
+        </button>
       </li>
     </ul>
   </nav>
   <ul class="list-group">
-    <li *ngIf="!rounds || rounds.length === 0" class="list-group-item text-muted text-center">
+    <li *ngIf="!rounds || pages.length === 0" class="list-group-item text-muted text-center">
       <span>This stage has not yet started</span>
     </li>
     <li class="list-group-item flex-column animated fadeIn d-flex justify-content-between m-0 p-1"
-        *ngFor="let match of rounds[roundNumber]"
+        *ngFor="let match of round"
         [matBadge]="match.matchResult?.points" [matBadgeHidden]="!match.registeredTime" matBadgeColor="accent" matBadgeOverlap="true">
       <div class="row m-0">
         <div class="d-flex flex-column justify-content-center align-items-center col-4 p-0">
           <div class="img-fluid rounded-circle img-participant-squared"
               [style.background-image]="match.groupTeamAway.team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
           </div>
-          <span class="mx-2 text-truncate w-100 text-center d-none d-sm-block">{{match.groupTeamAway.team.name}}</span>
+          <span class="mx-2 text-truncate w-100 text-center">{{match.groupTeamAway.team.name}}</span>
         </div>
           <div class="d-flex p-0 align-items-center justify-content-center flex-column col-3">
             <small class="font-weight-bold">Group {{match.groupName}}</small>
@@ -50,7 +54,7 @@
             <div class="img-fluid rounded-circle img-participant-squared"
                     [style.background-image]="match.groupTeamHome.team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
             </div>
-            <span class="mx-2 text-truncate w-100 text-center d-none d-sm-block">{{match.groupTeamHome.team.name}}</span>
+            <span class="mx-2 text-truncate w-100 text-center">{{match.groupTeamHome.team.name}}</span>
           </div>
           <div class="col-1 d-flex p-0 align-items-center justify-content-end">
             <button mat-mini-fab color="primary" class="mat-elevation-z2" [matMenuTriggerFor]="matchActions" [disabled]="match.registeredTime">

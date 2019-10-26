@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
-import { faEllipsisV, faClock, faPenAlt, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -24,19 +23,18 @@ import { MatchParticipantsDateComponent } from './match-participants-date/match-
 export class MatchParticipantsComponent implements OnInit {
   
   faEllipsisV = faEllipsisV;
-  faClock = faClock;
-  faPenAlt = faPenAlt;
-  faMoneyBillAlt = faMoneyBillAlt;
+  faChevronCircleLeft = faChevronCircleLeft;
+  faChevronCircleRight = faChevronCircleRight;
   tournament: TournamentDetails;
-  rounds = [];
+  rounds: any;
+  round: MatchParticipants[];
+  pages = [];
+  pageNumber: number = 0;
   loading: boolean = true;
-  roundNumber: number = 0;
   @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router,
               private matchParticipantsService: MatchParticipantsService,
               private snackBar: MatSnackBar,
               private bottomSheet: MatBottomSheet,
@@ -54,17 +52,19 @@ export class MatchParticipantsComponent implements OnInit {
   }
 
   initializeRounds = (rounds: any) => {
-    if (this.playoffStage) {
-      for (let i = 0; i < Object.keys(rounds).length; i++)
-        this.rounds.push(rounds[Object.keys(rounds)[i]]);
-    } else {
-      for (let i = 1; i <= Object.keys(rounds).length; i++)
-        this.rounds.push(rounds[i]);
+    this.rounds = rounds;
+    for (let i = 0; i < Object.keys(rounds).length; i++) {
+      this.pages.push(Object.keys(rounds)[i]);
     }
+    this.showRound(0);
     this.loading = false;
   }
 
-  showRound = (roundNumber: number) => this.roundNumber = roundNumber;
+  showRound = (pageNumber: number) => {
+    this.pageNumber = pageNumber;
+    this.round = this.rounds[this.pages[this.pageNumber]];
+  }
+    
 
   showUpdateMatch = (match: MatchParticipants) => {
     if (this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
@@ -82,7 +82,7 @@ export class MatchParticipantsComponent implements OnInit {
 
   updatedMatch  = (match: MatchParticipants) => {
     if (match !== undefined) {
-      this.rounds[this.roundNumber] = this.rounds[this.roundNumber]
+      this.round = this.rounds[this.pages[this.pageNumber]]
         .map((_match: MatchParticipants) => (_match.id === match.id) ? match : _match);
       this.snackBar.open('The match has been saved correctly', 'Okay!', {
           duration: 2000,

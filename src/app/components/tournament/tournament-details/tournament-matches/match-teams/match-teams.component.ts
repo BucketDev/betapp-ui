@@ -1,14 +1,13 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
-import { faEllipsisV, faClock, faPenAlt, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 
 import { TournamentDetailsService } from '../../../../../providers/tournament/tournament-details.service';
 import { MatchTeamsService } from '../../../../../providers/match/match-teams.service';
-import { MatchResultsService } from '../../../../../providers/match/match-results.service';
 import { MatchTeams } from '../../../../../interfaces/match/match-teams.interface';
 import { TournamentDetails } from '../../../../../interfaces/tournament/tournament-details.interface';
 import { PlayoffStage } from '../../../../../interfaces/types/playoff-stage.enum';
@@ -24,20 +23,20 @@ import { MatchTeamsDateComponent } from './match-teams-date/match-teams-date.com
 export class MatchTeamsComponent implements OnInit {
   
   faEllipsisV = faEllipsisV;
-  faClock = faClock;
-  faPenAlt = faPenAlt;
-  faMoneyBillAlt = faMoneyBillAlt;
+  faChevronCircleLeft = faChevronCircleLeft;
+  faChevronCircleRight = faChevronCircleRight;
   tournament: TournamentDetails;
-  rounds = [];
+  rounds: any;
+  round: MatchTeams[];
+  pages = [];
+  pageNumber: number = 0;
   loading: boolean = true;
-  roundNumber: number = 0;
   matchTeamId: number;
   @Input() playoffStage: PlayoffStage;
   @ViewChild(SavingButtonComponent, { static: true }) savingButton: SavingButtonComponent;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
               private matchTeamsService: MatchTeamsService,
-              private matchResultsService: MatchResultsService,
               private snackBar: MatSnackBar,
               private bottomSheet: MatBottomSheet,
               public dialog: MatDialog) {
@@ -54,17 +53,18 @@ export class MatchTeamsComponent implements OnInit {
   }
 
   initializeRounds = (rounds: any) => {
-    if (this.playoffStage) {
-      for (let i = 0; i < Object.keys(rounds).length; i++)
-        this.rounds.push(rounds[Object.keys(rounds)[i]]);
-    } else {
-      for (let i = 1; i <= Object.keys(rounds).length; i++)
-        this.rounds.push(rounds[i]);
+    this.rounds = rounds;
+    for (let i = 0; i < Object.keys(rounds).length; i++) {
+      this.pages.push(Object.keys(rounds)[i]);
     }
+    this.showRound(0);
     this.loading = false;
   }
 
-  showRound = (roundNumber: number) => this.roundNumber = roundNumber;
+  showRound = (pageNumber: number) => {
+    this.pageNumber = pageNumber;
+    this.round = this.rounds[this.pages[this.pageNumber]];
+  }
 
   showUpdateMatch = (match: MatchTeams, isABet: boolean = false) => {
     if (isABet || this.tournamentDetailsService.isCreator() && match.registeredTime === null) {
@@ -82,7 +82,7 @@ export class MatchTeamsComponent implements OnInit {
 
   updatedMatch  = (match: MatchTeams) => {
     if (match !== undefined) {
-      this.rounds[this.roundNumber] = this.rounds[this.roundNumber]
+      this.round = this.rounds[this.pages[this.pageNumber]]
         .map((_match: MatchTeams) => (_match.id === match.id) ? match : _match);
       this.snackBar.open('The match has been saved correctly', 'Okay!', {
           duration: 2000,
