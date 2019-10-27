@@ -13,29 +13,25 @@
       </div>
     </div>
   </div>
-  <div class="card-body">
+  <div class="card-body p-0">
     <app-loading *ngIf="loading"></app-loading>
-    <div class="row m-0">
-      <ul class="list-group animated fadeIn fast p-0 w-100" *ngIf="userFollowersService.user?.following">
-        <li *ngIf="userFollowersService.user.following.length === 0; else following"
-            class="list-group-item text-muted text-center">
-          <span>You're not following anyone yet, try typing a name</span>
-        </li>
-        <ng-template #following>
-          <li class="list-group-item p-2 d-flex" *ngFor="let user of userFollowersService.user.following">
-            <app-profile-photo [user]="user" [viewProfile]="false"></app-profile-photo>
-            <div class="d-flex flex-column px-2 flex-fill">
-              <span class="h5 text-break">{{user.displayName}}</span>
-              <small class="text-break font-italic">{{user?.description}}</small>
-              <div class="d-flex justify-content-end">
-                <button mat-raised-button color="warn" (click)="unfollow(user)">
-                  <img src="https://png.icons8.com/color/cancel/24" alt="unfollow"> Unfollow
-                </button>
-              </div>
+    <ul class="list-group list-group-flush animated fadeIn fast" *ngIf="userFollowersService.user?.following">
+      <li *ngIf="userFollowersService.user.following.length === 0; else following"
+          class="list-group-item text-center">
+        <span>You're not following anyone yet, try typing a name</span>
+      </li>
+      <ng-template #following>
+        <li class="list-group-item d-flex p-2" *ngFor="let user of userFollowersService.user?.following">
+          <app-profile-photo [user]="user" [viewProfile]="false"></app-profile-photo>
+          <div class="d-flex flex-column pl-2 flex-grow-1">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="d-inline-block text-break mr-2">{{user.displayName}}</span>
+              <button mat-raised-button class="mw-max-content" color="warn" (click)="unfollow(user)">Unfollow</button>
             </div>
-          </li>
-        </ng-template>
-      </ul>
-    </div>
+            <small class="text-break text-muted">{{user?.description}}</small>
+          </div>
+        </li>
+      </ng-template>
+    </ul>
   </div>
 </div>

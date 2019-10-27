@@ -1,15 +1,21 @@
 <div class="row m-0 my-2">
   <div class="col-12 p-0">
+    <mat-card *ngIf="tournament.userWinner" class="mb-2">
+        <mat-card-header>
+          <img mat-card-avatar src="https://png.icons8.com/color/trophy/40" alt="winner trophy">
+          <mat-card-title class="text-truncate">{{ tournament.userWinner.displayName }}</mat-card-title>
+          <mat-card-subtitle>Tournament winner</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="d-flex justify-content-center">
+          <app-profile-photo size="large" [user]="tournament.userWinner"></app-profile-photo>
+        </mat-card-content>
+      </mat-card>
     <div class="card">
       <div class="card-header border-dark">
         <span class="h5 m-0">Pool Settings</span>
       </div>
       <div class="card-body p-0">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-center" *ngIf="tournament.userWinner">
-            <app-profile-photo size="large"
-              [user]="tournament.userWinner"></app-profile-photo>
-          </li>
           <li class="list-group-item d-flex flex-column align-items-center">
             <span>Balance</span>
             <span class="display-4 text-info font-weight-bold">{{poolSettings.balance | currency}}</span>

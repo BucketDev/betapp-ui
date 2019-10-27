@@ -1,17 +1,17 @@
-<ul class="list-group animated fadeIn fast col p-0">
-  <li class="list-group-item p-2 d-flex">
+<ul class="list-group list-group-flush animated fadeIn fast col p-0">
+  <li class="list-group-item d-flex p-2">
     <app-profile-photo [user]="user" [viewProfile]="false"></app-profile-photo>
     <div class="d-flex flex-column px-2 flex-fill">
-      <span class="h5 text-break">{{user.displayName}}</span>
-      <small class="text-break font-italic">{{user?.description}}</small>
-      <div class="d-flex justify-content-end">
-        <button mat-stroked-button *ngIf="userFollowersService.following(user)">
-          <img src="https://png.icons8.com/color/checked-radio-button/24" alt="following"> Following
+      <div class="d-flex align-items-center justify-content-between">
+        <span class="d-inline-block text-break mr-2">{{user.displayName}}</span>
+        <button mat-stroked-button class="mw-max-content"
+          *ngIf="userFollowersService.following(user)">Following
         </button>
-        <button mat-raised-button color="default" (click)="followClicked()" *ngIf="!userFollowersService.following(user) && !userFollowersService.sameUser(user)">
-          <img src="https://png.icons8.com/color/checked/24" alt="follow"> Follow
+        <button *ngIf="!userFollowersService.following(user) && !userFollowersService.sameUser(user)"
+          mat-raised-button color="default" (click)="followClicked()" class="mw-max-content">Follow
         </button>
       </div>
+      <small class="text-break text-muted">{{user?.description}}</small>
     </div>
   </li>
 </ul>
