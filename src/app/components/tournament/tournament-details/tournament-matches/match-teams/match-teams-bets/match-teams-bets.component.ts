@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { MatchResultsService } from '../../../../../../providers/match/match-results.service';
 import { TournamentDetailsService } from '../../../../../../providers/tournament/tournament-details.service';
 import { ParticipantResults } from '../../../../../../interfaces/match/participant-results.interface';
-import { Subscription } from 'rxjs';
+import { MatchTeams } from '../../../../../../interfaces/match/match-teams.interface';
 
 @Component({
   selector: 'app-match-teams-bets',
@@ -16,7 +17,7 @@ export class MatchTeamsBetsComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   participantResults: ParticipantResults[];
   panelOpenState: boolean = false;
-  @Input() matchTeamId: number;
+  @Input() matchTeams: MatchTeams;
 
   constructor(public tournamentDetailsService: TournamentDetailsService,
               private matchResultsService: MatchResultsService) { }
@@ -28,7 +29,7 @@ export class MatchTeamsBetsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.matchTeamSubscription = this.matchResultsService.matchTeamSelected$
       .subscribe(value => {
-        if(this.matchTeamId === value) {
+        if(this.matchTeams.id === value) {
           this.loading = true;
           this.participantResults = null;
           this.matchResultsService.getParticipantResults(value)

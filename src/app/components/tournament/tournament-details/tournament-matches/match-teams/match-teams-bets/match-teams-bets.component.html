@@ -1,4 +1,4 @@
-<mat-expansion-panel class="mt-1" (opened)="afterExpand(matchTeamId)" (closed)="panelOpenState = false" *ngIf="tournamentDetailsService.isCreator()">
+<mat-expansion-panel class="mt-1" (opened)="afterExpand(matchTeams.id)" (closed)="panelOpenState = false" *ngIf="tournamentDetailsService.isCreator()">
     <mat-expansion-panel-header>
         <mat-panel-title>
         <small>Participants Bets</small>
@@ -18,7 +18,8 @@
                     [user]="participantResult.user"></app-profile-photo>
                 <span class="mx-2 text-truncate text-center w-100">{{ participantResult.user.displayName }}</span>
             </div>
-            <div class="d-flex p-0 justify-content-center flex-column col-4">
+            <div class="d-flex p-0 justify-content-center flex-column col-4"
+                [matBadge]="participantResult.matchResult?.points" [matBadgeHidden]="!matchTeams.registeredTime" matBadgeColor="accent" matBadgeOverlap="true">
                 <div class="d-flex justify-content-center align-items-end mb-1">
                     <div class="h5 m-0 mx-1">
                         <span class="badge badge-warning">{{ participantResult.matchResult ? participantResult.matchResult.scoreAway : '-' }}</span>

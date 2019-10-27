@@ -64,13 +64,16 @@ export class TournamentGeneralComponent {
       horizontalPosition: 'end'
     }));
 
-  hideStartGroup = () => {
-    return TournamentStage[this.tournament.tournamentStage] !== TournamentStage.NEW_TOURNAMENT;
+  showStartGroup = () => {
+    return TournamentStage[this.tournament.tournamentStage] === TournamentStage.NEW_TOURNAMENT;
   }
 
-  hideStartPlayoff = () => {
-    return TournamentStage[this.tournament.tournamentStage] === TournamentStage.PLAYOFF_STAGE ||
-      TournamentStage[this.tournament.tournamentStage] === TournamentStage.FINISHED_TOURNAMENT;
+  showStartPlayoff = () => {
+    if (this,this.tournament.tournamentGroups) {
+      return TournamentStage[this.tournament.tournamentStage] === TournamentStage.GROUP_STAGE;
+    } else {
+      return TournamentStage[this.tournament.tournamentStage] === TournamentStage.NEW_TOURNAMENT;
+    }
   }
 
 }

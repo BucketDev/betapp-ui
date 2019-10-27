@@ -84,6 +84,7 @@ export class MatchTeamsComponent implements OnInit {
     if (match !== undefined) {
       this.round = this.rounds[this.pages[this.pageNumber]]
         .map((_match: MatchTeams) => (_match.id === match.id) ? match : _match);
+      this.rounds[this.pages[this.pageNumber]] = this.round;
       this.snackBar.open('The match has been saved correctly', 'Okay!', {
           duration: 2000,
           horizontalPosition: 'right'

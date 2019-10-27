@@ -5,20 +5,20 @@
         <span class="h5">Group Settings</span>
       </div>
       <div class="card-body animated fadeIn">
-          <mat-slide-toggle color="primary" formControlName="groupRoundTrip">Round Trip</mat-slide-toggle>
-          <mat-form-field appearance="outline" class="col p-0">
-            <mat-label>Number of Groups</mat-label>
-            <input matInput type="number" placeholder="Number of groups" required formControlName="groupNumber"
-              (change)="validateStage()">
-            <mat-error *ngIf="formSettings.get('groupNumber').errors"> {{ getGroupsErrorMessage() }} </mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="col p-0">
-            <mat-label>First of each group</mat-label>
-            <input matInput type="number" placeholder="First of each group" required formControlName="first"
-              (change)="validateStage()">
-            <mat-error *ngIf="formSettings.get('first').errors"> {{ getFirstOfGroupErrorMessage() }} </mat-error>
-            <mat-hint>How many teams/people will pass to the playoffs per group</mat-hint>
-          </mat-form-field>
+        <mat-slide-toggle color="primary" class="my-1" formControlName="groupRoundTrip">Round Trip</mat-slide-toggle>
+        <mat-form-field appearance="outline" class="col p-0">
+          <mat-label>Number of Groups</mat-label>
+          <input matInput type="number" placeholder="Number of groups" required formControlName="groupNumber"
+            (change)="validateStage()">
+          <mat-error *ngIf="formSettings.get('groupNumber').errors"> {{ getGroupsErrorMessage() }} </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col p-0">
+          <mat-label>First of each group</mat-label>
+          <input matInput type="number" placeholder="First of each group" required formControlName="first"
+            (change)="validateStage()">
+          <mat-error *ngIf="formSettings.get('first').errors"> {{ getFirstOfGroupErrorMessage() }} </mat-error>
+          <mat-hint>How many teams/people will pass to the playoffs per group</mat-hint>
+        </mat-form-field>
       </div>
     </div>
     <div class="card-header border-dark">
@@ -33,7 +33,7 @@
         <mat-error *ngIf="formSettings.get('playoffStage').errors"> {{ getPlayoffStageErrorMessage() }} </mat-error>
         <mat-hint>From which stage do the playoffs will start</mat-hint>
       </mat-form-field>
-      <div class="row m-0" *ngIf="showEighthFinals">
+      <div class="row m-0 my-1" *ngIf="showEighthFinals">
         <div class="w-150p">
           <span>{{playoffStages['EIGHTH_FINALS']}}</span>
         </div>
@@ -41,7 +41,7 @@
             <mat-slide-toggle color="primary" formControlName="eightFinalsRoundTrip">Round Trip</mat-slide-toggle>
         </div>
       </div>
-      <div class="row m-0" *ngIf="showQuarterFinals">
+      <div class="row m-0 my-1" *ngIf="showQuarterFinals">
         <div class="w-150p">
           <span>{{playoffStages['QUARTER_FINALS']}}</span>
         </div>
@@ -49,7 +49,7 @@
             <mat-slide-toggle color="primary" formControlName="quarterFinalsRoundTrip">Round Trip</mat-slide-toggle>
         </div>
       </div>
-      <div class="row m-0" *ngIf="showSemifinals">
+      <div class="row m-0 my-1" *ngIf="showSemifinals">
         <div class="w-150p">
           <span>{{playoffStages['SEMIFINALS']}}</span>
         </div>
@@ -57,7 +57,7 @@
             <mat-slide-toggle color="primary" formControlName="semiFinalsRoundTrip">Round Trip</mat-slide-toggle>
         </div>
       </div>
-      <div class="row m-0">
+      <div class="row m-0 my-1">
         <div class="w-150p">
           <span>{{playoffStages['FINALS']}}</span>
         </div>
