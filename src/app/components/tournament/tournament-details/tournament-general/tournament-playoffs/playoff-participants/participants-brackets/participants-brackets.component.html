@@ -1,24 +1,32 @@
-<div class="p-0 my-2 mx-1">
+<div class="p-0 my-2 mx-1" *ngIf="group">
   <ul class="list-group">
-    <li *ngIf="!showAwayParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
+    <li *ngIf="!getAwayParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
       <div class="img-fluid rounded-circle img-participant-squared"
             [style.background-image]="null | photo: 32: 'warning-shield': 'color' | uriStyleSanitizer">
       </div>
       <small class="text-muted mx-1 d-none d-sm-inline-block flex-grow-1">TBD</small>
+      <button mat-raised-button class="btn-info mat-btn-sm" (click)="addParticipant(false)"
+        *ngIf="canAddParticipant()">
+        <fa-icon [icon]="faPlusCircle"></fa-icon>
+      </button>
     </li>
-    <li *ngIf="showAwayParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
-      <app-profile-photo size="small" [circle]="true" [user]="groupParticipants[0].user"></app-profile-photo>
-      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{groupParticipants[0].user.displayName}}</small>
+    <li *ngIf="getAwayParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
+      <app-profile-photo size="small" [circle]="true" [user]="getAwayParticipant().user"></app-profile-photo>
+      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{getAwayParticipant().user.displayName}}</small>
     </li>
-    <li *ngIf="!showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
+    <li *ngIf="!getHomeParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
       <div class="img-fluid rounded-circle img-participant-squared"
             [style.background-image]="null | photo: 32: 'warning-shield': 'color' | uriStyleSanitizer">
       </div>
       <small class="text-muted mx-1 d-none d-sm-inline-block flex-grow-1">TBD</small>
+      <button mat-raised-button class="btn-info mat-btn-sm" (click)="addParticipant(true)"
+        *ngIf="canAddParticipant()">
+        <fa-icon [icon]="faPlusCircle"></fa-icon>
+      </button>
     </li>
-    <li *ngIf="showHomeParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
-      <app-profile-photo size="small" [circle]="true" [user]="groupParticipants[1].user"></app-profile-photo>
-      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{groupParticipants[1].user.displayName}}</small>
+    <li *ngIf="getHomeParticipant()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
+      <app-profile-photo size="small" [circle]="true" [user]="getHomeParticipant().user"></app-profile-photo>
+      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{getHomeParticipant().user.displayName}}</small>
     </li>
   </ul>
 </div>

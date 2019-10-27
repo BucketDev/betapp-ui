@@ -1,17 +1,19 @@
 <div class="card mb-2">
-  <div class="card-header border-dark d-flex align-items-center justify-content-between">
-    <span class="h5 m-0">Group Stage</span>
-    <button mat-raised-button class="bg-warning" *ngIf="tournamentDetailsService.isCreator() && !hideStartGroup()"
-            (click)="startGroupStage()">
-      <fa-icon [icon]="faRocket"></fa-icon> Start stage</button>
-  </div>
-  <div class="card-body p-2">
-    <div *ngIf="tournament.tournamentTeams; else groupParticipants">
-        <app-group-teams></app-group-teams>
+  <div *ngIf="tournament.tournamentGroups">
+    <div class="card-header border-dark d-flex align-items-center justify-content-between">
+      <span class="h5 m-0">Group Stage</span>
+      <button mat-raised-button class="bg-warning" *ngIf="tournamentDetailsService.isCreator() && !hideStartGroup()"
+              (click)="startGroupStage()">
+        <fa-icon [icon]="faRocket"></fa-icon> Start stage</button>
     </div>
-    <ng-template #groupParticipants>
-        <app-group-participants></app-group-participants>
-    </ng-template>
+    <div class="card-body p-2">
+      <div *ngIf="tournament.tournamentTeams; else groupParticipants">
+          <app-group-teams></app-group-teams>
+      </div>
+      <ng-template #groupParticipants>
+          <app-group-participants></app-group-participants>
+      </ng-template>
+    </div>
   </div>
   <div class="card-header border-dark d-flex align-items-center justify-content-between">
     <span class="h5 m-0">Playoffs Stage</span>

@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedPipeModule } from '../../../../../pipes/shared-pipe.module';
+import { AngularMaterialModule } from '../../../../../angular-material.module';
 import { SharedModule } from '../../../../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PlayoffParticipantsComponent } from './playoff-participants/playoff-participants.component';
 import { ParticipantsBracketsComponent } from './playoff-participants/participants-brackets/participants-brackets.component';
@@ -16,6 +18,8 @@ import { TeamsBracketsComponent } from './playoff-teams/teams-brackets/teams-bra
     CommonModule,
     SharedModule,
     SharedPipeModule,
+    AngularMaterialModule,
+    FontAwesomeModule
   ],
   declarations: [
     PlayoffParticipantsComponent,

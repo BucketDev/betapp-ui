@@ -16,6 +16,6 @@ export class GroupTeamService {
   findByTournamentId = (tournamentId: number) =>
     this.http.get(`${this.url}/tournament/${tournamentId}`);
 
-    addTeam = (groupTeam: GroupTeam) =>
+  insert = (groupTeam: GroupTeam) =>
     this.http.post(`${this.url}/`, groupTeam);
 }

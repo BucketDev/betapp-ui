@@ -35,7 +35,7 @@ export class TeamModalComponent implements OnInit {
               public tournamentDetaiilsService: TournamentDetailsService,
               private teamService: TeamService,
               private changeDetectorRef: ChangeDetectorRef,
-              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {group: Group},
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {group: Group, homeTeam: boolean},
               private groupTeamService: GroupTeamService) {
     this.group = data.group;
     this.team = {
@@ -89,9 +89,10 @@ export class TeamModalComponent implements OnInit {
       team: {
         name: this.team.name,
         photoUrl: this.team.photoUrl
-      }
+      },
+      points: this.data.homeTeam ? 0 : 1
     }
-    this.groupTeamService.addTeam(groupTeam)
+    this.groupTeamService.insert(groupTeam)
       .subscribe((groupTeam: GroupTeam) => {
         this.savingButton.setSaved();
         this.bottomSheetRef.dismiss(groupTeam);

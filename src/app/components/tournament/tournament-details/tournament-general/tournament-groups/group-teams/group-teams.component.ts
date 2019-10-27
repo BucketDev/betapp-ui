@@ -33,7 +33,7 @@ export class GroupTeamsComponent implements OnInit {
 
   showAssignTeam = (group: Group) => {
     let ref = this.bottomSheet.open(TeamModalComponent, {
-      data: {group}
+      data: {group, homeTeam: true}
     });
     ref.afterDismissed().subscribe((data: GroupTeam) => {
       if(data !== undefined) {

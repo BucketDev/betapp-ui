@@ -1,28 +1,36 @@
-<div class="p-0 my-2 mx-1">
+<div class="p-0 my-2 mx-1" *ngIf="group">
   <ul class="list-group">
-    <li *ngIf="!showAwayTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
+    <li *ngIf="!getAwayTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
       <div class="img-fluid rounded-circle img-team-squared"
             [style.background-image]="null | photo: 32: 'warning-shield': 'color' | uriStyleSanitizer">
       </div>
       <small class="text-muted mx-1 d-none d-sm-inline-block flex-grow-1">TBD</small>
+      <button mat-raised-button class="btn-info mat-btn-sm" (click)="addTeam(false)"
+        *ngIf="canAddTeam()">
+        <fa-icon [icon]="faPlusCircle"></fa-icon>
+      </button>
     </li>
-    <li *ngIf="showAwayTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
+    <li *ngIf="getAwayTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
       <div class="img-fluid rounded-circle img-team-squared"
-            [style.background-image]="groupTeams[0].team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
+            [style.background-image]="getAwayTeam().team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
       </div>
-      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{groupTeams[0].team.name}}</small>
+      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{getAwayTeam().team.name}}</small>
     </li>
-    <li *ngIf="!showHomeTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
+    <li *ngIf="!getHomeTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
       <div class="img-fluid rounded-circle img-team-squared"
             [style.background-image]="null | photo: 32: 'warning-shield': 'color' | uriStyleSanitizer">
       </div>
       <small class="text-muted mx-1 d-none d-sm-inline-block flex-grow-1">TBD</small>
+      <button mat-raised-button class="btn-info mat-btn-sm" (click)="addTeam(true)"
+        *ngIf="canAddTeam()">
+        <fa-icon [icon]="faPlusCircle"></fa-icon>
+      </button>
     </li>
-    <li *ngIf="showHomeTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-center">
+    <li *ngIf="getHomeTeam()" class="list-group-item p-1 d-flex align-items-center justify-content-around">
       <div class="img-fluid rounded-circle img-team-squared"
-            [style.background-image]="groupTeams[1].team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
+            [style.background-image]="getHomeTeam().team.photoUrl | photo: 32: 'football2' | uriStyleSanitizer">
       </div>
-      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{groupTeams[1].team.name}}</small>
+      <small class="mx-1 text-truncate d-none d-sm-inline-block flex-grow-1">{{getHomeTeam().team.name}}</small>
     </li>
   </ul>
 </div>  

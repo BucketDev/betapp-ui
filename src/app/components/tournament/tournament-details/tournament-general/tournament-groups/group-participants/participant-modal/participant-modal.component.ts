@@ -21,11 +21,14 @@ export class ParticipantModalComponent implements OnInit {
   faTimesCircle = faTimesCircle;
   participants: User[];
   selectedParticipants: User[] = [];
+  selectedParticipant: User;
   group: Group;
   loading: boolean = false;
 
   constructor(private bottomSheetRef: MatBottomSheetRef<ParticipantModalComponent>,
-              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {group: Group},
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {
+                group: Group, homeParticipant: boolean, selectable: boolean
+              },
               private _changeDetectorRef: ChangeDetectorRef,
               private participantService: ParticipantService,
               private groupParticipantService: GroupParticipantService) {
@@ -49,7 +52,23 @@ export class ParticipantModalComponent implements OnInit {
     this.selectedParticipants = participants;
   }
 
-  saveParticipants = () => {this.loading = true;
+  participantSelected = (user :User) => {
+    this.loading = true;
+    let groupParticipant: GroupParticipant = {
+      groupId: this.group.id,
+      tournamentId: this.group.tournamentId,
+      user,
+      points: this.data.homeParticipant ? 0 : 1
+    }
+    this.groupParticipantService.insert(groupParticipant)
+      .subscribe((groupParticipant: GroupParticipant) => {
+        this.loading = false;
+        this.bottomSheetRef.dismiss(groupParticipant);
+      })
+  }
+
+  saveParticipants = () => {
+    this.loading = true;
     this.groupParticipantService.saveByGroupId(this.group.id, this.selectedParticipants)
       .subscribe((groupParticipants: GroupParticipant[]) => {
         this.loading = false;

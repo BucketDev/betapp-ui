@@ -38,7 +38,7 @@ export class GroupParticipantsComponent implements OnInit {
 
   showPendingGroupParticipants = (group: Group) => {
     let ref = this.bottomSheet.open(ParticipantModalComponent, {
-      data: {group}
+      data: {group, homeParticipant: false, selectable: true}
     });
     ref.afterDismissed().subscribe((data: GroupParticipant[]) => {
       if(data !== undefined) {

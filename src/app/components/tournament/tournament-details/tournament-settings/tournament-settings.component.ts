@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -93,10 +93,10 @@ export class TournamentSettingsComponent {
         Validators.required
       ])
     });
-    this.formSettings.controls['playoffStage'].setValidators([
-      Validators.required,
-      this.notEnoughParticipants
-    ]);
+    let playoffStageValidators: ValidatorFn[] = [Validators.required];
+    if (this.tournament.tournamentGroups)
+      playoffStageValidators.push(this.notEnoughParticipants)
+    this.formSettings.controls['playoffStage'].setValidators(playoffStageValidators);
     this.formSettings.controls['playoffStage'].markAsTouched();
   }
 

@@ -2,12 +2,13 @@
   <app-loading *ngIf="!participants || loading"></app-loading>
   <div *ngIf="participants" class="overflow-auto betapp-add-participants-list">
     <app-participants-list [participants]="participants"
-      [selectable]="true"
+      [selectable]="data.selectable"
       (participantsEvent)="participantsSelected($event)"
+      (participantEvent)="participantSelected($event)"
       [emptyLabel]="'There are no more participants left'">
     </app-participants-list>
   </div>
-  <div class="d-flex justify-content-end bg-light p-2" *ngIf="participants?.length > 0">
+  <div class="d-flex justify-content-end bg-light p-2" *ngIf="participants?.length > 0 && data.selectable">
       <app-saving-button [disabled]="selectedParticipants.length === 0" (clicked)="saveParticipants()"></app-saving-button>
   </div>
 </div>
