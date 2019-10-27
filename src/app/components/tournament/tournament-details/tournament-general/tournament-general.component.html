@@ -2,7 +2,7 @@
   <div *ngIf="tournament.tournamentGroups">
     <div class="card-header border-dark d-flex align-items-center justify-content-between">
       <span class="h5 m-0">Group Stage</span>
-      <button mat-raised-button class="bg-warning" *ngIf="tournamentDetailsService.isCreator() && !hideStartGroup()"
+      <button mat-raised-button class="bg-warning" *ngIf="tournamentDetailsService.isCreator() && showStartGroup()"
               (click)="startGroupStage()">
         <fa-icon [icon]="faRocket"></fa-icon> Start stage</button>
     </div>
@@ -17,7 +17,7 @@
   </div>
   <div class="card-header border-dark d-flex align-items-center justify-content-between">
     <span class="h5 m-0">Playoffs Stage</span>
-    <button mat-raised-button class="bg-warning" *ngIf="tournamentDetailsService.isCreator() && !hideStartPlayoff()"
+    <button mat-raised-button class="bg-warning" *ngIf="tournamentDetailsService.isCreator() && showStartPlayoff()"
             (click)="startFinalsStage()">
       <fa-icon [icon]="faRocket"></fa-icon> Start stage
     </button>
