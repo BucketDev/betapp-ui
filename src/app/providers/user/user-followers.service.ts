@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FireAuthService } from '../shared/fire-auth.service';
 import { UserFollower } from '../../interfaces/user/user-follower.interface';
 import { User } from '../../interfaces/user/user.interface';
+import { SubUserFollower } from '../..//interfaces/user/sub-user-follower.interface';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -19,13 +20,15 @@ export class UserFollowersService {
               private auth: FireAuthService) { }
 
   following = (user: User) =>
-    this.user.following.filter((_user: User) => _user.id === user.id).length > 0;
+    this.user.following.filter((_user: SubUserFollower) => _user.id === user.id).length > 0;
 
   sameUser = (user: User) => this.auth.user.uid === user.uid;
 
   findCountByUid = (uid: string) => this.http.get(`${this.url}/count/uid/${uid}`);
 
   findByUid = (uid: string) => this.http.get(`${this.url}/uid/${uid}`);
+
+  findByDisplayName = (displayName: string) => this.http.get(`${this.url}/uid/${this.auth.user.uid}/displayName/${displayName}`);
 
   findFollowingByUid = (uid: string, followingUid: string) => this.http.get(`${this.url}?uid=${uid}&followingUid=${followingUid}`);
 

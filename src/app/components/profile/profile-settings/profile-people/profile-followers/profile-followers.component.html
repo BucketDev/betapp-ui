@@ -19,6 +19,10 @@
                   (click)="follow(user)" *ngIf="!userFollowersService.following(user)">Follow
                 </button>
               </div>
+              <small>
+                <span class="font-weight-bold">{{user.followingCount}}</span> Following
+                <span class="font-weight-bold">{{user.followersCount}}</span> Followers
+              </small>
               <small class="text-break text-muted">{{user?.description}}</small>
             </div>
           </li>

@@ -28,6 +28,10 @@
               <span class="d-inline-block text-break mr-2">{{user.displayName}}</span>
               <button mat-raised-button class="mw-max-content" color="warn" (click)="unfollow(user)">Unfollow</button>
             </div>
+            <small>
+              <span class="font-weight-bold">{{user.followingCount}}</span> Following
+              <span class="font-weight-bold">{{user.followersCount}}</span> Followers
+            </small>
             <small class="text-break text-muted">{{user?.description}}</small>
           </div>
         </li>

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 import { UserFollowersService } from '../../../../../providers/user/user-followers.service';
-import { UserService } from '../../../../../providers/user/user.service';
-import { UserFollower } from '../../../../../interfaces/user/user-follower.interface';
-import { User } from '../../../../../interfaces/user/user.interface';
+import { SubUserFollower } from '../../../../../interfaces/user/sub-user-follower.interface';
 import { FollowModalComponent } from '../follow-modal/follow-modal.component';
+import { UserDetails } from '../../../../../interfaces/user/user-details.interface';
 
 @Component({
   selector: 'app-profile-following',
@@ -15,43 +14,50 @@ import { FollowModalComponent } from '../follow-modal/follow-modal.component';
 export class ProfileFollowingComponent implements OnInit {
 
   loading: boolean = false;
-  searchResultUsers: User[];
+  searchResultUsers: UserDetails[];
   name: string;
 
   constructor(public userFollowersService: UserFollowersService,
-              private userService: UserService,
               private bottomSheet: MatBottomSheet) { }
 
   searchUser = (userElement: HTMLInputElement) => {
     if(userElement.value.length > 3) {
-      this.userService.findByDisplayName(userElement.value)
-        .subscribe((data: User[]) => this.searchResultUsers = data);
+      this.userFollowersService.findByDisplayName(userElement.value)
+        .subscribe((data: UserDetails[]) => this.searchResultUsers = data);
     } else {
       this.searchResultUsers = null;
     }
   }
 
-  follow = (user: User) => {
+  follow = (user: UserDetails) => {
     let ref = this.bottomSheet.open(FollowModalComponent, { data: { user } });
-    ref.afterDismissed().subscribe((data: User) => {
+    ref.afterDismissed().subscribe((data: UserDetails) => {
       this.clearSearch();
       if (data) {
         this.loading = true;
         this.userFollowersService.follow(data.uid)
-          .subscribe((user: User) => {
+          .subscribe((user: SubUserFollower) => {
             this.userFollowersService.user.following.push(user);
+            this.userFollowersService.user.followers =
+              this.userFollowersService.user.followers.map(
+              (follower: SubUserFollower) => follower.id === user.id ? user : follower);
             this.loading = false;
           });
       }
     })
   }
 
-  unfollow = (user: User) => {
+  unfollow = (user: SubUserFollower) => {
     this.loading = true;
     this.userFollowersService.unfollow(user.uid)
       .subscribe(() => {
         this.userFollowersService.user.following =
-          this.userFollowersService.user.following.filter((_user: User) => _user.id != user.id);
+          this.userFollowersService.user.following.filter((_user: SubUserFollower) => _user.id != user.id);
+        this.userFollowersService.user.followers.forEach(
+          (follower: SubUserFollower) => {
+            if (follower.id === user.id)
+              follower.followersCount--;
+          });
         this.loading = false;
       });
   }

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
 import { UserFollowersService } from '../../../../../providers/user/user-followers.service';
-import { User } from '../../../../../interfaces/user/user.interface';
+import { UserDetails } from '../../../../../interfaces/user/user-details.interface';
 
 @Component({
   selector: 'app-follow-modal',
@@ -11,11 +11,11 @@ import { User } from '../../../../../interfaces/user/user.interface';
 })
 export class FollowModalComponent implements OnInit {
 
-  user: User;
+  user: UserDetails;
 
   constructor(public userFollowersService: UserFollowersService,
               private bottomSheetRef: MatBottomSheetRef<FollowModalComponent>,
-              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {user: User}) {
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {user: UserDetails}) {
     this.user = data.user;
   }
 

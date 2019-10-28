@@ -1,11 +1,11 @@
-import { User } from './user.interface';
+import { SubUserFollower } from './sub-user-follower.interface';
 
 export interface UserFollower {
-    id: string,
+    id: number,
     uid: string,
     displayName: string,
     description?: string,
     photoUrl: string,
-    following: User[],
-    followers: User[]
+    following: SubUserFollower[],
+    followers: SubUserFollower[]
 }
