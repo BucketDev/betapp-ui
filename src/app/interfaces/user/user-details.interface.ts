@@ -1,5 +1,5 @@
 export interface UserDetails {
-  id: string,
+  id: number,
   uid: string,
   displayName: string,
   description?: string,
