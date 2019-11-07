@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, CanActivateChild } from '@angular/router';
 import { FireAuthService } from './fire-auth.service';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

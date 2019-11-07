@@ -9,7 +9,7 @@ export class FireAuthInterceptor implements HttpInterceptor {
   constructor(public auth: FireAuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //console.log(this.auth.idToken);
+    console.log(this.auth.idToken);
     
     if (this.auth.idToken) {
       request = request.clone({ setHeaders: { 'BetApp-auth': `${this.auth.idToken}` } });
