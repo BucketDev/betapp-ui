@@ -33,7 +33,7 @@
                 [style.background-image]="tournament.photoUrl | photo: 128: 'trophy--v2' | uriStyleSanitizer: true">
             <div class="d-flex justify-content-between">
               <span class="img-tournament-privacy"><img [src]="tournament.tournamentPrivacy | imgPrivacy" alt="privacy"></span>
-              <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/color/trophy/24" alt="tournament finished"></span>
+              <span *ngIf="tournament.userWinner"><img src="https://png.icons8.com/color/24/trophy.png" alt="tournament finished"></span>
             </div>
             <span class="text-light text-center text-truncate d-block">
               {{tournament.title}}

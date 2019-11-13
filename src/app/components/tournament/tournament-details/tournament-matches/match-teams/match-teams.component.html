@@ -63,13 +63,13 @@
             <mat-menu #matchActions>
               <button *ngIf="tournamentDetailsService.isCreator()"
                   mat-menu-item (click)="showUpdateDate(match)">
-                <img src="https://png.icons8.com/cotton/calendar/24" alt="Update date"> Update Date
+                <img src="https://png.icons8.com/cotton/24/calendar.png" alt="Update date"> Update Date
               </button>
               <button mat-menu-item (click)="showUpdateMatch(match, true)">
-                <img src="https://png.icons8.com/cotton/cash-in-hand/24" alt="Make a bet"> Make a Bet
+                <img src="https://png.icons8.com/cotton/24/cash-in-hand.png" alt="Make a bet"> Make a Bet
               </button>
               <button *ngIf="tournamentDetailsService.isCreator()" mat-menu-item (click)="showUpdateMatch(match)">
-                <img src="https://png.icons8.com/cotton/-scoreboard-/24" alt="Input score"> Input Score
+                <img src="https://png.icons8.com/cotton/24/-scoreboard-.png" alt="Input score"> Input Score
               </button>
             </mat-menu>
           </div>

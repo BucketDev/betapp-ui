@@ -11,13 +11,13 @@ export class ImgPrivacyPipe implements PipeTransform {
     let uri = "";
     switch(value) {
       case TournamentPrivacy.PUBLIC:
-        uri = `https://png.icons8.com/color/earth-planet/${size}`
+        uri = `https://png.icons8.com/color/${size}/earth-planet.png`
         break;
       case TournamentPrivacy.PRIVATE:
-        uri = `https://png.icons8.com/color/unlock-2/${size}`
+        uri = `https://png.icons8.com/color/${size}/unlock-2.png`
         break;
       case TournamentPrivacy.SECRET:
-        uri = `https://png.icons8.com/color/lock-2/${size}`
+        uri = `https://png.icons8.com/color/${size}/lock-2.png`
         break;
     }
     return uri;

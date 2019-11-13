@@ -12,7 +12,7 @@ export class ImgNotificationPipe implements PipeTransform {
     let uri = "";
     switch(NotificationType[value]) {
       case NotificationType.NEW_TOURNAMENT:
-        uri = `https://png.icons8.com/cotton/trophy--v2/${size}`
+        uri = `https://png.icons8.com/cotton/${size}/trophy--v2.png`
         break;
     }
     return uri;
